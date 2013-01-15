@@ -4,6 +4,8 @@ Basic note taking app built by [Joel Vardy] [1].
 
 ## Install
 
+Setup config options in the `app/config` folder.
+
 Ensure the `app/storage` folder is writable:
 
 ```bash
