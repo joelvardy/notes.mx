@@ -4,6 +4,18 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Return whether the email is unique
+	 */
+	public function email_unique($email)
+	{
+
+		// Return boolean
+		return ! (boolean) User::where('email', '=', $email)->count();
+
+	}
+
+
+	/**
 	 * Login user
 	 */
 	public function login()
@@ -48,7 +60,7 @@ class UserApi extends BaseController {
 			// Read the user details
 			$user = User::find($user_id);
 
-			// If the user was found
+			// Ensure the user was found
 			if ($user)
 			{
 				$response['status'] = true;
@@ -88,13 +100,19 @@ class UserApi extends BaseController {
 		if ($validator->passes())
 		{
 
-			// Add the user to the users table
-			$user = new User;
-			$user->email = Input::get('email');
-			$user->password = Hash::make(Input::get('password'));
-			if ($user->save())
+			// Ensure the email is unique
+			if ($this->email_unique(Input::get('email')))
 			{
-				$status = true;
+
+				// Add the user to the users table
+				$user = new User;
+				$user->email = Input::get('email');
+				$user->password = Hash::make(Input::get('password'));
+				if ($user->save())
+				{
+					$status = true;
+				}
+
 			}
 
 		}
@@ -127,12 +145,17 @@ class UserApi extends BaseController {
 		if ($validator->passes())
 		{
 
-			// Update the user
+			// Read the user details
 			$user = User::find($user_id);
-			$user->password = Hash::make(Input::get('password'));
-			if ($user->save())
+
+			// Ensure the user was found
+			if ($user)
 			{
-				$status = true;
+				$user->password = Hash::make(Input::get('password'));
+				if ($user->save())
+				{
+					$status = true;
+				}
 			}
 
 		}
@@ -153,7 +176,7 @@ class UserApi extends BaseController {
 
 		// Delete the user
 		$user = User::find($user_id);
-		if ($user->delete())
+		if ($user && $user->delete())
 		{
 			$status = true;
 		}
