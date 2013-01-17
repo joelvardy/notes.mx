@@ -46,6 +46,18 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Remove all expired API keys
+	 */
+	public function remove_expired_api_keys()
+	{
+
+		// Delete all keys which are 3 hours old
+		return ApiKeys::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-3 hour')))->delete();
+
+	}
+
+
+	/**
 	 * Login user
 	 */
 	public function login()
