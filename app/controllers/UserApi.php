@@ -58,6 +58,30 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Authenticate user by email and API key
+	 */
+	public function authenticate($email, $api_key)
+	{
+
+		// Remove expired API keys
+		$this->remove_expired_api_keys();
+
+		// Read the user matching the email address
+		$user = User::where('email', '=', $email)->first();
+
+		// Ensure there
+		if ($user)
+		{
+			// Return boolean based on the number of matching API keys
+			return (boolean) $user->api_keys()->where('key', '=', $api_key)->count();
+		}
+
+		return false;
+
+	}
+
+
+	/**
 	 * Login user
 	 */
 	public function login()
