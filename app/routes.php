@@ -11,7 +11,20 @@
 |
 */
 
+// Base
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index');
 });
+
+// Update user
+Route::get('user/{id}', 'UserApi@read')->where('id', '[0-9]+');;
+
+// Create user
+Route::post('user', 'UserApi@create');
+
+// Update user
+Route::put('user/{id}', 'UserApi@update')->where('id', '[0-9]+');;
+
+// Delete user
+Route::delete('user/{id}', 'UserApi@delete')->where('id', '[0-9]+');;

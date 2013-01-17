@@ -18,4 +18,10 @@ Run the composer install:
 composer install
 ```
 
+Run migrations:
+
+```bash
+php artisan migrate
+```
+
   [1]: http://joelvardy.com/
