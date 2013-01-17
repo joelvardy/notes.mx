@@ -1,6 +1,6 @@
 <?php
 
-class UserApi extends BaseController {
+class User extends BaseController {
 
 
 	/**
