@@ -111,6 +111,15 @@ class UserApi extends BaseController {
 	public function read($user_id = false)
 	{
 
+		// Ensure this is an authenticated request
+		if ( ! $this->authenticate(Input::get('email'), Input::get('api_key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
 		// If a user ID has been passed return the data for that user
 		if ( ! $user_id && Auth::user())
 		{
@@ -196,6 +205,15 @@ class UserApi extends BaseController {
 	 */
 	public function update($user_id)
 	{
+
+		// Ensure this is an authenticated request
+		if ( ! $this->authenticate(Input::get('email'), Input::get('api_key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
 
 		// Validate the data
 		$validator = Validator::make(
