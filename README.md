@@ -36,7 +36,7 @@ php artisan migrate
   * email
   * password
  * Response: **JSON**
-  * Status
+  * status
 
 ### Read
 
@@ -54,13 +54,13 @@ php artisan migrate
  * Data:
   * password
  * Response: **JSON**
-  * Status
+  * status
 
 ### Delete
 
  * Endpoint: **/user/{ID}**
  * Method: **DELETE**
  * Response: **JSON**
-  * Status
+  * status
 
   [1]: http://joelvardy.com/

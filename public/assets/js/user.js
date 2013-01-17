@@ -1,5 +1,5 @@
 function User() {
-	this.username = '';
+	this.email = '';
 }
 
 User.prototype = {
@@ -8,12 +8,40 @@ User.prototype = {
 		//
 	},
 
-	getUsername: function(){
-		return this.username;
+	getEmail: function(){
+		return this.email;
 	},
 
-	setUsername: function(username){
-		this.username = username;
+	setEmail: function(email){
+		this.email = email;
+	},
+
+	create: function(email, password, callback){
+
+		var _this = this;
+
+		// Attempt to create the user account
+		$.ajax({
+			type: 'POST',
+			url: '/user',
+			data: {
+				email: email,
+				password: password
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Set the user email
+				_this.setEmail(email);
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(response);
+				}
+
+			}
+		});
+
 	}
 
 }
