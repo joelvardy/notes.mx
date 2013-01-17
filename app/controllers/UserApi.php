@@ -53,8 +53,8 @@ class UserApi extends BaseController {
 
 		$response['status'] = false;
 
-		// If there is a user ID
-		if ($user_id)
+		// Ensure there is a valid user ID
+		if (is_numeric($user_id))
 		{
 
 			// Read the user details
