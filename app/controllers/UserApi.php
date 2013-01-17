@@ -93,10 +93,16 @@ class UserApi extends BaseController {
 			'password' => Input::get('password')
 		));
 
-		// If the user logged in return their ID
+		// Check the user was successfully logged in
 		if ($response['status'])
 		{
+
+			// Return the users ID
 			$response['user_id'] = Auth::user()->id;
+
+			// Create an API key for this session and return it
+			$response['api_key'] = $this->create_api_key($user_id);
+
 		}
 
 		// Return response
