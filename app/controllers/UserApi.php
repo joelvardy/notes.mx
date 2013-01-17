@@ -30,11 +30,38 @@ class UserApi extends BaseController {
 	/**
 	 * Read user
 	 */
-	public function read($user_id)
+	public function read($user_id = false)
 	{
 
-		// Return user object
-		return User::find($user_id)->toJson();
+		// If a user ID has been passed return the data for that user
+		if ( ! $user_id && Auth::user())
+		{
+			$user_id = Auth::user()->id;
+		}
+
+		$response['status'] = false;
+
+		// If there is a user ID
+		if ($user_id)
+		{
+
+			// Read the user details
+			$user = User::find($user_id);
+
+			// If the user was found
+			if ($user)
+			{
+				$response['status'] = true;
+				$response['id'] = $user->id;
+				$response['email'] = $user->email;
+				$response['created_ad'] = $user->created_ad;
+				$response['updated_at'] = $user->updated_at;
+			}
+
+		}
+
+		// Return response
+		return Response::json($response);
 
 	}
 
