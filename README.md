@@ -47,10 +47,10 @@ php artisan migrate
   * password
  * Response: **JSON**
   * status
-  * user_id *
-  * api_key *
+  * *user_id*
+  * *api_key*
 
-* If successfully authenticated
+*If successfully authenticated*
 
 ### Read
 

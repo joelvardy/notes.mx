@@ -1,5 +1,6 @@
 function User() {
 	this.email = '';
+	this.apiKey = '';
 }
 
 User.prototype = {
@@ -14,6 +15,14 @@ User.prototype = {
 
 	setEmail: function(email){
 		this.email = email;
+	},
+
+	getApiKey: function(){
+		return this.apiKey;
+	},
+
+	setApiKey: function(apiKey){
+		this.apiKey = apiKey;
 	},
 
 	create: function(email, password, callback){
@@ -59,8 +68,12 @@ User.prototype = {
 			dataType: 'json',
 			success: function(response) {
 
-				// Set the user email
-				_this.setEmail(email);
+				if (response.status) {
+					alert('here');
+					// Set the email and API key
+					_this.setEmail(email);
+					_this.setApiKey(response.api_key);
+				}
 
 				// Run the passed callback
 				if (typeof callback == 'function') {

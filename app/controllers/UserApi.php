@@ -101,7 +101,7 @@ class UserApi extends BaseController {
 			$response['user_id'] = Auth::user()->id;
 
 			// Create an API key for this session and return it
-			$response['api_key'] = $this->create_api_key($user_id);
+			$response['api_key'] = $this->create_api_key(Auth::user()->id);
 
 		}
 
