@@ -5,27 +5,27 @@ function User() {
 
 User.prototype = {
 
-	init: function(){
+	init: function() {
 		//
 	},
 
-	getEmail: function(){
+	getEmail: function() {
 		return this.email;
 	},
 
-	setEmail: function(email){
+	setEmail: function(email) {
 		this.email = email;
 	},
 
-	getApiKey: function(){
+	getApiKey: function() {
 		return this.apiKey;
 	},
 
-	setApiKey: function(apiKey){
+	setApiKey: function(apiKey) {
 		this.apiKey = apiKey;
 	},
 
-	create: function(email, password, callback){
+	create: function(email, password, callback) {
 
 		var _this = this;
 
@@ -53,7 +53,7 @@ User.prototype = {
 
 	},
 
-	login: function(email, password, callback){
+	login: function(email, password, callback) {
 
 		var _this = this;
 
