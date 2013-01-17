@@ -252,25 +252,4 @@ class UserApi extends BaseController {
 	}
 
 
-	/**
-	 * Delete user
-	 */
-	public function delete($user_id)
-	{
-
-		// Delete the user
-		$user = User::find($user_id);
-		if ($user && $user->delete())
-		{
-			$status = true;
-		}
-
-		// Return response
-		return Response::json(array(
-			'status' => (isset($status) ? $status : false)
-		));
-
-	}
-
-
 }

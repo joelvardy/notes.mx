@@ -42,6 +42,9 @@ php artisan migrate
 
  * Endpoint: **/user/{ID}**
  * Method: **GET**
+ * Data:
+  * email
+  * api_key
  * Response: **JSON**
   * status
   * id
@@ -54,14 +57,9 @@ php artisan migrate
  * Endpoint: **/user/{ID}**
  * Method: **PUT**
  * Data:
+  * email
+  * api_key
   * password
- * Response: **JSON**
-  * status
-
-### Delete
-
- * Endpoint: **/user/{ID}**
- * Method: **DELETE**
  * Response: **JSON**
   * status
 
