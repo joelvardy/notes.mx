@@ -1,6 +1,6 @@
 <?php
 
-class User extends BaseController {
+class UserApi extends BaseController {
 
 
 	/**
@@ -11,6 +11,36 @@ class User extends BaseController {
 
 		// Return boolean
 		return ! (boolean) User::where('email', '=', $email)->count();
+
+	}
+
+
+	/**
+	 * Add an API key
+	 */
+	public function create_api_key($user_id)
+	{
+
+		// Generate API key
+		$key = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 32);
+
+		// Define the API key
+		$api_key = new ApiKeys(array(
+			'key' => $key
+		));
+
+		// Read the user
+		$user = User::find($user_id);
+
+		// Ensure the user was found
+		if ($user)
+		{
+			// Insert the API key
+			$user->api_keys()->save($api_key);
+			return $key;
+		}
+
+		return false;
 
 	}
 

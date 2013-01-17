@@ -18,16 +18,16 @@ Route::get('/', function()
 });
 
 // Authenticate user
-Route::post('user/login', 'User@login');
+Route::post('user/login', 'UserApi@login');
 
 // Update user
-Route::get('user/{id?}', 'User@read');
+Route::get('user/{id?}', 'UserApi@read');
 
 // Create user
-Route::post('user', 'User@create');
+Route::post('user', 'UserApi@create');
 
 // Update user
-Route::put('user/{id}', 'User@update')->where('id', '[0-9]+');
+Route::put('user/{id}', 'UserApi@update')->where('id', '[0-9]+');
 
 // Delete user
-Route::delete('user/{id}', 'User@delete')->where('id', '[0-9]+');
+Route::delete('user/{id}', 'UserApi@delete')->where('id', '[0-9]+');
