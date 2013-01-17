@@ -30,53 +30,37 @@ php artisan migrate
 
 ### Create
 
-Endpoint: **/user**
-
-Method: **POST**
-
-Data:
-
- * email
- * password
-
-Response: **JSON**
-
- * Status
+ * Endpoint: **/user**
+ * Method: **POST**
+ * Data:
+  * email
+  * password
+ * Response: **JSON**
+  * Status
 
 ### Read
 
-Endpoint: **/user/{ID}**
-
-Method: **GET**
-
-Response: **JSON**
-
- * email
- * created_at
- * updated_at
+ * Endpoint: **/user/{ID}**
+ * Method: **GET**
+ * Response: **JSON**
+  * email
+  * created_at
+  * update_at
 
 ### Update
 
-Endpoint: **/user/{ID}**
-
-Method: **PUT**
-
-Data:
-
- * password
-
-Response: **JSON**
-
- * Status
+ * Endpoint: **/user/{ID}**
+ * Method: **PUT**
+ * Data:
+  * password
+ * Response: **JSON**
+  * Status
 
 ### Delete
 
-Endpoint: **/user/{ID}**
-
-Method: **DELETE**
-
-Response: **JSON**
-
- * Status
+ * Endpoint: **/user/{ID}**
+ * Method: **DELETE**
+ * Response: **JSON**
+  * Status
 
   [1]: http://joelvardy.com/
