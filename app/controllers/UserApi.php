@@ -4,6 +4,30 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Login user
+	 */
+	public function login()
+	{
+
+		// Attempt to authenticate the details
+		$response['status'] = Auth::attempt(array(
+			'email' => Input::get('email'),
+			'password' => Input::get('password')
+		));
+
+		// If the user logged in return their ID
+		if ($response['status'])
+		{
+			$response['user_id'] = Auth::user()->id;
+		}
+
+		// Return response
+		return Response::json($response);
+
+	}
+
+
+	/**
 	 * Read user
 	 */
 	public function read($user_id)

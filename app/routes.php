@@ -17,14 +17,17 @@ Route::get('/', function()
 	return View::make('index');
 });
 
+// Authenticate user
+Route::post('user/login', 'UserApi@login');
+
 // Update user
-Route::get('user/{id}', 'UserApi@read')->where('id', '[0-9]+');;
+Route::get('user/{id}', 'UserApi@read')->where('id', '[0-9]+');
 
 // Create user
 Route::post('user', 'UserApi@create');
 
 // Update user
-Route::put('user/{id}', 'UserApi@update')->where('id', '[0-9]+');;
+Route::put('user/{id}', 'UserApi@update')->where('id', '[0-9]+');
 
 // Delete user
-Route::delete('user/{id}', 'UserApi@delete')->where('id', '[0-9]+');;
+Route::delete('user/{id}', 'UserApi@delete')->where('id', '[0-9]+');

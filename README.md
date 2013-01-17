@@ -43,6 +43,7 @@ php artisan migrate
  * Endpoint: **/user/{ID}**
  * Method: **GET**
  * Response: **JSON**
+  * id
   * email
   * created_at
   * update_at
