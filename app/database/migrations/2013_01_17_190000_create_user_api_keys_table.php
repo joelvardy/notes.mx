@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreateUserApiKeysTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,16 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table)
+		Schema::create('user_api_keys', function($table)
 		{
+
 			$table->increments('id');
-			$table->string('email')->unique();
-			$table->string('password');
+			$table->integer('user_id')->unsigned();
+			$table->string('key')->unique();
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+
 		});
 	}
 
@@ -27,7 +31,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('user_api_keys');
 	}
 
 }

@@ -38,4 +38,12 @@ class User extends Eloquent implements UserInterface {
 		return $this->password;
 	}
 
+	/**
+	 * Get the API keys for the user
+	 */
+	public function api_keys()
+    {
+        return $this->hasMany('ApiKeys');
+    }
+
 }
