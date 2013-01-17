@@ -31,7 +31,9 @@ php artisan migrate
 ### Create
 
 Endpoint: **/user**
+
 Method: **POST**
+
 Data:
 
  * email
@@ -44,6 +46,7 @@ Response: **JSON**
 ### Read
 
 Endpoint: **/user/{ID}**
+
 Method: **GET**
 
 Response: **JSON**
@@ -55,7 +58,9 @@ Response: **JSON**
 ### Update
 
 Endpoint: **/user/{ID}**
+
 Method: **PUT**
+
 Data:
 
  * password
@@ -67,6 +72,7 @@ Response: **JSON**
 ### Delete
 
 Endpoint: **/user/{ID}**
+
 Method: **DELETE**
 
 Response: **JSON**
