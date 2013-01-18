@@ -1,6 +1,6 @@
 function User() {
-	this.email = '';
-	this.apiKey = '';
+	var email = '';
+	var apiKey = '';
 }
 
 User.prototype = {
