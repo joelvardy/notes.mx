@@ -203,7 +203,7 @@ class UserApi extends BaseController {
 	/**
 	 * Update user
 	 */
-	public function update($user_id)
+	public function update()
 	{
 
 		// Ensure this is an authenticated request
@@ -230,7 +230,7 @@ class UserApi extends BaseController {
 		{
 
 			// Read the user details
-			$user = User::find($user_id);
+			$user = User::where('email', '=', Input::get('email'))->first();
 
 			// Ensure the user was found
 			if ($user)
