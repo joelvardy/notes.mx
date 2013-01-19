@@ -91,7 +91,7 @@ User.prototype = {
 
 	},
 
-	update: function(callback) {
+	read: function(callback) {
 
 		var _this = this;
 
