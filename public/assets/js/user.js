@@ -64,7 +64,7 @@ User.prototype = {
 
 		var _this = this;
 
-		// Attempt to create the user account
+		// Attempt to login to an account
 		$.ajax({
 			type: 'POST',
 			url: '/user/login',
@@ -95,7 +95,7 @@ User.prototype = {
 
 		var _this = this;
 
-		// Attempt to create the user account
+		// Attempt to read the user current user details
 		$.ajax({
 			type: 'GET',
 			url: '/user',
@@ -114,6 +114,32 @@ User.prototype = {
 				// Run the passed callback
 				if (typeof callback == 'function') {
 					callback();
+				}
+
+			}
+		});
+
+	},
+
+	update: function(password, callback) {
+
+		var _this = this;
+
+		// Attempt to update the user account
+		$.ajax({
+			type: 'PUT',
+			url: '/user',
+			data: {
+				email: this.getEmail(),
+				api_key: this.getApiKey(),
+				password: password
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(response);
 				}
 
 			}
