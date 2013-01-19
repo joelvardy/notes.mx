@@ -26,7 +26,7 @@ Route.prototype = {
 
 		// No route has been matched, show homepage
 		this.clearHash();
-		console.log('show the homepage');
+		notes.template.showHomepage();
 
 	}
 

@@ -1,13 +1,15 @@
 function User() {
-	var email = '';
-	var apiKey = '';
-	var user;
+	var email,
+		apiKey,
+		user;
 }
 
 User.prototype = {
 
 	init: function() {
-		//
+		this.email = '';
+		this.apiKey = '';
+		this.user = {};
 	},
 
 	getEmail: function() {
