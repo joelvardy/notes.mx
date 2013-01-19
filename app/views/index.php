@@ -4,7 +4,10 @@
 		<meta charset="utf-8" />
 		<title>Notes</title>
 	</head>
-	<body id="notes">
+	<body>
+		<div id="notes">
+
+		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="/assets/js/vendor/ejs.js"></script>
 		<script src="/assets/js/class/user.js"></script>
