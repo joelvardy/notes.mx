@@ -4,11 +4,13 @@
 
 		// Add classes to the notes scope
 		window.notes = {
-			user: new User()
+			user: new User(),
+			route: new Route()
 		};
 
-		// Initialise user
+		// Initialise classes
 		window.notes.user.init();
+		window.notes.route.init();
 
 	});
 
