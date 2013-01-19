@@ -126,31 +126,25 @@ class UserApi extends BaseController {
 			));
 		}
 
-		// If a user ID has been passed return the data for that user
-		if ( ! $user_id && Auth::user())
+		// If a user ID has been passed
+		if ($user_id)
 		{
-			$user_id = Auth::user()->id;
+			$user = User::find($user_id);
+		// If not get the details for the authenticated user
+		} else {
+			$user = User::where('email', '=', Input::get('email'))->first();
 		}
 
 		$response['status'] = false;
 
-		// Ensure there is a valid user ID
-		if (is_numeric($user_id))
+		// Ensure the user was found
+		if ($user)
 		{
-
-			// Read the user details
-			$user = User::find($user_id);
-
-			// Ensure the user was found
-			if ($user)
-			{
-				$response['status'] = true;
-				$response['id'] = $user->id;
-				$response['email'] = $user->email;
-				$response['created_ad'] = $user->created_ad;
-				$response['updated_at'] = $user->updated_at;
-			}
-
+			$response['status'] = true;
+			$response['id'] = $user->id;
+			$response['email'] = $user->email;
+			$response['created_ad'] = $user->created_ad;
+			$response['updated_at'] = $user->updated_at;
 		}
 
 		// Return response
