@@ -21,7 +21,7 @@ Route::get('/', function()
 Route::post('user/login', 'UserApi@login');
 
 // Update user
-Route::get('user/{id?}', 'UserApi@read');
+Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');
 
 // Create user
 Route::post('user', 'UserApi@create');

@@ -40,9 +40,6 @@ User.prototype = {
 			dataType: 'json',
 			success: function(response) {
 
-				// Set the user email
-				_this.setEmail(email);
-
 				// Run the passed callback
 				if (typeof callback == 'function') {
 					callback(response);
@@ -69,7 +66,6 @@ User.prototype = {
 			success: function(response) {
 
 				if (response.status) {
-					alert('here');
 					// Set the email and API key
 					_this.setEmail(email);
 					_this.setApiKey(response.api_key);
