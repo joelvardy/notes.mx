@@ -1,6 +1,7 @@
 function User() {
 	var email = '';
 	var apiKey = '';
+	var user;
 }
 
 User.prototype = {
@@ -23,6 +24,15 @@ User.prototype = {
 
 	setApiKey: function(apiKey) {
 		this.apiKey = apiKey;
+	},
+
+	getUser: function() {
+		return this.user;
+	},
+
+	setUser: function(user) {
+		delete user['status'];
+		this.user = user;
 	},
 
 	create: function(email, password, callback) {
@@ -74,6 +84,36 @@ User.prototype = {
 				// Run the passed callback
 				if (typeof callback == 'function') {
 					callback(response);
+				}
+
+			}
+		});
+
+	},
+
+	update: function(callback) {
+
+		var _this = this;
+
+		// Attempt to create the user account
+		$.ajax({
+			type: 'GET',
+			url: '/user',
+			data: {
+				email: this.getEmail(),
+				api_key: this.getApiKey()
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				if (response.status) {
+					// Set the user object
+					_this.setUser(response);
+				}
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback();
 				}
 
 			}

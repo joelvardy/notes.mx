@@ -143,7 +143,7 @@ class UserApi extends BaseController {
 			$response['status'] = true;
 			$response['id'] = $user->id;
 			$response['email'] = $user->email;
-			$response['created_ad'] = $user->created_ad;
+			$response['created_at'] = $user->created_at;
 			$response['updated_at'] = $user->updated_at;
 		}
 
