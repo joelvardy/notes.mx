@@ -68,7 +68,7 @@ php artisan migrate
 
 ### Update
 
- * Endpoint: **/user/{ID}**
+ * Endpoint: **/user**
  * Method: **PUT**
  * Data:
   * email

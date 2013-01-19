@@ -27,4 +27,4 @@ Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');
 Route::post('user', 'UserApi@create');
 
 // Update user
-Route::put('user/{id}', 'UserApi@update')->where('id', '[0-9]+');
+Route::put('user', 'UserApi@update');
