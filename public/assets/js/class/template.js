@@ -1,6 +1,5 @@
 function Template() {
-	var templatePath,
-		element;
+	var templatePath;
 }
 
 Template.prototype = {
@@ -11,11 +10,8 @@ Template.prototype = {
 
 	build: function(template, data) {
 
-		// Load element
-		this.element = $(new EJS({url: this.templatePath+template}).render(data));
-
-		// Return element
-		return this.element;
+		// Render element
+		return $(new EJS({url: this.templatePath+template}).render(data));
 
 	},
 
