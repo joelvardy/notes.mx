@@ -1,1 +1,7 @@
-<h1>Hello <%= name %>!</h1>
+<%
+	template.addEvent('h1', 'click', function(){
+		console.log('You clicked on the header tag!')
+	});
+%>
+
+<h1>Hello World!</h1>
