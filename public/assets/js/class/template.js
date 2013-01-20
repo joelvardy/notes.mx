@@ -22,6 +22,8 @@ Template.prototype = {
 
 	build: function(template, data) {
 
+		var _this = this;
+
 		this.events = [];
 		if (typeof data != 'object') {
 			data = {};
@@ -29,13 +31,12 @@ Template.prototype = {
 		data.template = this;
 
 		// Render element
-		var element = $(new EJS({url: this.templatePath+template}).render(data));
+		var element = $(new EJS({url: this.templatePath+template+'?'+(new Date().getTime())}).render(data));
 
 		// Bind events
 		for (var i=0; i<this.events.length; i++) {
-			element.delegate(this.events[i].selector, this.events[i].event, function(event){
-				console.log(event);
-			});
+			var event = this.events[i];
+			element.delegate(event.selector, event.event, event.handler);
 		}
 
 		// Return element
@@ -49,7 +50,7 @@ Template.prototype = {
 		var homepage = this.build('homepage.ejs');
 
 		// Set the view
-		$('#notes').html(homepage);
+		$('#notes').empty().append(homepage);
 
 	}
 
