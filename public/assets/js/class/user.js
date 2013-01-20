@@ -1,31 +1,27 @@
 function User() {
-	var email,
-		apiKey,
-		user;
+	var user;
 }
 
 User.prototype = {
 
 	init: function() {
-		this.email = '';
-		this.apiKey = '';
 		this.user = {};
 	},
 
 	getEmail: function() {
-		return this.email;
+		return notes.storage.localRetrieve('email');
 	},
 
 	setEmail: function(email) {
-		this.email = email;
+		notes.storage.localStore('email', email);
 	},
 
 	getApiKey: function() {
-		return this.apiKey;
+		return notes.storage.localRetrieve('apiKey');
 	},
 
 	setApiKey: function(apiKey) {
-		this.apiKey = apiKey;
+		notes.storage.localStore('apiKey', apiKey);
 	},
 
 	getUser: function() {
