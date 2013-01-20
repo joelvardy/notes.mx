@@ -1,5 +1,6 @@
 function User() {
-	var user;
+	var user,
+		isAuthenticated;
 }
 
 User.prototype = {
@@ -47,6 +48,9 @@ User.prototype = {
 			},
 			dataType: 'json',
 			success: function(response) {
+
+				// Set the user authentication
+				_this.isAuthenticated = !!response.status
 
 				// Run the passed callback
 				if (typeof callback == 'function') {

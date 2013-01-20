@@ -10,11 +10,15 @@
 			route: new Route()
 		};
 
-		// Initialise classes
+		// Initialise user class
 		window.notes.user.init();
-		window.notes.storage.init();
-		window.notes.template.init();
-		window.notes.route.init();
+
+		notes.user.authenticate(function(data){
+			// Initialise classes
+			window.notes.storage.init();
+			window.notes.template.init();
+			window.notes.route.init();
+		});
 
 	});
 
