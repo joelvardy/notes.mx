@@ -13,14 +13,30 @@ Route.prototype = {
 
 	},
 
+	getHash: function() {
+
+		return window.location.hash.substring(3);
+
+	},
+
+	setHash: function(hash) {
+
+		window.location.hash = '!/'+hash;
+
+	},
+
 	init: function() {
 
-		// Define the requested resource
-		var request = window.location.hash.substring(3);
-
 		// User profile
-		if (request == 'user/profile') {
+		if (this.getHash() == 'user/profile') {
 			console.log('show the user profile');
+			return;
+		}
+
+		// Not route has been matched, check whether the user is authenticated
+		if (notes.user.isAuthenticated) {
+			this.setHash('user/profile');
+			this.init();
 			return;
 		}
 
