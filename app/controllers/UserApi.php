@@ -16,6 +16,20 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Return result of email uniqueness
+	 */
+	public function return_email_unique()
+	{
+
+		// Return status of authentication
+		return Response::json(array(
+			'status' => $this->email_unique(Input::get('email'))
+		));
+
+	}
+
+
+	/**
 	 * Add an API key
 	 */
 	public function create_api_key($user_id)
@@ -82,9 +96,9 @@ class UserApi extends BaseController {
 
 
 	/**
-	 * Authorise user
+	 * Return result of user authentication
 	 */
-	public function authorise()
+	public function return_authenticate()
 	{
 
 		// Return status of authentication

@@ -38,6 +38,15 @@ php artisan migrate
  * Response: **JSON**
   * status
 
+### Email Available
+
+ * Endpoint: **/user/available**
+ * Method: **POST**
+ * Data:
+  * email
+ * Response: **JSON**
+  * status
+
 ### Login
 
  * Endpoint: **/user/login**
