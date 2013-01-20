@@ -17,8 +17,11 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-// Authenticate user
+// Login user
 Route::post('user/login', 'UserApi@login');
+
+// Authenticate user
+Route::post('user/authenticate', 'UserApi@authorise');
 
 // Update user
 Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');

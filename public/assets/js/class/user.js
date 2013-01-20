@@ -33,6 +33,31 @@ User.prototype = {
 		this.user = user;
 	},
 
+	authenticate: function(callback) {
+
+		var _this = this;
+
+		// Attempt to login to an account
+		$.ajax({
+			type: 'POST',
+			url: '/user/authenticate',
+			data: {
+				email: this.getEmail(),
+				api_key: this.getApiKey()
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(response);
+				}
+
+			}
+		});
+
+	},
+
 	create: function(email, password, callback) {
 
 		var _this = this;

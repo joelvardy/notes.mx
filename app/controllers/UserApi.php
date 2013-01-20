@@ -82,6 +82,24 @@ class UserApi extends BaseController {
 
 
 	/**
+	 * Authorise user
+	 */
+	public function authorise($email, $api_key)
+	{
+
+		// Ensure this is an authenticated request
+		if ( ! $this->authenticate(Input::get('email'), Input::get('api_key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
+	}
+
+
+	/**
 	 * Login user
 	 */
 	public function login()
