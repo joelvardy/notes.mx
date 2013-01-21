@@ -1,0 +1,97 @@
+#notes {
+	margin: 0 auto;
+	width: 960px;
+}
+
+
+/*
+	Homepage
+*/
+#homepage {
+
+}
+	#homepage hgroup {
+		margin-top: 75px;
+		text-align: center;
+		text-shadow: 0 1px 0 white;
+	}
+		#homepage hgroup h1 {
+			font-size: 6em;
+			letter-spacing: -3px;
+			line-height: 1em;
+			position: relative;
+		}
+			#homepage hgroup h1 span.icon {
+				color: #c7007d;
+				margin: -30px 0 0 10px;
+				position: absolute;
+			}
+		#homepage hgroup h3 {
+			font-size: 1.05em;
+			line-height: 1em;
+		}
+	#homepage form {
+		background: #cdcdcd;
+		border-radius: 5px;
+		margin: 50px auto 0;
+		padding: 15px;
+		width: 50%;
+	}
+		#homepage form input, #homepage form button {
+			border-radius: 2px;
+			font: 100%/1em 'PT Sans', Helvetica, Arial, sans-serif;
+			display: block;
+		}
+		#homepage form input {
+			background: white;
+			border: 1px solid #b9b9b9;
+			height: 40px;
+			padding: 10px;
+			width: 100%;
+		}
+		#homepage form input[id=email] {
+			margin-bottom: 15px;
+		}
+		#homepage form > div {
+			overflow: hidden;
+		}
+			#homepage form > div input[id=password] {
+				float: left;
+				width: 56%;
+			}
+			#homepage form > div button {
+				background: #c7007d;
+				border: 1px solid #810051;
+				color: white;
+				float: right;
+				height: 40px;
+				width: 40%;
+			}
+
+
+/*
+	Tablet
+*/
+@media screen and (max-width: 960px) {
+
+	#notes {
+		width: 758px;
+	}
+
+}
+
+
+/*
+	Mobile
+*/
+@media screen and (max-width: 758px) {
+
+	#notes {
+		width: 292px;
+	}
+
+	#homepage form {
+		width: 96%;
+	}
+
+}

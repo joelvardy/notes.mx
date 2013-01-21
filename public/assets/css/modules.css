@@ -1,0 +1,26 @@
+/*
+	Dialogue
+*/
+div[id^='dialog-overlay'] {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 5000;
+}
+div[id^='dialog-overlay'].default {
+	background: rgba(0,0,0,0.75);
+}
+	div[id^='dialog-box'] {
+		left: 50%;
+		position: fixed;
+		top: 0;
+		z-index: 5001;
+	}
+	div[id^='dialog-box'].default {
+		background: white;
+		margin-left: -230px;
+		width: 460px;
+	}
