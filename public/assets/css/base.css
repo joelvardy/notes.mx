@@ -80,12 +80,14 @@ body {
 		padding: 15px;
 		width: 50%;
 	}
-		#homepage form input {
-			background: white;
-			border: 1px solid #b9b9b9;
+		#homepage form input, #homepage form button {
 			border-radius: 2px;
 			font: 100%/1em 'PT Sans', Helvetica, Arial, sans-serif;
 			display: block;
+		}
+		#homepage form input {
+			background: white;
+			border: 1px solid #b9b9b9;
 			height: 40px;
 			padding: 10px;
 			width: 100%;
@@ -103,10 +105,8 @@ body {
 			#homepage form > div button {
 				background: #c7007d;
 				border: 1px solid #810051;
-				border-radius: 2px;
 				color: white;
 				float: right;
-				font: 100%/1em 'PT Sans', Helvetica, Arial, sans-serif;
 				height: 40px;
 				width: 40%;
 			}
