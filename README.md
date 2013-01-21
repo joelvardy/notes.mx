@@ -61,16 +61,6 @@ php artisan migrate
 
 *If successfully authenticated*
 
-### Authenticate
-
- * Endpoint: **/user/authenticate**
- * Method: **POST**
- * Data:
-  * email
-  * api_key
- * Response: **JSON**
-  * status
-
 ### Read
 
  * Endpoint: **/user/{ID}**

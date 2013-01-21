@@ -20,9 +20,6 @@ Route::get('/', function()
 // Login user
 Route::post('user/login', 'UserApi@login');
 
-// Authenticate user
-Route::post('user/authenticate', 'UserApi@return_authenticate');
-
 // Return whether an email is unique
 Route::post('user/available', 'UserApi@return_email_unique');
 

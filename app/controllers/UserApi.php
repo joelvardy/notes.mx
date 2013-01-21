@@ -96,20 +96,6 @@ class UserApi extends BaseController {
 
 
 	/**
-	 * Return result of user authentication
-	 */
-	public function return_authenticate()
-	{
-
-		// Return status of authentication
-		return Response::json(array(
-			'status' => $this->authenticate(Input::get('email'), Input::get('api_key'))
-		));
-
-	}
-
-
-	/**
 	 * Login user
 	 */
 	public function login()

@@ -34,34 +34,6 @@ User.prototype = {
 		this.user = user;
 	},
 
-	authenticate: function(callback) {
-
-		var _this = this;
-
-		// Attempt to login to an account
-		$.ajax({
-			type: 'POST',
-			url: '/user/authenticate',
-			data: {
-				email: this.getEmail(),
-				api_key: this.getApiKey()
-			},
-			dataType: 'json',
-			success: function(response) {
-
-				// Set the user authentication
-				_this.isAuthenticated = !!response.status
-
-				// Run the passed callback
-				if (typeof callback == 'function') {
-					callback(response);
-				}
-
-			}
-		});
-
-	},
-
 	create: function(email, password, callback) {
 
 		var _this = this;
@@ -108,6 +80,9 @@ User.prototype = {
 					_this.setApiKey(response.api_key);
 				}
 
+				// Update profile
+				_this.read();
+
 				// Run the passed callback
 				if (typeof callback == 'function') {
 					callback(response);
@@ -133,14 +108,19 @@ User.prototype = {
 			dataType: 'json',
 			success: function(response) {
 
+				// Set the user authentication
+				_this.isAuthenticated = (typeof response.authenticated == 'undefined' ? true : false);
+
 				if (response.status) {
+
 					// Set the user object
 					_this.setUser(response);
+
 				}
 
 				// Run the passed callback
 				if (typeof callback == 'function') {
-					callback();
+					callback(response);
 				}
 
 			}

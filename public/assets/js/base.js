@@ -13,7 +13,7 @@
 		// Initialise user class
 		window.notes.user.init();
 
-		notes.user.authenticate(function(data){
+		notes.user.read(function(data){
 			// Initialise classes
 			window.notes.storage.init();
 			window.notes.template.init();
