@@ -1,7 +1,5 @@
 <%
-	template.addEvent('h1', 'click', function(){
-		console.log('You clicked on the header tag!');
-	});
+	template.addEvent('form', 'submit', actions.submitForm);
 %>
 
 <div id="homepage">

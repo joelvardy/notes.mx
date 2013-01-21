@@ -20,7 +20,7 @@ Template.prototype = {
 
 	},
 
-	build: function(template, data) {
+	build: function(template, data, actions) {
 
 		var _this = this;
 
@@ -29,6 +29,7 @@ Template.prototype = {
 			data = {};
 		}
 		data.template = this;
+		data.actions = actions;
 
 		// Render element
 		var element = $(new EJS({url: this.templatePath+template+'?'+(new Date().getTime())}).render(data));
@@ -46,8 +47,18 @@ Template.prototype = {
 
 	showHomepage: function() {
 
+		// Define actions
+		var actions = {
+
+			submitForm: function(event){
+				event.preventDefault();
+				console.log('Run the registration / login form');
+			}
+
+		};
+
 		// Load homepage view
-		var homepage = this.build('homepage.ejs');
+		var homepage = this.build('homepage.ejs', {}, actions);
 
 		// Set the view
 		$('#notes').empty().append(homepage);
