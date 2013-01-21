@@ -28,6 +28,15 @@ php artisan migrate
 
 ## User
 
+### Email Available
+
+ * Endpoint: **/user/available**
+ * Method: **POST**
+ * Data:
+  * email
+ * Response: **JSON**
+  * status
+
 ### Create
 
  * Endpoint: **/user**
@@ -35,15 +44,6 @@ php artisan migrate
  * Data:
   * email
   * password
- * Response: **JSON**
-  * status
-
-### Email Available
-
- * Endpoint: **/user/available**
- * Method: **POST**
- * Data:
-  * email
  * Response: **JSON**
   * status
 

@@ -34,6 +34,30 @@ User.prototype = {
 		this.user = user;
 	},
 
+	available: function(email, callback) {
+
+		var _this = this;
+
+		// Query the API to see whether the email is already associated with an account
+		$.ajax({
+			type: 'POST',
+			url: '/user/available',
+			data: {
+				email: email
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(response);
+				}
+
+			}
+		});
+
+	},
+
 	create: function(email, password, callback) {
 
 		var _this = this;
