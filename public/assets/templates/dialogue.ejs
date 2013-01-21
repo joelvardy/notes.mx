@@ -1,0 +1,17 @@
+<%
+	template.addEvent('span.close', 'click', actions.close);
+	template.addEvent('div.button', 'click', actions.buttonClicked);
+%>
+
+<div>
+	<span class="close">close</span>
+	<h1><%= header %></h1>
+	<p><%= message %></p>
+	<% if(buttons.length > 0) { %>
+		<div class="buttons">
+			<% for (i=0; i<buttons.length; i++) { %>
+				<div class="button" data-buttonID="<%= i %>"><%= buttons[i].label %></div>
+			<% } %>
+		</div>
+	<% } %>
+</div>
