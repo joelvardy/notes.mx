@@ -20,7 +20,54 @@ div[id^='dialog-overlay'].default {
 		z-index: 5001;
 	}
 	div[id^='dialog-box'].default {
-		background: white;
+		background: -webkit-linear-gradient(left, #0a0a0a 0%, #787878 50%, #0a0a0a 100%);
+		background: linear-gradient(to right, #0a0a0a 0%, #787878 50%, #0a0a0a 100%);
+		border-radius: 8px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
 		margin-left: -230px;
+		padding: 2px;
 		width: 460px;
 	}
+		div[id^='dialog-box'].default > div {
+			background: #f0f0f0;
+			border-radius: 6px;
+			padding: 15px;
+		}
+			div[id^='dialog-box'].default > div span.close {
+				background: url('../img/close.svg');
+				background-size: 100% 100%;
+				cursor: pointer;
+				height: 25px;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 25px;
+			}
+			div[id^='dialog-box'].default > div h3 {
+				letter-spacing: -1.5px;
+				text-align: center;
+			}
+			div[id^='dialog-box'].default > div p {
+				margin-top: 10px;
+			}
+			div[id^='dialog-box'].default > div div.buttons {
+				margin-top: 15px;
+				text-align: center;
+			}
+				div[id^='dialog-box'].default > div div.buttons div.button {
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e3e3e3), color-stop(1, #d5d5d5));
+					background-color: #e3e3e3;
+					border: 1px solid #d2d2d2;
+					border-radius: 6px;
+					box-shadow: inset 0px 1px 0px 0px #ffffff;
+					color: #777777;
+					cursor: pointer;
+					display: inline-block;
+					margin-left: 10px;
+					padding: 5px 25px;
+					text-decoration: none;
+					text-shadow: 1px 1px 0px #ffffff;
+				}
+				div[id^='dialog-box'].default > div div.buttons div.button:first-child {
+					margin-left: 0;
+				}
