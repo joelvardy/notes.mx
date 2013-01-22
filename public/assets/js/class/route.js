@@ -4,6 +4,20 @@ function Route() {
 
 Route.prototype = {
 
+	init: function() {
+
+		var _this = this;
+
+		// Run routes on hash change
+		$(window).bind('hashchange', function(){
+			_this.run();
+		});
+
+		// Run routes in initialisation
+		this.run();
+
+	},
+
 	clearHash: function() {
 
 		window.location.hash = '';
@@ -25,11 +39,17 @@ Route.prototype = {
 
 	},
 
-	init: function() {
+	run: function() {
 
 		// User profile
 		if (this.getHash() == 'user/profile') {
 			console.log('show the user profile');
+			return;
+		}
+
+		// User notes
+		if (this.getHash() == 'user/notes') {
+			console.log('show the user notes');
 			return;
 		}
 
