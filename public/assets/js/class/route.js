@@ -35,7 +35,8 @@ Route.prototype = {
 
 	setHash: function(hash) {
 
-		window.location.hash = '!/'+hash;
+		history.pushState({}, 'Notes', '#!/'+hash);
+		this.run();
 
 	},
 
