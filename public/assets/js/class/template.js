@@ -47,6 +47,8 @@ Template.prototype = {
 
 	showHomepage: function() {
 
+		var formDisabled = false;
+
 		var errorLoggingIn = function(){
 			var errorLoggingIn = new Dialogue();
 			errorLoggingIn.setStyle('default error');
@@ -61,6 +63,12 @@ Template.prototype = {
 
 			submitForm: function(event){
 				event.preventDefault();
+
+				if (formDisabled) {
+					return;
+				} else {
+					formDisabled = true;
+				}
 
 				// Define the email and password
 				var email = $('form #email').val();
@@ -81,6 +89,9 @@ Template.prototype = {
 								// Log the new user in
 								notes.user.login(email, password, function(response){
 
+									// Enable the form again
+									formDisabled = false;
+
 									// The user was successfully logged in
 									if (response.status) {
 
@@ -95,12 +106,17 @@ Template.prototype = {
 
 							// There was an error creating the user
 							} else {
+
+								// Enable the form again
+								formDisabled = false;
+
 								var errorCreatingUser = new Dialogue();
 								errorCreatingUser.setStyle('default error');
 								errorCreatingUser.setHeader('Error Creating Account');
 								errorCreatingUser.setMessage('There was an error creating your account, please check you have entered a valid email address and your password is at least 5 characters long.');
 								errorCreatingUser.build();
 								errorCreatingUser.show();
+
 							}
 
 						});
@@ -110,6 +126,9 @@ Template.prototype = {
 
 						// Log the user in
 						notes.user.login(email, password, function(response){
+
+							// Enable the form again
+							formDisabled = false;
 
 							// The user was successfully logged in
 							if (response.status) {
