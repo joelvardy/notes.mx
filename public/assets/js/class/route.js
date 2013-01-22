@@ -45,13 +45,13 @@ Route.prototype = {
 		// User notes
 		if (this.getHash() == 'user/notes') {
 			console.log('show the user notes');
+			$('#notes').html('View notes list');
 			return;
 		}
 
 		// Not route has been matched, check whether the user is authenticated
 		if (notes.user.isAuthenticated) {
 			this.setHash('user/notes');
-			this.init();
 			return;
 		}
 
