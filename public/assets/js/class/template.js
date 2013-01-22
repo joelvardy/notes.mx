@@ -95,7 +95,8 @@ Template.prototype = {
 									// The user was successfully logged in
 									if (response.status) {
 
-										console.log('the user has been successfully logged in');
+										// Take the user to their notes list
+										notes.route.setHash('user/notes');
 
 									// There was an error logging them in, maybe the internet has died
 									} else {
@@ -133,7 +134,8 @@ Template.prototype = {
 							// The user was successfully logged in
 							if (response.status) {
 
-								console.log('the user has been successfully logged in');
+								// Take the user to their notes list
+								notes.route.setHash('user/notes');
 
 							// There was an error logging them in, maybe the internet has died
 							} else {

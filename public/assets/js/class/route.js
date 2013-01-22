@@ -42,12 +42,6 @@ Route.prototype = {
 
 	run: function() {
 
-		// User profile
-		if (this.getHash() == 'user/profile') {
-			console.log('show the user profile');
-			return;
-		}
-
 		// User notes
 		if (this.getHash() == 'user/notes') {
 			console.log('show the user notes');
@@ -56,7 +50,7 @@ Route.prototype = {
 
 		// Not route has been matched, check whether the user is authenticated
 		if (notes.user.isAuthenticated) {
-			this.setHash('user/profile');
+			this.setHash('user/notes');
 			this.init();
 			return;
 		}
