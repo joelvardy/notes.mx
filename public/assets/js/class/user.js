@@ -176,6 +176,14 @@ User.prototype = {
 			}
 		});
 
+	},
+
+	logout: function(callback) {
+
+		// Note that this method will not remove the API keys which are generated upon login
+
+		return notes.storage.localClear();
+
 	}
 
 }

@@ -53,7 +53,7 @@ Template.prototype = {
 			var errorLoggingIn = new Dialogue();
 			errorLoggingIn.setStyle('default error');
 			errorLoggingIn.setHeader('Error Logging In');
-			errorLoggingIn.setMessage('There was an error logging you in, check your username are password are correct.');
+			errorLoggingIn.setMessage('There was an error logging you in, check your username and password are correct.');
 			errorLoggingIn.build();
 			errorLoggingIn.show();
 		}
