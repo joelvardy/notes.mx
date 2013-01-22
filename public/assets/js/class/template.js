@@ -47,6 +47,15 @@ Template.prototype = {
 
 	showHomepage: function() {
 
+		var errorLoggingIn = function(){
+			var errorLoggingIn = new Dialogue();
+			errorLoggingIn.setStyle('default error');
+			errorLoggingIn.setHeader('Error Logging In');
+			errorLoggingIn.setMessage('There was an error logging you in, check your username are password are correct.');
+			errorLoggingIn.build();
+			errorLoggingIn.show();
+		}
+
 		// Define actions
 		var actions = {
 
@@ -63,15 +72,11 @@ Template.prototype = {
 					// The email has not been previously registered
 					if (response.status) {
 
-						console.log('The user does not have an account');
-
 						// Create the user an account
 						notes.user.create(email, password, function(response){
 
 							// The user was successfully created
 							if (response.status) {
-
-								console.log('the user was successfully created');
 
 								// Log the new user in
 								notes.user.login(email, password, function(response){
@@ -83,22 +88,25 @@ Template.prototype = {
 
 									// There was an error logging them in, maybe the internet has died
 									} else {
-										console.log('there was an error loggin the user in');
+										errorLoggingIn();
 									}
 
 								});
 
 							// There was an error creating the user
 							} else {
-								console.log('there was an error creating the user');
+								var errorCreatingUser = new Dialogue();
+								errorCreatingUser.setStyle('default error');
+								errorCreatingUser.setHeader('Error Creating Account');
+								errorCreatingUser.setMessage('There was an error creating your account, please check you have entered a valid email address and your password is at least 5 characters long.');
+								errorCreatingUser.build();
+								errorCreatingUser.show();
 							}
 
 						});
 
 					// The email is registered
 					} else {
-
-						console.log('This email is already registered');
 
 						// Log the user in
 						notes.user.login(email, password, function(response){
@@ -110,7 +118,7 @@ Template.prototype = {
 
 							// There was an error logging them in, maybe the internet has died
 							} else {
-								console.log('there was an error loggin the user in');
+								errorLoggingIn();
 							}
 
 						});

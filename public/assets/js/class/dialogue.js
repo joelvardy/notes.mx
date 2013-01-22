@@ -18,9 +18,9 @@ Dialogue.prototype = {
 
 		if ( ! this._elementOverlay) {
 
-			this._elementOverlay = $('<div id="dialog-overlay-'+this._id+'">').addClass(this._style).hide().appendTo('body');
+			this._elementOverlay = $('<div id="dialogue-overlay-'+this._id+'">').addClass(this._style).hide().appendTo('body');
 
-			// Allow clicking the overlay to close the dialog
+			// Allow clicking the overlay to close the dialogue
 			this._elementOverlay.bind('click', function() {
 				_this.hide();
 			});
@@ -51,7 +51,7 @@ Dialogue.prototype = {
 
 		if ( ! this._elementBox) {
 
-			this._elementBox = $('<div id="dialog-box-'+this._id+'">').appendTo('body');
+			this._elementBox = $('<div id="dialogue-box-'+this._id+'">').appendTo('body');
 			var originalDisplay = 'none',
 				originalVisibility = 'visible';
 
@@ -83,7 +83,7 @@ Dialogue.prototype = {
 				// Read the button ID
 				var buttonId = $(event.target).attr('data-ButtonId');
 
-				// Close the dialog and execute the callback (if available)
+				// Close the dialogue and execute the callback (if available)
 				if (typeof _this._buttons[buttonId].callback == 'function') {
 					_this.hide(_this._buttons[buttonId].callback);
 				} else {
