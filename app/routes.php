@@ -21,7 +21,7 @@ Route::get('/', function()
 Route::post('user/login', 'UserApi@login');
 
 // Return whether an email is unique
-Route::post('user/available', 'UserApi@return_email_unique');
+Route::post('user/available', 'UserApi@email_unique');
 
 // Update user
 Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');

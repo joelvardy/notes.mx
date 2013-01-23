@@ -1,6 +1,6 @@
 # Notes
 
-Basic note taking app built by [Joel Vardy] [1].
+Basic note taking app built by [Joel Vardy][joelvardy].
 
 ## Install
 
@@ -66,11 +66,11 @@ php artisan migrate
  * Endpoint: **/user/{ID}**
  * Method: **GET**
  * Data:
-  * email
+  * user_id
   * api_key
  * Response: **JSON**
   * status
-  * id
+  * user_id
   * email
   * created_at
   * update_at
@@ -80,10 +80,10 @@ php artisan migrate
  * Endpoint: **/user**
  * Method: **PUT**
  * Data:
-  * email
+  * user_id
   * api_key
   * password
  * Response: **JSON**
   * status
 
-  [1]: http://joelvardy.com/
+  [joelvardy]: http://joelvardy.com/

@@ -9,12 +9,12 @@ User.prototype = {
 		this.user = {};
 	},
 
-	getEmail: function() {
-		return notes.storage.localRetrieve('email');
+	getUserId: function() {
+		return notes.storage.localRetrieve('userId');
 	},
 
-	setEmail: function(email) {
-		notes.storage.localStore('email', email);
+	setUserId: function(userId) {
+		notes.storage.localStore('userId', userId);
 	},
 
 	getApiKey: function() {
@@ -99,8 +99,8 @@ User.prototype = {
 			success: function(response) {
 
 				if (response.status) {
-					// Set the email and API key
-					_this.setEmail(email);
+					// Set the user ID and API key
+					_this.setUserId(response.user_id);
 					_this.setApiKey(response.api_key);
 				}
 
@@ -128,7 +128,7 @@ User.prototype = {
 			type: 'GET',
 			url: '/user',
 			data: {
-				email: this.getEmail(),
+				user_id: this.getUserId(),
 				api_key: this.getApiKey()
 			},
 			dataType: 'json',
@@ -163,7 +163,7 @@ User.prototype = {
 			type: 'PUT',
 			url: '/user',
 			data: {
-				email: this.getEmail(),
+				user_id: this.getUserId(),
 				api_key: this.getApiKey(),
 				password: password
 			},
@@ -184,7 +184,7 @@ User.prototype = {
 
 		// Note that this method will not remove the API keys which are generated upon login
 
-		// Clear local storage (containing the email and API key)
+		// Clear local storage (containing the user ID and API key)
 		notes.storage.localClear();
 
 		// Set the user authentication
