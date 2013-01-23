@@ -76,4 +76,47 @@ class NoteApi extends BaseController {
 	}
 
 
+	/**
+	 * Read note
+	 */
+	public function read($note_id)
+	{
+
+		// Ensure this is an authenticated request
+		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
+		$response['status'] = false;
+
+		// Read the note by ID
+		$note = Note::find($note_id);
+
+		// Ensure the note was found
+		if ($note)
+		{
+
+			// Ensure the current note is the owner of the note
+			if ($note->user_id == Input::get('user_id')) {
+
+				$response['status'] = true;
+				$response['note_id'] = $note->id;
+				$response['text'] = $note->text;
+				$response['created_at'] = $note->created_at;
+				$response['updated_at'] = $note->updated_at;
+
+			}
+
+		}
+
+		// Return response
+		return Response::json($response);
+
+	}
+
+
 }

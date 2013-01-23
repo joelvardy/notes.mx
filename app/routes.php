@@ -23,7 +23,7 @@ Route::post('user/login', 'UserApi@login');
 // Return whether an email is unique
 Route::post('user/available', 'UserApi@email_unique');
 
-// Update user
+// Read the user details
 Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');
 
 // Create user
@@ -34,3 +34,6 @@ Route::put('user', 'UserApi@update');
 
 // Save note
 Route::put('note', 'NoteApi@save');
+
+// Read note
+Route::get('note/{id}', 'NoteApi@read')->where('id', '[0-9]+');

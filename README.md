@@ -103,4 +103,18 @@ php artisan migrate
 
 *Not required if saving a new note*
 
+### Read
+
+ * Endpoint: **/note/{ID}**
+ * Method: **GET**
+ * Data:
+  * user_id
+  * api_key
+ * Response: **JSON**
+  * status
+  * note_id
+  * text
+  * created_at
+  * update_at
+
   [joelvardy]: http://joelvardy.com/
