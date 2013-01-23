@@ -7,6 +7,7 @@
 			utility: new Utility(),
 			user: new User(),
 			storage: new Storage(),
+			note: new Note(),
 			template: new Template(),
 			route: new Route()
 		};
@@ -17,6 +18,7 @@
 		notes.user.read(function(data){
 			// Initialise classes
 			window.notes.storage.init();
+			window.notes.note.init();
 			window.notes.template.init();
 			window.notes.route.init();
 		});
