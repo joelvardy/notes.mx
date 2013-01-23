@@ -1,0 +1,79 @@
+<?php
+
+class NoteApi extends BaseController {
+
+
+	/**
+	 * Create note
+	 */
+	public function create($user_id, $text)
+	{
+
+		// Create a new note
+		$note = new Note;
+		$note->user_id = $user_id;
+		$note->text = $text;
+		if ($note->save()) {
+			return $note->id;
+		}
+
+		// Note wasn't created
+		return false;
+
+	}
+
+
+	/**
+	 * Save note (or create if it doesn't exist)
+	 */
+	public function save()
+	{
+
+		// Ensure this is an authenticated request
+		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
+		// If this is a new note, create it
+		if ( ! Input::has('note_id')) {
+			$note_id = $this->create(Input::get('user_id'), Input::get('text'));
+			return Response::json(array(
+				'status' => (boolean) $note_id,
+				'note_id' => $note_id
+			));
+		}
+
+		$response['status'] = false;
+
+		// Load the note
+		$note = Note::find(Input::get('note_id'));
+
+		// Ensure there is a note to work with
+		if ($note)
+		{
+
+			// Ensure the current user is the owner of the note
+			if ($note->user_id == Input::get('user_id')) {
+
+				$note->text = Input::get('text');
+				if ($note->save())
+				{
+					$response['status'] = true;
+					$response['note_id'] = $note->id;
+				}
+
+			}
+
+		}
+
+		// Return response
+		return Response::json($response);
+
+	}
+
+
+}

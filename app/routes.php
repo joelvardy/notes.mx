@@ -31,3 +31,6 @@ Route::post('user', 'UserApi@create');
 
 // Update user
 Route::put('user', 'UserApi@update');
+
+// Save note
+Route::put('note', 'NoteApi@save');

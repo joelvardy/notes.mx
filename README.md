@@ -86,4 +86,21 @@ php artisan migrate
  * Response: **JSON**
   * status
 
+## Note
+
+### Save
+
+ * Endpoint: **/note**
+ * Method: **PUT**
+ * Data:
+  * user_id
+  * api_key
+  * text
+  * *note_id*
+ * Response: **JSON**
+  * status
+  * note_id
+
+*Not required if saving a new note*
+
   [joelvardy]: http://joelvardy.com/
