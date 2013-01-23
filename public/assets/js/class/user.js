@@ -36,8 +36,6 @@ User.prototype = {
 
 	available: function(email, callback) {
 
-		var _this = this;
-
 		// Query the API to see whether the email is already associated with an account
 		$.ajax({
 			type: 'POST',
@@ -59,8 +57,6 @@ User.prototype = {
 	},
 
 	create: function(email, password, callback) {
-
-		var _this = this;
 
 		// Attempt to create the user account
 		$.ajax({
@@ -155,8 +151,6 @@ User.prototype = {
 	},
 
 	update: function(password, callback) {
-
-		var _this = this;
 
 		// Attempt to update the user account
 		$.ajax({

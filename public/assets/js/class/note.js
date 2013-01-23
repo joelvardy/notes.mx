@@ -10,8 +10,6 @@ Note.prototype = {
 
 	save: function(note_id, text, callback) {
 
-		var _this = this;
-
 		// Attempt to save the note
 		$.ajax({
 			type: 'PUT',
@@ -34,6 +32,29 @@ Note.prototype = {
 					}
 
 				});
+
+			}
+		});
+
+	},
+
+	read: function(note_id, callback) {
+
+		// Attempt to read a note
+		$.ajax({
+			type: 'GET',
+			url: '/note/'+note_id,
+			data: {
+				user_id: notes.user.getUserId(),
+				api_key: notes.user.getApiKey()
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(response);
+				}
 
 			}
 		});
