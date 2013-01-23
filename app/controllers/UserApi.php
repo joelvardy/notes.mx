@@ -76,11 +76,24 @@ class UserApi extends BaseController {
 		// Ensure the user was found
 		if ($user)
 		{
+
 			$response['status'] = true;
+
+			// Iterate through notes
+			foreach ($user->notes as $note) {
+				$response['notes'][] = array(
+					'note_id' => $note->id,
+					'text' => $note->text,
+					'created_at' => $note->created_at,
+					'updated_at' => $note->updated_at
+				);
+			}
+
 			$response['id'] = $user->id;
 			$response['email'] = $user->email;
 			$response['created_at'] = $user->created_at;
 			$response['updated_at'] = $user->updated_at;
+
 		}
 
 		// Return response

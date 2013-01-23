@@ -1,6 +1,6 @@
 <?php
 
-class ApiKeys extends Eloquent {
+class ApiKey extends Eloquent {
 
     protected $table = 'user_api_keys';
 

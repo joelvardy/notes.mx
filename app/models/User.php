@@ -43,7 +43,15 @@ class User extends Eloquent implements UserInterface {
 	 */
 	public function api_keys()
     {
-        return $this->hasMany('ApiKeys');
+        return $this->hasMany('ApiKey');
+    }
+
+	/**
+	 * Get the notes for the user
+	 */
+	public function notes()
+    {
+        return $this->hasMany('Note');
     }
 
 }

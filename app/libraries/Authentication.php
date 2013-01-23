@@ -25,7 +25,7 @@ class Authentication {
 		$key = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 32);
 
 		// Define the API key
-		$api_key = new ApiKeys(array(
+		$api_key = new ApiKey(array(
 			'key' => $key
 		));
 
@@ -52,7 +52,7 @@ class Authentication {
 	{
 
 		// Delete all keys which are 3 hours old
-		return ApiKeys::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-3 hour')))->delete();
+		return ApiKey::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-3 hour')))->delete();
 
 	}
 
