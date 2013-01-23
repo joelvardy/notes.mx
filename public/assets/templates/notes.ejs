@@ -1,3 +1,9 @@
 <div id="notes">
 	// Notes list page
+	<% for (var i=0; i<notes_list.length; i++) { %>
+		<div>
+			<h4><%= notes_list[i].text %></h4>
+			<p><%= notes.utility.formatDate(notes_list[i].created_at, 'longMonth ordinalNumber year') %></p>
+		</div>
+	<% } %>
 </div>

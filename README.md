@@ -73,14 +73,16 @@ php artisan migrate
   * user_id
   * email
   * *notes*
-   * note_id
-   * text
-   * created_at
-   * update_at
   * created_at
   * update_at
 
 *Only if the user has notes*
+
+Each element in the notes array will contain:
+ * note_id
+ * text
+ * created_at
+ * update_at
 
 ### Update
 

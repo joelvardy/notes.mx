@@ -163,10 +163,12 @@ Template.prototype = {
 	showNotes: function() {
 
 		// Load notes list view
-		var notes = this.build('notes.ejs', {}, {});
+		var notes_list = this.build('notes.ejs', {
+			notes_list: notes.user.getUser().notes
+		}, {});
 
 		// Set the view
-		$('#notes').empty().append(notes);
+		$('#notes').empty().append(notes_list);
 
 	}
 

@@ -4,6 +4,7 @@
 
 		// Add classes to the notes scope
 		window.notes = {
+			utility: new Utility(),
 			user: new User(),
 			storage: new Storage(),
 			template: new Template(),
