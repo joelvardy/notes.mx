@@ -50,7 +50,7 @@ class UserApi extends BaseController {
 	/**
 	 * Read user
 	 */
-	public function read($user_id = false)
+	public function read()
 	{
 
 		// Ensure this is an authenticated request
@@ -62,16 +62,10 @@ class UserApi extends BaseController {
 			));
 		}
 
-		// If no user ID has been passed, use the authenticated users ID
-		if ( ! $user_id)
-		{
-			$user_id = Input::get('user_id');
-		}
-
 		$response['status'] = false;
 
 		// Read the user by ID
-		$user = User::find($user_id);
+		$user = User::find(Input::get('user_id'));
 
 		// Ensure the user was found
 		if ($user)

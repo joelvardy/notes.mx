@@ -63,7 +63,7 @@ php artisan migrate
 
 ### Read
 
- * Endpoint: **/user/{ID}**
+ * Endpoint: **/user**
  * Method: **GET**
  * Data:
   * user_id
@@ -72,8 +72,15 @@ php artisan migrate
   * status
   * user_id
   * email
+  * *notes*
+   * note_id
+   * text
+   * created_at
+   * update_at
   * created_at
   * update_at
+
+*Only if the user has notes*
 
 ### Update
 

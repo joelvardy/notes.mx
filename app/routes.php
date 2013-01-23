@@ -23,8 +23,8 @@ Route::post('user/login', 'UserApi@login');
 // Return whether an email is unique
 Route::post('user/available', 'UserApi@email_unique');
 
-// Read the user details
-Route::get('user/{id?}', 'UserApi@read')->where('id', '[0-9]+');
+// Read user details
+Route::get('user', 'UserApi@read');
 
 // Create user
 Route::post('user', 'UserApi@create');
