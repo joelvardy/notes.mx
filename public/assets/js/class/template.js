@@ -158,6 +158,16 @@ Template.prototype = {
 		// Set the view
 		$('#notes').empty().append(homepage);
 
+	},
+
+	showNotes: function() {
+
+		// Load notes list view
+		var notes = this.build('notes.ejs', {}, {});
+
+		// Set the view
+		$('#notes').empty().append(notes);
+
 	}
 
 }

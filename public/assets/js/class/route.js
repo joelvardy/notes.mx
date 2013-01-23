@@ -54,8 +54,7 @@ Route.prototype = {
 
 		// User notes
 		if (this.getHash() == 'user/notes' && notes.user.isAuthenticated) {
-			console.log('show the user notes');
-			$('#notes').html('View notes list');
+			notes.template.showNotes();
 			return;
 		}
 
