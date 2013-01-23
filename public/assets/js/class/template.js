@@ -49,7 +49,7 @@ Template.prototype = {
 
 		var formDisabled = false;
 
-		var errorLoggingIn = function(){
+		var errorLoggingIn = function() {
 			var errorLoggingIn = new Dialogue();
 			errorLoggingIn.setStyle('default error');
 			errorLoggingIn.setHeader('Error Logging In');

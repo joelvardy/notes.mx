@@ -9,7 +9,7 @@ Route.prototype = {
 		var _this = this;
 
 		// Run routes on hash change
-		$(window).bind('hashchange', function(){
+		$(window).bind('hashchange', function() {
 			_this.run();
 		});
 
@@ -42,8 +42,18 @@ Route.prototype = {
 
 	run: function() {
 
+		var _this = this;
+
+		// User logout
+		if (this.getHash() == 'user/logout') {
+			notes.user.logout(function() {
+				_this.clearHash();
+				return;
+			});
+		}
+
 		// User notes
-		if (this.getHash() == 'user/notes') {
+		if (this.getHash() == 'user/notes' && notes.user.isAuthenticated) {
 			console.log('show the user notes');
 			$('#notes').html('View notes list');
 			return;

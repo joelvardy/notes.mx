@@ -105,12 +105,14 @@ User.prototype = {
 				}
 
 				// Update profile
-				_this.read();
+				_this.read(function(){
 
-				// Run the passed callback
-				if (typeof callback == 'function') {
-					callback(response);
-				}
+					// Run the passed callback
+					if (typeof callback == 'function') {
+						callback(response);
+					}
+
+				});
 
 			}
 		});
@@ -182,7 +184,16 @@ User.prototype = {
 
 		// Note that this method will not remove the API keys which are generated upon login
 
-		return notes.storage.localClear();
+		// Clear local storage (containing the email and API key)
+		notes.storage.localClear();
+
+		// Set the user authentication
+		this.isAuthenticated = false;
+
+		// Run the passed callback
+		if (typeof callback == 'function') {
+			callback();
+		}
 
 	}
 
