@@ -101,7 +101,7 @@
 		overflow: hidden;
 	}
 		#notes-list div.notes > div {
-			background: orange;
+			background: #c8c8c8;
 			display: block;
 			float: left;
 			height: 150px;
@@ -146,6 +146,11 @@
 
 	#homepage form {
 		width: 96%;
+	}
+
+	#notes-list div.notes > div {
+		margin-top: 15px;
+		width: 98%;
 	}
 
 }

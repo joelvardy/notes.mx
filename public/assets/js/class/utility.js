@@ -30,6 +30,19 @@ Utility.prototype = {
 
 		return string;
 
+	},
+
+	cutString: function(string, characters) {
+
+		string = string.match(/[^\r\n]+/g)[0];
+
+		if(string.length > characters) {
+			string = string.substr(0, characters - 1);
+			string = string.substr(0, string.lastIndexOf(' '));
+		}
+
+		return string;
+
 	}
 
 }

@@ -7,7 +7,7 @@
 		<% notes_list.reverse(); %>
 		<% for (var i=0; i<notes_list.length; i++) { %>
 			<div>
-				<h5><%= notes_list[i].text %></h5>
+				<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>
 				<time><%= notes.utility.formatDate(notes_list[i].created_at, 'longMonth ordinalNumber year') %></time>
 			</div>
 		<% } %>
