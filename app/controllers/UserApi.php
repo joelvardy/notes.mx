@@ -54,7 +54,7 @@ class UserApi extends BaseController {
 	{
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
 		{
 			return Response::json(array(
 				'status' => false,
@@ -65,7 +65,7 @@ class UserApi extends BaseController {
 		$response['status'] = false;
 
 		// Read the user by ID
-		$user = User::find(Input::get('user_id'));
+		$user = User::find(Request::header('user-id'));
 
 		// Ensure the user was found
 		if ($user)
@@ -150,7 +150,7 @@ class UserApi extends BaseController {
 	{
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
 		{
 			return Response::json(array(
 				'status' => false,
@@ -173,7 +173,7 @@ class UserApi extends BaseController {
 		{
 
 			// Read the user details
-			$user = User::find(Input::get('user_id'));
+			$user = User::find(Request::header('user-id'));
 
 			// Ensure the user was found
 			if ($user)

@@ -30,7 +30,7 @@ class NoteApi extends BaseController {
 	{
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
 		{
 			return Response::json(array(
 				'status' => false,
@@ -40,7 +40,7 @@ class NoteApi extends BaseController {
 
 		// If this is a new note, create it
 		if ( ! Input::has('note_id')) {
-			$note_id = $this->create(Input::get('user_id'), Input::get('text'));
+			$note_id = $this->create(Request::header('user-id'), Input::get('text'));
 			return Response::json(array(
 				'status' => (boolean) $note_id,
 				'note_id' => $note_id
@@ -57,7 +57,7 @@ class NoteApi extends BaseController {
 		{
 
 			// Ensure the current user is the owner of the note
-			if ($note->user_id == Input::get('user_id')) {
+			if ($note->user_id == Request::header('user-id')) {
 
 				$note->text = Input::get('text');
 				if ($note->save())
@@ -83,7 +83,7 @@ class NoteApi extends BaseController {
 	{
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Input::get('user_id'), Input::get('api_key')))
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
 		{
 			return Response::json(array(
 				'status' => false,
@@ -101,7 +101,7 @@ class NoteApi extends BaseController {
 		{
 
 			// Ensure the current note is the owner of the note
-			if ($note->user_id == Input::get('user_id')) {
+			if ($note->user_id == Request::header('user-id')) {
 
 				$response['status'] = true;
 				$response['note_id'] = $note->id;

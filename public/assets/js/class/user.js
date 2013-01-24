@@ -123,9 +123,9 @@ User.prototype = {
 		$.ajax({
 			type: 'GET',
 			url: '/user',
-			data: {
-				user_id: this.getUserId(),
-				api_key: this.getApiKey()
+			beforeSend: function(request){
+				request.setRequestHeader('user-id', _this.getUserId());
+				request.setRequestHeader('user-api-key', _this.getApiKey());
 			},
 			dataType: 'json',
 			success: function(response) {
@@ -152,13 +152,17 @@ User.prototype = {
 
 	update: function(password, callback) {
 
+		var _this = this;
+
 		// Attempt to update the user account
 		$.ajax({
 			type: 'PUT',
 			url: '/user',
+			beforeSend: function(request){
+				request.setRequestHeader('user-id', _this.getUserId());
+				request.setRequestHeader('user-api-key', _this.getApiKey());
+			},
 			data: {
-				user_id: this.getUserId(),
-				api_key: this.getApiKey(),
 				password: password
 			},
 			dataType: 'json',

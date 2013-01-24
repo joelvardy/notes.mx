@@ -26,6 +26,12 @@ php artisan migrate
 
 # API
 
+## API Authentication
+
+Some API calls must pass a user ID and API key in the request headers, the headers are:
+ * user-id
+ * user-api-key
+
 ## User
 
 ### Email Available
@@ -65,9 +71,7 @@ php artisan migrate
 
  * Endpoint: **/user**
  * Method: **GET**
- * Data:
-  * user_id
-  * api_key
+ * *Must pass API authentication*
  * Response: **JSON**
   * status
   * user_id
@@ -88,9 +92,8 @@ Each element in the notes array will contain:
 
  * Endpoint: **/user**
  * Method: **PUT**
+ * *Must pass API authentication*
  * Data:
-  * user_id
-  * api_key
   * password
  * Response: **JSON**
   * status
@@ -101,9 +104,8 @@ Each element in the notes array will contain:
 
  * Endpoint: **/note**
  * Method: **PUT**
+ * *Must pass API authentication*
  * Data:
-  * user_id
-  * api_key
   * text
   * *note_id*
  * Response: **JSON**
@@ -116,9 +118,7 @@ Each element in the notes array will contain:
 
  * Endpoint: **/note/{ID}**
  * Method: **GET**
- * Data:
-  * user_id
-  * api_key
+ * *Must pass API authentication*
  * Response: **JSON**
   * status
   * note_id

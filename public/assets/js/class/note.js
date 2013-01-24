@@ -14,9 +14,11 @@ Note.prototype = {
 		$.ajax({
 			type: 'PUT',
 			url: '/note',
+			beforeSend: function(request){
+				request.setRequestHeader('user-id', notes.user.getUserId());
+				request.setRequestHeader('user-api-key', notes.user.getApiKey());
+			},
 			data: {
-				user_id: notes.user.getUserId(),
-				api_key: notes.user.getApiKey(),
 				note_id: note_id,
 				text: text
 			},
@@ -44,9 +46,9 @@ Note.prototype = {
 		$.ajax({
 			type: 'GET',
 			url: '/note/'+note_id,
-			data: {
-				user_id: notes.user.getUserId(),
-				api_key: notes.user.getApiKey()
+			beforeSend: function(request){
+				request.setRequestHeader('user-id', notes.user.getUserId());
+				request.setRequestHeader('user-api-key', notes.user.getApiKey());
 			},
 			dataType: 'json',
 			success: function(response) {
