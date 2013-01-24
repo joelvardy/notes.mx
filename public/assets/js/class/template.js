@@ -153,22 +153,22 @@ Template.prototype = {
 		};
 
 		// Load homepage view
-		var homepage = this.build('homepage.ejs', {}, actions);
+		var homepageElement = this.build('homepage.ejs', {}, actions);
 
 		// Set the view
-		$('#notes').empty().append(homepage);
+		$('#notes').empty().append(homepageElement);
 
 	},
 
 	showNotes: function() {
 
 		// Load notes list view
-		var notes_list = this.build('notes.ejs', {
+		var notesElement = this.build('notes.ejs', {
 			notes_list: notes.user.getUser().notes
 		}, {});
 
 		// Set the view
-		$('#notes').empty().append(notes_list);
+		$('#notes').empty().append(notesElement);
 
 	}
 

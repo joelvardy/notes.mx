@@ -5,6 +5,27 @@
 
 
 /*
+	Header
+*/
+#notes > div > header {
+	overflow: hidden;
+}
+	#notes > div > header h3 {
+		float: left;
+		padding: 15px 0 5px;
+	}
+	#notes > div > header a {
+		background: #333333;
+		border-radius: 0 0 10px 10px;
+		color: #f0f0f0;
+		display: block;
+		float: right;
+		padding: 5px 15px;
+		text-decoration: none;
+	}
+
+
+/*
 	Homepage
 */
 #homepage {
@@ -66,6 +87,39 @@
 				float: right;
 				height: 40px;
 				width: 40%;
+			}
+
+
+/*
+	Notes list
+*/
+#notes-list {
+
+}
+	#notes-list div.notes {
+		margin-right: -2%;
+		overflow: hidden;
+	}
+		#notes-list div.notes > div {
+			background: orange;
+			display: block;
+			float: left;
+			height: 150px;
+			margin: 2% 2% 0 0;
+			overflow: hidden;
+			padding: 10px;
+			position: relative;
+			width: 23%;
+		}
+			#notes-list div.notes > div h5 {
+				line-height: 1.5em;
+			}
+			#notes-list div.notes > div time {
+				bottom: 5px;
+				font-size: 0.9em;
+				line-height: 1em;
+				position: absolute;
+				right: 5px;
 			}
 
 

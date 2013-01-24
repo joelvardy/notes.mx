@@ -1,9 +1,15 @@
-<div id="notes">
-	// Notes list page
-	<% for (var i=0; i<notes_list.length; i++) { %>
-		<div>
-			<h4><%= notes_list[i].text %></h4>
-			<p><%= notes.utility.formatDate(notes_list[i].created_at, 'longMonth ordinalNumber year') %></p>
-		</div>
-	<% } %>
+<div id="notes-list">
+	<header>
+		<h3>My Notes</h3>
+		<a href="#!/user/logout">Logout</a>
+	</header>
+	<div class="notes">
+		<% notes_list.reverse(); %>
+		<% for (var i=0; i<notes_list.length; i++) { %>
+			<div>
+				<h5><%= notes_list[i].text %></h5>
+				<time><%= notes.utility.formatDate(notes_list[i].created_at, 'longMonth ordinalNumber year') %></time>
+			</div>
+		<% } %>
+	</div>
 </div>
