@@ -164,7 +164,7 @@ Template.prototype = {
 
 		// Load notes list view
 		var notesElement = this.build('notes.ejs', {
-			notes_list: notes.user.getUser().notes
+			notes_list: notes.user.getUser().notes || false
 		}, {});
 
 		// Set the view

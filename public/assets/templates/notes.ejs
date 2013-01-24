@@ -4,12 +4,16 @@
 		<a href="#!/user/logout">Logout</a>
 	</header>
 	<div class="notes">
-		<% notes_list.reverse(); %>
-		<% for (var i=0; i<notes_list.length; i++) { %>
-			<div>
-				<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>
-				<time><%= notes.utility.relativeDate(notes_list[i].created_at) %></time>
-			</div>
+		<% if (notes_list) { %>
+			<% notes_list.reverse(); %>
+			<% for (var i=0; i<notes_list.length; i++) { %>
+				<div>
+					<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>
+					<time><%= notes.utility.relativeDate(notes_list[i].created_at) %></time>
+				</div>
+			<% } %>
+		<% } else { %>
+			<h3 class="no-notes">No notes were found :(</h3>
 		<% } %>
 	</div>
 </div>
