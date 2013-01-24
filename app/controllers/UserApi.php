@@ -78,15 +78,15 @@ class UserApi extends BaseController {
 				$response['notes'][] = array(
 					'note_id' => $note->id,
 					'text' => $note->text,
-					'created_at' => $note->created_at,
-					'updated_at' => $note->updated_at
+					'created_at' => strtotime($note->created_at),
+					'updated_at' => strtotime($note->updated_at)
 				);
 			}
 
 			$response['id'] = $user->id;
 			$response['email'] = $user->email;
-			$response['created_at'] = $user->created_at;
-			$response['updated_at'] = $user->updated_at;
+			$response['created_at'] = strtotime($user->created_at);
+			$response['updated_at'] = strtotime($user->updated_at);
 
 		}
 

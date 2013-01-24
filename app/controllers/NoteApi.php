@@ -106,8 +106,8 @@ class NoteApi extends BaseController {
 				$response['status'] = true;
 				$response['note_id'] = $note->id;
 				$response['text'] = $note->text;
-				$response['created_at'] = $note->created_at;
-				$response['updated_at'] = $note->updated_at;
+				$response['created_at'] = strtotime($note->created_at);
+				$response['updated_at'] = strtotime($note->updated_at);
 
 			}
 

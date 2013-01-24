@@ -19,7 +19,7 @@ Utility.prototype = {
 	formatDate: function(date, string) {
 
 		// Load the date
-		var date = new Date(date);
+		date = new Date(date * 1000);
 
 		// Define the months
 		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
