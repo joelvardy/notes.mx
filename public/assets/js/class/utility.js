@@ -39,22 +39,25 @@ Utility.prototype = {
 
 		var difference = new Date() - date;
 
-		var conversions = [
+		// Set the units we will display the date in
+		var units = [
 			['format', 2592000000],
-			['days', 86400000],
-			['hours', 3600000],
-			['minutes', 60000],
-			['seconds', 1000]
+			['day', 86400000],
+			['hour', 3600000],
+			['minute', 60000],
+			['second', 1000]
 		];
 
-		// Go through conversions until we hit a match
-		for (var i = 0; i < conversions.length; i++) {
-			var result = Math.floor(difference / conversions[i][1]);
-			if (result >= 2) {
-				if (conversions[i][0] == 'format') {
+		// Go through units until we hit a match
+		for (var i = 0; i < units.length; i++) {
+			var result = Math.floor(difference / units[i][1]);
+			if (result >= 1) {
+				// If the matched unit is 'format' then we'll return a formatted date
+				if (units[i][0] == 'format') {
 					return this.formatDate(date / 1000, 'longMonth ordinalNumber year');
 				}
-				return result+' '+conversions[i][0]+' ago';
+				// Return the number of units (if more than one, make it a plural)
+				return result+' '+units[i][0]+(result >= 2 ? 's' : '')+' ago';
 			}
 		}
 
