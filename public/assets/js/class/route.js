@@ -58,6 +58,12 @@ Route.prototype = {
 			return;
 		}
 
+		// Specific note
+		if (this.getHash().match('^note/([0-9]+)$') && notes.user.isAuthenticated) {
+			notes.template.showNote(this.getHash().match('^note/([0-9]+)$')[1]);
+			return;
+		}
+
 		// Not route has been matched, check whether the user is authenticated
 		if (notes.user.isAuthenticated) {
 			this.setHash('user/notes');

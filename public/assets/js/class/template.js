@@ -32,7 +32,7 @@ Template.prototype = {
 		data.actions = actions;
 
 		// Render element
-		var element = $(new EJS({url: this.templatePath+template+'?'+(new Date().getTime())}).render(data));
+		var element = $(new EJS({url: this.templatePath+template}).render(data));
 
 		// Bind events
 		for (var i=0; i<this.events.length; i++) {
@@ -169,6 +169,38 @@ Template.prototype = {
 
 		// Set the view
 		$('#notes').empty().append(notesElement);
+
+	},
+
+	showNote: function(note_id) {
+
+		var _this = this;
+
+		// Read a note
+		notes.note.read(note_id, function(response){
+
+			// The note was successfully read
+			if (response.status) {
+
+				// Load note view
+				var noteElement = _this.build('note.ejs', {
+					note_details: {
+						note_id: response.note_id,
+						text: response.text,
+						created_at: response.created_at,
+						updated_at: response.updated_at
+					}
+				}, {});
+
+				// Set the view
+				$('#notes').empty().append(noteElement);
+
+			// There was an error reading the note
+			} else {
+				history.back();
+			}
+
+		});
 
 	}
 
