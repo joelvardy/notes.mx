@@ -42,6 +42,20 @@ Note.prototype = {
 
 	read: function(note_id, callback) {
 
+		// First lets see whether the note is within the users profile
+		// This should always be the case, so the API call is a little redundant
+		for (var i=0; i<notes.user.getUser().notes.length; i++) {
+			if (notes.user.getUser().notes[i].note_id == note_id) {
+				var fake_response = notes.user.getUser().notes[i];
+				fake_response.status = true;
+				// Run the passed callback
+				if (typeof callback == 'function') {
+					callback(fake_response);
+					return;
+				}
+			}
+		}
+
 		// Attempt to read a note
 		$.ajax({
 			type: 'GET',
