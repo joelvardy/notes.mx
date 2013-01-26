@@ -1,3 +1,7 @@
+<%
+	template.addEvent('div.notes > div', 'click', actions.clickNote);
+%>
+
 <div id="notes-list">
 	<header>
 		<h3>My Notes</h3>
@@ -6,7 +10,7 @@
 	<div class="notes">
 		<% if (notes_list) { %>
 			<% for (var i=0; i<notes_list.length; i++) { %>
-				<div>
+				<div data-noteId="<%= notes_list[i].note_id %>">
 					<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>
 					<time><%= notes.utility.relativeDate(notes_list[i].created_at) %></time>
 				</div>

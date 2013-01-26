@@ -40,6 +40,12 @@ Route.prototype = {
 
 	},
 
+	goBack: function() {
+
+		history.back();
+
+	},
+
 	run: function() {
 
 		var _this = this;

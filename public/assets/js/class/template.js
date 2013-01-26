@@ -62,6 +62,7 @@ Template.prototype = {
 		var actions = {
 
 			submitForm: function(event){
+
 				event.preventDefault();
 
 				if (formDisabled) {
@@ -162,10 +163,22 @@ Template.prototype = {
 
 	showNotes: function() {
 
+		// Define actions
+		var actions = {
+
+			clickNote: function(event){
+
+				// View the note
+				notes.route.setHash('note/'+$(event.currentTarget).attr('data-noteId'));
+
+			}
+
+		}
+
 		// Load notes list view
 		var notesElement = this.build('notes.ejs', {
 			notes_list: notes.user.getUser().notes || false
-		}, {});
+		}, actions);
 
 		// Set the view
 		$('#notes').empty().append(notesElement);
