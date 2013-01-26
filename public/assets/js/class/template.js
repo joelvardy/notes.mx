@@ -208,6 +208,9 @@ Template.prototype = {
 				// Set the view
 				$('#notes').empty().append(noteElement);
 
+				// Set the textarea height
+				$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');
+
 			// There was an error reading the note
 			} else {
 				history.back();

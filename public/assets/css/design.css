@@ -150,6 +150,24 @@
 
 
 /*
+	Edit note
+*/
+#note-edit {
+
+}
+	#note-edit div.note {
+		margin-top:20px;
+	}
+		#note-edit div.note textarea {
+			border: none;
+			display: block;
+			font-size: 1.2em;
+			resize: none;
+			width: 100%;
+		}
+
+
+/*
 	Tablet
 */
 @media screen and (max-width: 960px) {

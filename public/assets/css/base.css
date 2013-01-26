@@ -12,7 +12,7 @@ textarea, input {
 	outline: none;
 }
 
-html {
+html, input, textarea {
 	background: #e1e1e1;
 	color: #111111;
 	font: 100%/1.5em 'PT Sans', Helvetica, Arial, sans-serif;
