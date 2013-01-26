@@ -74,11 +74,11 @@ Dialogue.prototype = {
 		// Define actions
 		var actions = {
 
-			close: function(event){
+			close: function(event) {
 				_this.hide();
 			},
 
-			buttonClicked: function(event){
+			buttonClicked: function(event) {
 
 				// Read the button ID
 				var buttonId = $(event.target).attr('data-ButtonId');

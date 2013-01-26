@@ -4,11 +4,12 @@
 
 <div id="notes-list">
 	<header>
-		<h3>My Notes</h3>
+		<a class="button new" href="#!/note/new"><span class="icon"></span>New Note</a>
 		<a class="logout" href="#!/user/logout">Logout</a>
 	</header>
 	<div class="notes">
 		<% if (notes_list) { %>
+			<% notes_list.reverse(); %>
 			<% for (var i=0; i<notes_list.length; i++) { %>
 				<div data-noteId="<%= notes_list[i].note_id %>">
 					<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>

@@ -14,7 +14,7 @@ Note.prototype = {
 		$.ajax({
 			type: 'PUT',
 			url: '/note',
-			beforeSend: function(request){
+			beforeSend: function(request) {
 				request.setRequestHeader('user-id', notes.user.getUserId());
 				request.setRequestHeader('user-api-key', notes.user.getApiKey());
 			},
@@ -26,7 +26,7 @@ Note.prototype = {
 			success: function(response) {
 
 				// Update the user data (will add the new note to their profile)
-				notes.user.read(function(data){
+				notes.user.read(function(data) {
 
 					// Run the passed callback
 					if (typeof callback == 'function') {
@@ -60,7 +60,7 @@ Note.prototype = {
 		$.ajax({
 			type: 'GET',
 			url: '/note/'+note_id,
-			beforeSend: function(request){
+			beforeSend: function(request) {
 				request.setRequestHeader('user-id', notes.user.getUserId());
 				request.setRequestHeader('user-api-key', notes.user.getApiKey());
 			},

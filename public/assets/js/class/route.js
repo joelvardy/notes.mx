@@ -64,6 +64,12 @@ Route.prototype = {
 			return;
 		}
 
+		// Create new note
+		if (this.getHash() == 'note/new' && notes.user.isAuthenticated) {
+			notes.template.showNote();
+			return;
+		}
+
 		// Specific note
 		if (this.getHash().match('^note/([0-9]+)$') && notes.user.isAuthenticated) {
 			notes.template.showNote(this.getHash().match('^note/([0-9]+)$')[1]);

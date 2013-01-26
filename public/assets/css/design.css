@@ -11,11 +11,7 @@
 #notes > div > header {
 	overflow: hidden;
 }
-	#notes > div > header h3 {
-		float: left;
-		padding: 15px 0 5px;
-	}
-	#notes > div > header a.notes {
+	#notes > div > header a.button {
 		background: white;
 		border-radius: 3px;
 		box-shadow: 0 0 1px rgba(0,0,0,0.1);
@@ -27,13 +23,21 @@
 		padding: 7px 15px;
 		text-decoration: none;
 	}
-		#notes > div > header a.notes span.icon {
-			background: url('../img/note.svg');
-			background-size: 100% 100%;
+	#notes > div > header a.button:hover {
+		background: #f0f0f0;
+	}
+		#notes > div > header a.button span.icon {
+			background-size: 100% 100% !important;
 			display: inline-block;
 			height: 16px;
 			margin-right: 10px;
 			width: 16px;
+		}
+		#notes > div > header a.notes span.icon {
+			background: url('../img/note.svg');
+		}
+		#notes > div > header a.new span.icon {
+			background: url('../img/new.svg');
 		}
 	#notes > div > header a.logout {
 		background: #333333;

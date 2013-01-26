@@ -101,7 +101,7 @@ User.prototype = {
 				}
 
 				// Update profile
-				_this.read(function(){
+				_this.read(function() {
 
 					// Run the passed callback
 					if (typeof callback == 'function') {
@@ -123,7 +123,7 @@ User.prototype = {
 		$.ajax({
 			type: 'GET',
 			url: '/user',
-			beforeSend: function(request){
+			beforeSend: function(request) {
 				request.setRequestHeader('user-id', _this.getUserId());
 				request.setRequestHeader('user-api-key', _this.getApiKey());
 			},
@@ -158,7 +158,7 @@ User.prototype = {
 		$.ajax({
 			type: 'PUT',
 			url: '/user',
-			beforeSend: function(request){
+			beforeSend: function(request) {
 				request.setRequestHeader('user-id', _this.getUserId());
 				request.setRequestHeader('user-api-key', _this.getApiKey());
 			},
