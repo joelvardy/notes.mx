@@ -1,5 +1,6 @@
 #notes {
 	margin: 0 auto;
+	padding-bottom: 50px;
 	width: 960px;
 }
 
@@ -14,7 +15,27 @@
 		float: left;
 		padding: 15px 0 5px;
 	}
-	#notes > div > header a {
+	#notes > div > header a.notes {
+		background: white;
+		border-radius: 3px;
+		box-shadow: 0 0 1px rgba(0,0,0,0.1);
+		color: black;
+		display: block;
+		float: left;
+		line-height: 1em;
+		margin: 15px 0 5px;
+		padding: 7px 15px;
+		text-decoration: none;
+	}
+		#notes > div > header a.notes span.icon {
+			background: url('../img/note.svg');
+			background-size: 100% 100%;
+			display: inline-block;
+			height: 16px;
+			margin-right: 10px;
+			width: 16px;
+		}
+	#notes > div > header a.logout {
 		background: #333333;
 		border-radius: 0 0 10px 10px;
 		color: #f0f0f0;
