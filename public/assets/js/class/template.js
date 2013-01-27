@@ -211,8 +211,13 @@ Template.prototype = {
 
 						if (response.status) {
 
+							previousNoteText = noteText;
+
 							// Save the note ID
 							$('#note-edit textarea').attr('data-noteId', response.note_id);
+
+							// Update the last saved time
+							$('#note-edit date').attr('datetime', Math.floor(new Date() / 1000));
 
 							// Update profile
 							notes.user.read();
@@ -222,6 +227,8 @@ Template.prototype = {
 					});
 
 				}
+
+				return false;
 
 			}
 
@@ -282,6 +289,11 @@ Template.prototype = {
 			setInterval(actions.save, (1000 * 60 * 2));
 
 		}
+
+		// Update the 'last saved' time
+		setInterval(function() {
+			$('#note-edit date').html('Last saved: '+notes.utility.relativeDate($('#note-edit date').attr('datetime')));
+		}, 5000);
 
 	}
 

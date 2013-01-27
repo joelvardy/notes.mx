@@ -9,7 +9,6 @@
 	</header>
 	<div class="notes">
 		<% if (notes_list) { %>
-			<% notes_list.reverse(); %>
 			<% for (var i=0; i<notes_list.length; i++) { %>
 				<div data-noteId="<%= notes_list[i].note_id %>">
 					<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>

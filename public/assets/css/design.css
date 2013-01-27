@@ -23,6 +23,9 @@
 		padding: 7px 15px;
 		text-decoration: none;
 	}
+	#notes > div > header a.button.save {
+		margin-left: 15px;
+	}
 	#notes > div > header a.button:hover {
 		background: #f0f0f0;
 	}
@@ -33,11 +36,14 @@
 			margin-right: 10px;
 			width: 16px;
 		}
-		#notes > div > header a.notes span.icon {
-			background: url('../img/note.svg');
-		}
 		#notes > div > header a.new span.icon {
 			background: url('../img/new.svg');
+		}
+		#notes > div > header a.home span.icon {
+			background: url('../img/home.svg');
+		}
+		#notes > div > header a.save span.icon {
+			background: url('../img/save.svg');
 		}
 	#notes > div > header a.logout {
 		background: #333333;
@@ -132,6 +138,7 @@
 		}
 		#notes-list div.notes > div {
 			background: #c8c8c8;
+			cursor: pointer;
 			display: block;
 			float: left;
 			height: 150px;

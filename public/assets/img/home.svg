@@ -5,13 +5,7 @@
 	 height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
 <g id="Layer_1">
 </g>
-<g id="calendar">
-	<g>
-		<polygon style="fill:#4E4E50;" points="23.918,4 23.918,0 19.918,0 19.918,4 11.918,4 11.918,0 7.918,0 7.918,4 0,4 0,8 7.918,8 
-			11.918,8 19.918,8 23.918,8 32,8 32,4 		"/>
-		<rect x="4" y="20" style="fill:#4E4E50;" width="24" height="4"/>
-		<rect x="4" y="12" style="fill:#4E4E50;" width="24" height="4"/>
-		<polygon style="fill:#4E4E50;" points="24,32 4,32 4,28 28,28 		"/>
-	</g>
+<g id="home">
+	<path style="fill:#4E4E50;" d="M16,0L0,16h4v16h24V16h4L16,0z M24,28h-6v-6h-4v6H8V13.656L16,8l8,5.656V28z"/>
 </g>
 </svg>

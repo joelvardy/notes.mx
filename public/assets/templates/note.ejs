@@ -1,13 +1,15 @@
 <%
-	template.addEvent('div.note a.save', 'click', actions.save);
+	template.addEvent('header a.save', 'click', actions.save);
 %>
 
 <div id="note-edit">
 	<header>
-		<a class="button notes" href="#!/user/notes"><span class="icon"></span>Back To Notes</a>
+		<a class="button home" href="#!/user/notes"><span class="icon"></span>Back To Notes</a>
+		<a class="button save" href="#!/note/save"><span class="icon"></span>Save</a>
 		<a class="logout" href="#!/user/logout">Logout</a>
 	</header>
 	<div class="note">
 		<textarea id="email" placeholder="Write your note here..." data-noteId="<%= (note_details ? note_details.note_id : '') %>"><%= (note_details ? note_details.text : '') %></textarea>
+		<date datetime="<%= (note_details ? note_details.updated_at : '') %>"></date>
 	</div>
 </div>

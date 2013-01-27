@@ -82,6 +82,7 @@ class UserApi extends BaseController {
 					'updated_at' => strtotime($note->updated_at)
 				);
 			}
+			rsort($response['notes']);
 
 			$response['id'] = $user->id;
 			$response['email'] = $user->email;
