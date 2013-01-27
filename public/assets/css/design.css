@@ -170,7 +170,7 @@
 	Edit note
 */
 #note-edit {
-
+	position: relative;
 }
 	#note-edit div.note {
 		margin-top:20px;
@@ -181,6 +181,11 @@
 			font-size: 1.2em;
 			resize: none;
 			width: 100%;
+		}
+		#note-edit div.note date {
+			bottom: -30px;
+			left: 0;
+			position: absolute;
 		}
 
 
