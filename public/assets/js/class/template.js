@@ -219,9 +219,6 @@ Template.prototype = {
 							// Update the last saved time
 							$('#note-edit date').attr('datetime', Math.floor(new Date() / 1000));
 
-							// Update profile
-							notes.user.read();
-
 						}
 
 					});
@@ -229,6 +226,25 @@ Template.prototype = {
 				}
 
 				return false;
+
+			},
+
+			delete: function(event) {
+
+				// Read the note ID
+				var noteId = $('#note-edit textarea').attr('data-noteId');
+
+				// Delete the note
+				notes.note.delete(noteId, function(response) {
+
+					if (response.status) {
+
+						// Send the user to the notes listing page
+						notes.route.setHash('user/notes');
+
+					}
+
+				});
 
 			}
 
@@ -262,7 +278,12 @@ Template.prototype = {
 					$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');
 
 					// Save the note every 2 minutes
-					setInterval(actions.save, (1000 * 60 * 2));
+					var saveOperationId = setInterval(actions.save, (1000 * 60 * 2));
+
+					// Remove setInterval call after navigationg away from this page
+					notes.route.addTaskBeforeChange(function() {
+						clearInterval(saveOperationId);
+					});
 
 				// There was an error reading the note
 				} else {
@@ -286,14 +307,27 @@ Template.prototype = {
 			$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');
 
 			// Save the note every 2 minutes
-			setInterval(actions.save, (1000 * 60 * 2));
+			var saveOperationId = setInterval(actions.save, (1000 * 60 * 2));
+
+			// Remove setInterval call after navigationg away from this page
+			notes.route.addTaskBeforeChange(function() {
+				clearInterval(saveOperationId);
+			});
 
 		}
 
 		// Update the 'last saved' time
-		setInterval(function() {
-			$('#note-edit date').html('Last saved: '+notes.utility.relativeDate($('#note-edit date').attr('datetime')));
+		var updateTimeOperationId = setInterval(function() {
+			var time = $('#note-edit date').attr('datetime');
+			if (time != '') {
+				$('#note-edit date').html('Last saved: '+notes.utility.relativeDate(time));
+			}
 		}, 5000);
+
+		// Remove setInterval call after navigationg away from this page
+		notes.route.addTaskBeforeChange(function() {
+			clearInterval(updateTimeOperationId);
+		});
 
 	}
 

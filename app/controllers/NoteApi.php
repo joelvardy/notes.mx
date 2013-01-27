@@ -119,4 +119,46 @@ class NoteApi extends BaseController {
 	}
 
 
+	/**
+	 * Delete note
+	 */
+	public function delete($note_id)
+	{
+
+		// Ensure this is an authenticated request
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
+		// Delete the note
+		$note = Note::find($note_id);
+
+		// Ensure the note was found
+		if ($note)
+		{
+
+			// Ensure the current note is the owner of the note
+			if ($note->user_id == Request::header('user-id')) {
+
+				if ($note->delete())
+				{
+					$status = true;
+				}
+
+			}
+
+		}
+
+		// Return response
+		return Response::json(array(
+			'status' => (isset($status) ? $status : false)
+		));
+
+	}
+
+
 }

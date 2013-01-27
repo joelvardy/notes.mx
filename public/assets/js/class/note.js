@@ -75,6 +75,34 @@ Note.prototype = {
 			}
 		});
 
+	},
+
+	delete: function(note_id, callback) {
+
+		// Attempt to delete a note
+		$.ajax({
+			type: 'DELETE',
+			url: '/note/'+note_id,
+			beforeSend: function(request) {
+				request.setRequestHeader('user-id', notes.user.getUserId());
+				request.setRequestHeader('user-api-key', notes.user.getApiKey());
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Update the user data (will remove the note from their profile)
+				notes.user.read(function(data) {
+
+					// Run the passed callback
+					if (typeof callback == 'function') {
+						callback(response);
+					}
+
+				});
+
+			}
+		});
+
 	}
 
 }

@@ -126,4 +126,14 @@ Each element in the notes array will contain:
   * created_at
   * update_at
 
+### Delete
+
+ * Endpoint: **/note/{ID}**
+ * Method: **DELETE**
+ * *Must pass API authentication*
+ * Data:
+  * note_id
+ * Response: **JSON**
+  * status
+
   [joelvardy]: http://joelvardy.com/

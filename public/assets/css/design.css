@@ -23,11 +23,14 @@
 		padding: 7px 15px;
 		text-decoration: none;
 	}
-	#notes > div > header a.button.save {
+	#notes > div > header a.button.save, #notes > div > header a.button.delete {
 		margin-left: 15px;
 	}
 	#notes > div > header a.button:hover {
 		background: #f0f0f0;
+	}
+	#notes > div > header a.button.delete:hover {
+		background: #f0aaa5;
 	}
 		#notes > div > header a.button span.icon {
 			background-size: 100% 100% !important;
@@ -44,6 +47,9 @@
 		}
 		#notes > div > header a.save span.icon {
 			background: url('../img/save.svg');
+		}
+		#notes > div > header a.delete span.icon {
+			background: url('../img/delete.svg');
 		}
 	#notes > div > header a.logout {
 		background: #333333;

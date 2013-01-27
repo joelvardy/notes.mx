@@ -37,3 +37,6 @@ Route::put('note', 'NoteApi@save');
 
 // Read note
 Route::get('note/{id}', 'NoteApi@read')->where('id', '[0-9]+');
+
+// Delete note
+Route::delete('note/{id}', 'NoteApi@delete')->where('id', '[0-9]+');
