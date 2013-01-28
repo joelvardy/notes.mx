@@ -209,6 +209,13 @@
 	#notes {
 		width: 292px;
 	}
+		#notes > div > header a.button {
+			overflow: hidden;
+			padding-left: 10px;
+			padding-right: 10px;
+			white-space: nowrap;
+			width: 36px;
+		}
 
 	#homepage form {
 		width: 96%;
