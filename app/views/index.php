@@ -7,8 +7,8 @@
 		<link rel="stylesheet" href="/assets/css/base.css" />
 		<link rel="stylesheet" href="/assets/css/modules.css" />
 		<link rel="stylesheet" href="/assets/css/design.css" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arvo">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arvo">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans">
 	</head>
 	<body>
 		<div id="notes">
