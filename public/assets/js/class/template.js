@@ -97,10 +97,12 @@ Template.prototype = {
 									if (response.status) {
 
 										// Take the user to their notes list
+										notes.analytics.triggerPageview('/user/login/successful');
 										notes.route.setHash('user/notes');
 
 									// There was an error logging them in, maybe the internet has died
 									} else {
+										notes.analytics.triggerPageview('/user/login/failure');
 										errorLoggingIn();
 									}
 
@@ -111,6 +113,9 @@ Template.prototype = {
 
 								// Enable the form again
 								formDisabled = false;
+
+								// This migth be a server error
+								notes.analytics.triggerPageview('/user/login/account-creation-failure');
 
 								var errorCreatingUser = new Dialogue();
 								errorCreatingUser.setStyle('default error');
@@ -136,10 +141,12 @@ Template.prototype = {
 							if (response.status) {
 
 								// Take the user to their notes list
+								notes.analytics.triggerPageview('/user/login/successful');
 								notes.route.setHash('user/notes');
 
 							// There was an error logging them in, maybe the internet has died
 							} else {
+								notes.analytics.triggerPageview('/user/login/failure');
 								errorLoggingIn();
 							}
 
@@ -168,8 +175,12 @@ Template.prototype = {
 
 			clickNote: function(event) {
 
+				// Define the note ID
+				var noteId = $(event.currentTarget).attr('data-noteId');
+
 				// View the note
-				notes.route.setHash('note/'+$(event.currentTarget).attr('data-noteId'));
+				notes.analytics.triggerUserAction('Click Note', 'Click Note ('+noteId+')');
+				notes.route.setHash('note/'+noteId);
 
 			}
 
@@ -199,6 +210,11 @@ Template.prototype = {
 				// Read the note ID and text
 				var noteId = $('#note-edit textarea').attr('data-noteId'),
 					noteText = $('#note-edit textarea').val();
+
+				// If the save button has been pressed
+				if (typeof event != 'undefined') {
+					notes.analytics.triggerUserAction('Save Note', 'Save Note ('+noteId+')');
+				}
 
 				// Ensure a note has been written and has changed since being changed last
 				if (noteText != '' && noteText != previousNoteText) {
@@ -233,6 +249,11 @@ Template.prototype = {
 
 				// Read the note ID
 				var noteId = $('#note-edit textarea').attr('data-noteId');
+
+				// If the delete button has been pressed
+				if (typeof event != 'undefined') {
+					notes.analytics.triggerUserAction('Delete Note', 'Delete Note ('+noteId+')');
+				}
 
 				// Delete the note
 				notes.note.delete(noteId, function(response) {

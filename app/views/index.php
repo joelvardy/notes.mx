@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/assets/css/design.css" />
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arvo">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans">
+		<script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-38068388-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = 'https://ssl.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
 	</head>
 	<body>
 		<div id="notes">
@@ -19,6 +20,7 @@
 		<script src="/assets/js/class/utility.js"></script>
 		<script src="/assets/js/class/user.js"></script>
 		<script src="/assets/js/class/storage.js"></script>
+		<script src="/assets/js/class/analytics.js"></script>
 		<script src="/assets/js/class/note.js"></script>
 		<script src="/assets/js/class/dialogue.js"></script>
 		<script src="/assets/js/class/template.js"></script>

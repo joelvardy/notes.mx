@@ -78,6 +78,7 @@ Route.prototype = {
 		// User logout
 		if (this.getHash() == 'user/logout') {
 			notes.user.logout(function() {
+				notes.analytics.triggerPageview('/logout');
 				_this.clearHash();
 				return;
 			});
@@ -85,19 +86,24 @@ Route.prototype = {
 
 		// User notes
 		if (this.getHash() == 'user/notes' && notes.user.isAuthenticated) {
+			notes.analytics.triggerPageview('/user/notes');
 			notes.template.showNotes();
 			return;
 		}
 
 		// Create new note
 		if (this.getHash() == 'note/new' && notes.user.isAuthenticated) {
+			notes.analytics.triggerPageview('/note/new');
 			notes.template.showNote();
 			return;
 		}
 
 		// Specific note
 		if (this.getHash().match('^note/([0-9]+)$') && notes.user.isAuthenticated) {
-			notes.template.showNote(this.getHash().match('^note/([0-9]+)$')[1]);
+			// Define note ID
+			var noteId = this.getHash().match('^note/([0-9]+)$')[1];
+			notes.analytics.triggerPageview('/note/'+noteId);
+			notes.template.showNote(noteId);
 			return;
 		}
 
@@ -109,6 +115,7 @@ Route.prototype = {
 
 		// No route has been matched, show homepage
 		this.clearHash();
+		notes.analytics.triggerPageview('/');
 		notes.template.showHomepage();
 
 	}
