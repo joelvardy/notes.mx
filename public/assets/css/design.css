@@ -93,6 +93,7 @@
 		border-radius: 5px;
 		margin: 50px auto 0;
 		padding: 15px;
+		position: relative;
 		width: 50%;
 	}
 		#homepage form input, #homepage form button {
@@ -110,14 +111,14 @@
 		#homepage form input[id=email] {
 			margin-bottom: 15px;
 		}
-		#homepage form > div {
+		#homepage form div.password-submit {
 			overflow: hidden;
 		}
-			#homepage form > div input[id=password] {
+			#homepage form div.password-submit input[id=password] {
 				float: left;
 				width: 56%;
 			}
-			#homepage form > div button {
+			#homepage form div.password-submit button {
 				background: #c7007d;
 				border: 1px solid #810051;
 				color: white;
@@ -125,6 +126,21 @@
 				height: 40px;
 				width: 40%;
 			}
+		#homepage form span.icon.advanced {
+			background: url('../img/settings.svg');
+			background-size: 100% 100%;
+			cursor: pointer;
+			display: block;
+			height: 25px;
+			position: absolute;
+			right: -10px;
+			top: -10px;
+			width: 25px;
+		}
+		#homepage form div.advanced {
+			display: none;
+			padding-top: 15px;
+		}
 
 
 /*

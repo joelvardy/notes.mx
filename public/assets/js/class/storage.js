@@ -20,6 +20,10 @@ Storage.prototype = {
 		return localStorage.getItem(key);
 	},
 
+	localRemove: function(key) {
+		return localStorage.removeItem(key);
+	},
+
 	localClear: function() {
 		return localStorage.clear();
 	}

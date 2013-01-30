@@ -17,10 +17,12 @@
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="/assets/js/vendor/ejs.js"></script>
+		<script src="/assets/js/vendor/sjcl.js"></script>
 		<script src="/assets/js/class/utility.js"></script>
 		<script src="/assets/js/class/user.js"></script>
 		<script src="/assets/js/class/storage.js"></script>
 		<script src="/assets/js/class/analytics.js"></script>
+		<script src="/assets/js/class/cryptography.js"></script>
 		<script src="/assets/js/class/note.js"></script>
 		<script src="/assets/js/class/dialogue.js"></script>
 		<script src="/assets/js/class/template.js"></script>

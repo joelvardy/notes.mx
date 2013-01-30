@@ -75,6 +75,13 @@ Template.prototype = {
 				var email = $('form #email').val();
 				var password = $('form #password').val();
 
+				// If the passphrase is empty, use the passphrase "notes"
+				var passphrase = ($('form #passphrase').val() != '' ? $('form #passphrase').val() : 'notes');
+
+				// Store the email and passphrase in local storage
+				notes.storage.localStore('last-login-email', email);
+				notes.storage.localStore('cryptography-passphrase', passphrase);
+
 				// Check whether the email is available (the email has already been registered)
 				notes.user.available(email, function(response) {
 
@@ -156,12 +163,22 @@ Template.prototype = {
 
 				});
 
+			},
+
+			clickAdvanced: function(event) {
+
+				// Slide advanced panel up or down
+				$('#homepage form div.advanced').slideToggle(500);
+
 			}
 
 		};
 
 		// Load homepage view
-		var homepageElement = this.build('homepage.ejs', {}, actions);
+		var homepageElement = this.build('homepage.ejs', {
+			email: notes.storage.localRetrieve('last-login-email') || false,
+			passphrase: notes.cryptography.getPassphrase()
+		}, actions);
 
 		// Set the view
 		$('#notes').empty().append(homepageElement);
@@ -188,7 +205,7 @@ Template.prototype = {
 
 		// Load notes list view
 		var notesElement = this.build('notes.ejs', {
-			notes_list: notes.user.getUser().notes || false
+			notes_list: notes.note.read() || false
 		}, actions);
 
 		// Set the view
@@ -278,7 +295,7 @@ Template.prototype = {
 			notes.note.read(note_id, function(response) {
 
 				// The note was successfully read
-				if (response.status) {
+				if (response) {
 
 					previousNoteText = response.text;
 

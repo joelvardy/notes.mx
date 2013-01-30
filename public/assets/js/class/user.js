@@ -138,6 +138,9 @@ User.prototype = {
 					// Set the user object
 					_this.setUser(response);
 
+					// Decrypt the user notes
+					notes.note.decryptNotes();
+
 				}
 
 				// Run the passed callback
@@ -182,8 +185,9 @@ User.prototype = {
 
 		// Note that this method will not remove the API keys which are generated upon login
 
-		// Clear local storage (containing the user ID and API key)
-		notes.storage.localClear();
+		// Remove user ID and API key from local storage
+		notes.storage.localRemove('userId');
+		notes.storage.localRemove('apiKey');
 
 		// Set the user authentication
 		this.isAuthenticated = false;

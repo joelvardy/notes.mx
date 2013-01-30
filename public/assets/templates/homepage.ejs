@@ -1,17 +1,23 @@
 <%
 	template.addEvent('form', 'submit', actions.submitForm);
+	template.addEvent('form span.icon.advanced', 'click', actions.clickAdvanced);
 %>
 
 <div id="homepage">
 	<hgroup>
 		<h1>notes<span class="icon">&#182;</span></h1>
-		<h3>Write private available notes</h3>
+		<h3>Keep your notes <strong>private</strong></h3>
 	</hgroup>
 	<form>
-		<input id="email" placeholder="Email address" type="email" autofocus />
-		<div>
-			<input id="password" placeholder="Password" type="password" />
+		<input id="email" placeholder="Email address" type="email" <%= (email ? 'value="'+email+'"' : '') %> autofocus />
+		<div class="password-submit">
+			<input id="password" placeholder="Account password" type="password" />
 			<button type="submit">Register / Login</button>
+		</div>
+		<span class="icon advanced"></span>
+		<div class="advanced">
+			<label for="">Enter a phrase used to encrypt your notes, don't forget it!</label>
+			<input id="passphrase" placeholder="(note: this is stored in plain text in the browser)" type="password" <%= (passphrase ? 'value="'+passphrase+'"' : '') %> />
 		</div>
 	</form>
 </div>
