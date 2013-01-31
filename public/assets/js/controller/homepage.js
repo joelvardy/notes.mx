@@ -18,21 +18,34 @@ function showHomepage() {
 
 			event.preventDefault();
 
-			// Show loading spinner
-			notes.loading.show();
-
 			if (formDisabled) {
 				return;
 			} else {
 				formDisabled = true;
 			}
 
-			// Define the email and password
+			// Define the email, password, and passphrase
 			var email = $('form #email').val();
 			var password = $('form #password').val();
+			var passphrase = $('form #passphrase').val();
 
-			// If the passphrase is empty, use the passphrase "notes"
-			var passphrase = ($('form #passphrase').val() != '' ? $('form #passphrase').val() : 'notes');
+			// Don't allow a blank passphrase
+			if (passphrase == '') {
+
+				var errorBlankPassphrase = new Dialogue();
+				errorBlankPassphrase.setStyle('default error');
+				errorBlankPassphrase.setHeader('Blank Passphrase');
+				errorBlankPassphrase.setMessage('You must enter a passphrase, make it something you will remember!<br />However someone who has access to your browser could read it, so do note use a password you use for anything else.');
+				errorBlankPassphrase.build();
+				errorBlankPassphrase.show();
+
+				formDisabled = false;
+				return;
+
+			}
+
+			// Show loading spinner
+			notes.loading.show();
 
 			// Store the email and passphrase in local storage
 			notes.storage.localStore('last-login-email', email);
