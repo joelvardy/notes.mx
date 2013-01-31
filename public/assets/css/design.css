@@ -23,6 +23,12 @@
 		padding: 7px 15px;
 		text-decoration: none;
 	}
+	#notes > div > header a.button span.active, #notes > div > header a.button.active span.normal {
+		display: none;
+	}
+	#notes > div > header a.button.active span.active {
+		display: inline;
+	}
 	#notes > div > header a.button.save, #notes > div > header a.button.delete {
 		margin-left: 15px;
 	}

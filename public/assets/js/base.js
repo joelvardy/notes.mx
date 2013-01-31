@@ -4,6 +4,7 @@
 
 		// Add classes to the notes scope
 		window.notes = {
+			loading: new Loading(),
 			utility: new Utility(),
 			user: new User(),
 			storage: new Storage(),
@@ -14,7 +15,8 @@
 			route: new Route()
 		};
 
-		// Initialise user class
+		// Initialise classes
+		window.notes.loading.init();
 		window.notes.user.init();
 
 		notes.user.read(function(data) {

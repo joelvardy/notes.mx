@@ -1,4 +1,4 @@
-# Notes
+# [Notes][notes]
 
 Basic note taking app built by [Joel Vardy][joelvardy].
 
@@ -136,4 +136,5 @@ Each element in the notes array will contain:
  * Response: **JSON**
   * status
 
+  [notes]: https://notes.mx/
   [joelvardy]: http://joelvardy.com/

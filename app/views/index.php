@@ -19,6 +19,7 @@
 		<script src="/assets/js/vendor/ejs.js"></script>
 		<script src="/assets/js/vendor/sjcl.js"></script>
 		<script src="/assets/js/class/utility.js"></script>
+		<script src="/assets/js/class/loading.js"></script>
 		<script src="/assets/js/class/user.js"></script>
 		<script src="/assets/js/class/storage.js"></script>
 		<script src="/assets/js/class/analytics.js"></script>

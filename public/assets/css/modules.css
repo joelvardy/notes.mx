@@ -83,3 +83,27 @@ div[id^='dialogue-box'].error {
 	background: -webkit-linear-gradient(left, #962328 0%, #f10f17 50%, #962328 100%);
 	background: linear-gradient(to right, #962328 0%, #f10f17 50%, #962328 100%);
 }
+
+
+/*
+	Loading
+*/
+@-webkit-keyframes rotating {
+	from{
+		-webkit-transform: rotate(0deg);
+	}
+	to{
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+body > span.loading {
+	-webkit-animation: rotating 1.5s linear infinite;
+	background: url('../img/loading.svg');
+	background-size: 100% 100%;
+	bottom: 20px;
+	height: 40px;
+	position: absolute;
+	right: 20px;
+	width: 40px;
+}

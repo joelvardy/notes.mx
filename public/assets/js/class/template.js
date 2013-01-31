@@ -65,6 +65,9 @@ Template.prototype = {
 
 				event.preventDefault();
 
+				// Show loading spinner
+				notes.loading.show();
+
 				if (formDisabled) {
 					return;
 				} else {
@@ -100,6 +103,8 @@ Template.prototype = {
 									// Enable the form again
 									formDisabled = false;
 
+									notes.loading.hide();
+
 									// The user was successfully logged in
 									if (response.status) {
 
@@ -120,6 +125,8 @@ Template.prototype = {
 
 								// Enable the form again
 								formDisabled = false;
+
+								notes.loading.hide();
 
 								// This migth be a server error
 								notes.analytics.triggerPageview('/user/login/account-creation-failure');
@@ -144,6 +151,8 @@ Template.prototype = {
 							// Enable the form again
 							formDisabled = false;
 
+							notes.loading.hide();
+
 							// The user was successfully logged in
 							if (response.status) {
 
@@ -163,13 +172,6 @@ Template.prototype = {
 
 				});
 
-			},
-
-			clickAdvanced: function(event) {
-
-				// Slide advanced panel up or down
-				$('#homepage form div.advanced').slideToggle(500);
-
 			}
 
 		};
@@ -179,6 +181,9 @@ Template.prototype = {
 			email: notes.storage.localRetrieve('last-login-email') || false,
 			passphrase: notes.cryptography.getPassphrase()
 		}, actions);
+
+		// Finished loading
+		notes.loading.hide();
 
 		// Set the view
 		$('#notes').empty().append(homepageElement);
@@ -191,6 +196,9 @@ Template.prototype = {
 		var actions = {
 
 			clickNote: function(event) {
+
+				// Show loading spinner
+				notes.loading.show();
 
 				// Define the note ID
 				var noteId = $(event.currentTarget).attr('data-noteId');
@@ -207,6 +215,9 @@ Template.prototype = {
 		var notesElement = this.build('notes.ejs', {
 			notes_list: notes.note.read() || false
 		}, actions);
+
+		// Finished loading
+		notes.loading.hide();
 
 		// Set the view
 		$('#notes').empty().append(notesElement);
@@ -236,11 +247,23 @@ Template.prototype = {
 				// Ensure a note has been written and has changed since being changed last
 				if (noteText != '' && noteText != previousNoteText) {
 
+					// If the save button has been pressed
+					if (typeof event != 'undefined') {
+						$('#notes > div > header a.button.save').addClass('active');
+					}
+
+					// Show loading spinner
+					notes.loading.show();
+
 					// If this a new note set the note ID to null
 					noteId = (noteId != '' ? noteId : null);
 
 					// Save the note
 					notes.note.save(noteId, noteText, function(response) {
+
+						$('#notes > div > header a.button.save').removeClass('active');
+
+						notes.loading.hide();
 
 						if (response.status) {
 
@@ -264,6 +287,9 @@ Template.prototype = {
 
 			delete: function(event) {
 
+				// Show loading spinner
+				notes.loading.show();
+
 				// Read the note ID
 				var noteId = $('#note-edit textarea').attr('data-noteId');
 
@@ -274,6 +300,8 @@ Template.prototype = {
 
 				// Delete the note
 				notes.note.delete(noteId, function(response) {
+
+					notes.loading.hide();
 
 					if (response.status) {
 
@@ -309,6 +337,9 @@ Template.prototype = {
 						}
 					}, actions);
 
+					// Finished loading
+					notes.loading.hide();
+
 					// Set the view
 					$('#notes').empty().append(noteElement);
 
@@ -337,6 +368,9 @@ Template.prototype = {
 			var noteElement = _this.build('note.ejs', {
 				note_details: false
 			}, actions);
+
+			// Finished loading
+			notes.loading.hide();
 
 			// Set the view
 			$('#notes').empty().append(noteElement);
