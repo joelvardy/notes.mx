@@ -87,14 +87,14 @@ Route.prototype = {
 		// User notes
 		if (this.getHash() == 'user/notes' && notes.user.isAuthenticated) {
 			notes.analytics.triggerPageview('/user/notes');
-			notes.template.showNotes();
+			showNotes();
 			return;
 		}
 
 		// Create new note
 		if (this.getHash() == 'note/new' && notes.user.isAuthenticated) {
 			notes.analytics.triggerPageview('/note/new');
-			notes.template.showNote();
+			showNote();
 			return;
 		}
 
@@ -103,7 +103,7 @@ Route.prototype = {
 			// Define note ID
 			var noteId = this.getHash().match('^note/([0-9]+)$')[1];
 			notes.analytics.triggerPageview('/note/'+noteId);
-			notes.template.showNote(noteId);
+			showNote(noteId);
 			return;
 		}
 
@@ -116,7 +116,7 @@ Route.prototype = {
 		// No route has been matched, show homepage
 		this.clearHash();
 		notes.analytics.triggerPageview('/');
-		notes.template.showHomepage();
+		showHomepage();
 
 	}
 
