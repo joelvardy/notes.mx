@@ -1,6 +1,8 @@
 # [Notes][notes]
 
-Basic note taking app built by [Joel Vardy][joelvardy].
+This started out as a basic notes app created by [Joel Vardy][joelvardy], however after getting the basic *notes type* stuff done I thought it would be quite unique to add client side note encryption.
+
+If you go to [notes.mx][notes] you'll be able to see the thing in action.
 
 ## Install
 
