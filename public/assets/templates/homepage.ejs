@@ -9,15 +9,12 @@
 		<h3>Keep your notes <strong>private</strong></h3>
 	</hgroup>
 	<form>
-		<input id="email" placeholder="Email address" type="email" <%= (email ? 'value="'+email+'"' : '') %> autofocus />
-		<div class="password-submit">
-			<input id="password" placeholder="Account password" type="password" />
+		<input id="email" placeholder="Account email" type="email" <%= (email ? 'value="'+email+'"' : '') %> autofocus />
+		<input id="password" placeholder="Account password" type="password" />
+		<input id="passphrase" placeholder="Note encryption passphrase, don't forget it!" type="password" <%= (passphrase ? 'value="'+passphrase+'"' : '') %> />
+		<div class="footer">
+			<label for="passphrase"><strong>Always use the same passphrase!</strong><br /><em>Note: it is stored locally in plain text</em></label>
 			<button type="submit">Register / Login</button>
-		</div>
-		<span class="icon advanced"></span>
-		<div class="advanced">
-			<label for="">Enter a phrase used to encrypt your notes, don't forget it!</label>
-			<input id="passphrase" placeholder="(note: this is stored in plain text in the browser)" type="password" <%= (passphrase ? 'value="'+passphrase+'"' : '') %> />
 		</div>
 	</form>
 </div>

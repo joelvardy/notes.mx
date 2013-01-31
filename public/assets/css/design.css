@@ -92,6 +92,7 @@
 		background: #cdcdcd;
 		border-radius: 5px;
 		margin: 50px auto 0;
+		overflow: hidden;
 		padding: 15px;
 		position: relative;
 		width: 50%;
@@ -105,42 +106,28 @@
 			background: white;
 			border: 1px solid #b9b9b9;
 			height: 40px;
+			margin-bottom: 15px;
 			padding: 10px;
 			width: 100%;
 		}
-		#homepage form input[id=email] {
-			margin-bottom: 15px;
-		}
-		#homepage form div.password-submit {
+		#homepage form div.footer {
 			overflow: hidden;
 		}
-			#homepage form div.password-submit input[id=password] {
+			#homepage form div.footer label {
 				float: left;
-				width: 56%;
+				width: 58%;
 			}
-			#homepage form div.password-submit button {
+				#homepage form div.footer label em {
+					color: #666666;
+				}
+			#homepage form div.footer button {
 				background: #c7007d;
 				border: 1px solid #810051;
 				color: white;
 				float: right;
 				height: 40px;
-				width: 40%;
+				width: 38%;
 			}
-		#homepage form span.icon.advanced {
-			background: url('../img/settings.svg');
-			background-size: 100% 100%;
-			cursor: pointer;
-			display: block;
-			height: 25px;
-			position: absolute;
-			right: -10px;
-			top: -10px;
-			width: 25px;
-		}
-		#homepage form div.advanced {
-			display: none;
-			padding-top: 15px;
-		}
 
 
 /*
