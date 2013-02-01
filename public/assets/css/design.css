@@ -215,6 +215,10 @@
 */
 @media screen and (max-width: 758px) {
 
+	html, body {
+		overflow-x: hidden;
+	}
+
 	#notes {
 		width: 292px;
 	}
