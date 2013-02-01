@@ -197,6 +197,31 @@ User.prototype = {
 			callback();
 		}
 
+	},
+
+	delete: function() {
+
+		var _this = this;
+
+		// Attempt to delete the user account
+		$.ajax({
+			type: 'DELETE',
+			url: '/user',
+			beforeSend: function(request) {
+				request.setRequestHeader('user-id', _this.getUserId());
+				request.setRequestHeader('user-api-key', _this.getApiKey());
+			},
+			dataType: 'json',
+			success: function(response) {
+
+				// Log the current user out
+				_this.logout(function() {
+					notes.route.run();
+				});
+
+			}
+		});
+
 	}
 
 }

@@ -32,6 +32,9 @@ Route::post('user', 'UserApi@create');
 // Update user
 Route::put('user', 'UserApi@update');
 
+// Delete note
+Route::delete('user', 'UserApi@delete');
+
 // Save note
 Route::put('note', 'NoteApi@save');
 

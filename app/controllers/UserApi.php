@@ -199,4 +199,38 @@ class UserApi extends BaseController {
 	}
 
 
+	/**
+	 * Delete user
+	 */
+	public function delete()
+	{
+
+		// Ensure this is an authenticated request
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
+		{
+			return Response::json(array(
+				'status' => false,
+				'authenticated' => false
+			));
+		}
+
+		// Read the user by ID
+		$user = User::find(Request::header('user-id'));
+
+		// Ensure the user was found
+		if ($user && $user->delete())
+		{
+
+			$status = true;
+
+		}
+
+		// Return response
+		return Response::json(array(
+			'status' => (isset($status) ? $status : false)
+		));
+
+	}
+
+
 }
