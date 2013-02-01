@@ -11,6 +11,12 @@
 |
 */
 
+// Base
+Route::get('/', function()
+{
+	return View::make('index')->with('assetPath', ($_SERVER['SERVER_NAME'] ? '/assets' : 'https://d3gbpkwknfunu5.cloudfront.net'));
+});
+
 // Login user
 Route::post('user/login', 'UserApi@login');
 
