@@ -11,12 +11,6 @@
 |
 */
 
-// Base
-Route::get('/', function()
-{
-	return View::make('index');
-});
-
 // Login user
 Route::post('user/login', 'UserApi@login');
 
