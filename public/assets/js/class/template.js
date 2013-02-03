@@ -20,6 +20,12 @@ Template.prototype = {
 
 	},
 
+	setTitle: function(title) {
+
+		$(document).attr('title', title);
+
+	},
+
 	build: function(template, data, actions) {
 
 		var _this = this;
