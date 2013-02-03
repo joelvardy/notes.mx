@@ -134,7 +134,7 @@ class NoteApi extends BaseController {
 			));
 		}
 
-		// Delete the note
+		// Read the note by ID
 		$note = Note::find($note_id);
 
 		// Ensure the note was found

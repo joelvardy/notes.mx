@@ -57,7 +57,7 @@
 		#notes > div > header a.delete span.icon {
 			background: url('../img/delete.svg');
 		}
-	#notes > div > header a.logout {
+	#notes > div > header a.account {
 		background: #333333;
 		border-radius: 0 0 10px 10px;
 		color: #f0f0f0;
@@ -134,6 +134,69 @@
 				height: 40px;
 				width: 38%;
 			}
+
+
+/*
+	Account
+*/
+#account {
+
+}
+	#account a.logout, #account span.delete-account {
+		border-radius: 3px;
+		cursor: pointer;
+		display: block;
+		margin: 30px auto 0;
+		padding: 15px;
+		text-align: center;
+		text-decoration: none;
+		width: 50%;
+	}
+	#account a.logout {
+		background: white;
+		color: black;
+	}
+	#account a.logout:hover {
+		background: #f0f0f0;
+	}
+	#account span.delete-account {
+		background: #962328;
+		color: white;
+	}
+	#account span.delete-account:hover {
+		background: #f10f17;
+		color: black;
+		font-weight: bold;
+	}
+	#account form.change-password {
+		margin: 30px auto 0;
+		overflow: hidden;
+		width: 50%;
+	}
+		#account form.change-password input, #account form.change-password button {
+			background: white;
+			border: 1px solid #b9b9b9;
+			font: 100%/1em 'PT Sans', Helvetica, Arial, sans-serif;
+			display: block;
+			height: 40px;
+		}
+		#account form.change-password input {
+			border-right: none;
+			border-radius: 2px 0 0 2px;
+			float: left;
+			padding: 5px 10px;
+			width: 65%;
+		}
+		#account form.change-password button {
+			background: #f0f0f0;
+			border-radius: 0 2px 2px 0;
+			cursor: pointer;
+			float: right;
+			width: 35%;
+		}
+		#account form.change-password button:hover {
+			background: #e1e1e1;
+		}
 
 
 /*

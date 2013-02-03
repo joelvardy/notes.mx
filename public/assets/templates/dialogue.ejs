@@ -10,7 +10,7 @@
 	<% if (buttons.length > 0) { %>
 		<div class="buttons">
 			<% for (i=0; i<buttons.length; i++) { %>
-				<div class="button" data-buttonID="<%= i %>"><%= buttons[i].label %></div>
+				<div class="button <%= (buttons[i].colour ? buttons[i].colour : '') %>" data-buttonID="<%= i %>"><%= buttons[i].label %></div>
 			<% } %>
 		</div>
 	<% } %>

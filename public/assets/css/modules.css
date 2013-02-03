@@ -59,14 +59,14 @@ div[id^='dialogue-overlay'].default {
 					background-color: #e3e3e3;
 					border: 1px solid #d2d2d2;
 					border-radius: 6px;
-					box-shadow: inset 0px 1px 0px 0px #ffffff;
-					color: #777777;
+					box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.5);
+					color: #333333;
 					cursor: pointer;
 					display: inline-block;
 					margin-left: 10px;
 					padding: 5px 25px;
 					text-decoration: none;
-					text-shadow: 1px 1px 0px #ffffff;
+					text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
 				}
 				div[id^='dialogue-box'].default > div div.buttons div.button:first-child {
 					margin-left: 0;
@@ -82,6 +82,12 @@ div[id^='dialogue-overlay'].default {
 div[id^='dialogue-box'].error {
 	background: -webkit-linear-gradient(left, #962328 0%, #f10f17 50%, #962328 100%);
 	background: linear-gradient(to right, #962328 0%, #f10f17 50%, #962328 100%);
+}
+
+div[id^='dialogue-box'].default > div div.buttons div.button.red {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f0aaa5), color-stop(1, #f89790));
+	background-color: #f0aaa5;
+	border: 1px solid #d86e74;
 }
 
 

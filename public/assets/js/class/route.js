@@ -75,8 +75,15 @@ Route.prototype = {
 		// Run tasks before page chnges
 		this.runTasksBeforeChange();
 
+		// User account
+		if (this.getHash() == 'user/account' && notes.user.isAuthenticated) {
+			notes.analytics.triggerPageview('/user/account');
+			showAccount();
+			return;
+		}
+
 		// User logout
-		if (this.getHash() == 'user/logout') {
+		if (this.getHash() == 'user/logout' && notes.user.isAuthenticated) {
 			notes.user.logout(function() {
 				notes.analytics.triggerPageview('/logout');
 				_this.clearHash();

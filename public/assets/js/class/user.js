@@ -189,7 +189,7 @@ User.prototype = {
 		notes.storage.localRemove('userId');
 		notes.storage.localRemove('apiKey');
 
-		// Set the user authentication
+		// Set the user details
 		this.isAuthenticated = false;
 
 		// Run the passed callback
@@ -216,6 +216,7 @@ User.prototype = {
 
 				// Log the current user out
 				_this.logout(function() {
+					notes.storage.localClear();
 					notes.route.run();
 				});
 

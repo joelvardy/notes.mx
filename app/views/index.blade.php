@@ -19,6 +19,7 @@
 		<script src="{{ $assetPath }}/js/vendor/ejs.js"></script>
 		<script src="{{ $assetPath }}/js/vendor/sjcl.js"></script>
 		<script src="{{ $assetPath }}/js/controller/homepage.js"></script>
+		<script src="{{ $assetPath }}/js/controller/account.js"></script>
 		<script src="{{ $assetPath }}/js/controller/notes.js"></script>
 		<script src="{{ $assetPath }}/js/controller/note.js"></script>
 		<script src="{{ $assetPath }}/js/class/utility.js"></script>

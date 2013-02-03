@@ -1,0 +1,17 @@
+<%
+	template.addEvent('form.change-password', 'submit', actions.changePassword);
+	template.addEvent('span.delete-account', 'click', actions.deleteAccount);
+%>
+
+<div id="account">
+	<header>
+		<a class="button home" href="#!/user/notes"><span class="icon"></span>Back To Notes</a>
+		<a class="account" href="#!/user/account">Account</a>
+	</header>
+	<a class="logout" href="#!/user/logout">Logout</a>
+	<form class="change-password">
+		<input id="password" placeholder="New account password" type="password" />
+		<button type="submit">Change Password</button>
+	</form>
+	<span class="delete-account">Delete Account</span>
+</div>
