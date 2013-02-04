@@ -66,7 +66,7 @@ function showNote(note_id) {
 				});
 
 			// The note hasn't changed
-			} else {
+			} else if(noteText != '') {
 				// If the save button has been pressed
 				if (typeof event != 'undefined') {
 					setStatusMessage($('<span>').css('color', '#c7007d').html('The note has already been saved'));
