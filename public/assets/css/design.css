@@ -282,6 +282,10 @@
 		overflow-x: hidden;
 	}
 
+	#homepage hgroup h1 {
+		font-size: 5em;
+	}
+
 	#notes {
 		width: 292px;
 	}
