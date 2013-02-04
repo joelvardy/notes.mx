@@ -2,6 +2,17 @@ function showNote(note_id) {
 
 	var previousNoteText = null;
 
+	var setStatusMessage = function(message) {
+		$('#note-edit date').html(message);
+	}
+
+	var updateLastSavedMessage = function() {
+		var time = $('#note-edit date').attr('datetime');
+		if (time != '') {
+			setStatusMessage('Last saved: '+notes.utility.relativeDate(time));
+		}
+	}
+
 	// Define actions
 	var actions = {
 
@@ -47,6 +58,9 @@ function showNote(note_id) {
 						// Update the last saved time
 						$('#note-edit date').attr('datetime', Math.floor(new Date() / 1000));
 
+						// Tell the user this note has been saved
+						setStatusMessage('Last saved: just now!');
+
 					}
 
 				});
@@ -55,7 +69,7 @@ function showNote(note_id) {
 			} else {
 				// If the save button has been pressed
 				if (typeof event != 'undefined') {
-					$('#note-edit date').html($('<span>').css('color', '#c7007d').html('The note has already been saved'));
+					setStatusMessage($('<span>').css('color', '#c7007d').html('The note has already been saved'));
 				}
 			}
 
@@ -122,7 +136,10 @@ function showNote(note_id) {
 				$('#notes').empty().append(noteElement);
 
 				// Set the textarea height
-				$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');
+				$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');				
+
+				// Show last saved message
+				updateLastSavedMessage();
 
 				// Save the note every 2 minutes
 				var saveOperationId = setInterval(actions.save, (1000 * 60 * 2));
@@ -167,12 +184,7 @@ function showNote(note_id) {
 	}
 
 	// Update the 'last saved' time
-	var updateTimeOperationId = setInterval(function() {
-		var time = $('#note-edit date').attr('datetime');
-		if (time != '') {
-			$('#note-edit date').html('Last saved: '+notes.utility.relativeDate(time));
-		}
-	}, 5000);
+	var updateTimeOperationId = setInterval(updateLastSavedMessage, 5000);
 
 	// Remove setInterval call after navigationg away from this page
 	notes.route.addTaskBeforeChange(function() {
