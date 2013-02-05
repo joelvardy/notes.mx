@@ -12,8 +12,15 @@
 		<input id="password" placeholder="Account password" type="password" />
 		<input id="passphrase" placeholder="Note encryption passphrase, don't forget it!" type="password" <%= (passphrase ? 'value="'+passphrase+'"' : '') %> />
 		<div class="footer">
-			<label for="passphrase"><strong>Always use the same passphrase!</strong><br /><em>Note: it is stored locally in plain text</em></label>
+			<label for="passphrase"><em>Passphrase is stored <strong>locally</strong> in plain text</em></label>
 			<button type="submit">Register / Login</button>
 		</div>
 	</form>
+	<div class="information">
+		<h5>Passphrases</h5>
+		<p>Your passphrase is used to encrypt and decrypt your notes, generally you should enter the same one each time you login. However you can effectively separate your notes by using a different passphrase, for example you can use the same email and password but a different passphrase for work and home.</p>
+		<h5>About</h5>
+		<p>This was built in the evenings by <a href="http://joelvardy.com" title="Contract web developer">Joel Vardy</a> in Jan/Feb of 2013</p>
+		<p>All of the code is open source and on <a href="https://github.com/joelvardy/notes.mx" title="Open source code">GitHub</a> for you to look at.</p>
+	</div>
 </div>

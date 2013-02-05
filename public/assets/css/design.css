@@ -120,12 +120,10 @@
 			overflow: hidden;
 		}
 			#homepage form div.footer label {
+				color: #666666;
 				float: left;
 				width: 58%;
 			}
-				#homepage form div.footer label em {
-					color: #666666;
-				}
 			#homepage form div.footer button {
 				background: #c7007d;
 				border: 1px solid #810051;
@@ -133,6 +131,16 @@
 				float: right;
 				height: 40px;
 				width: 38%;
+			}
+	#homepage div.information {
+		margin: 30px auto 0;
+		width: 50%;
+	}
+		#homepage div.information h5 {
+			margin: 20px 0 5px;
+		}
+			#homepage div.information p a {
+				color: #c7007d;
 			}
 
 
@@ -228,6 +236,7 @@
 		}
 			#notes-list div.notes > div h5 {
 				line-height: 1.5em;
+				text-transform: capitalize;
 			}
 			#notes-list div.notes > div time {
 				bottom: 5px;
@@ -296,8 +305,7 @@
 	#homepage hgroup h1 {
 		font-size: 5em;
 	}
-
-	#homepage form {
+	#homepage form, #homepage div.information {
 		width: 96%;
 	}
 
