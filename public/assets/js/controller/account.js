@@ -66,7 +66,13 @@ function showAccount() {
 				{
 					label: 'Delete My Account',
 					callback: function () {
+
+						// Show loading spinner
+						notes.loading.show();
+
+						notes.analytics.triggerPageview('/user/delete-account');
 						notes.user.delete();
+
 					},
 					colour: 'red'
 				}

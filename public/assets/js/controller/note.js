@@ -18,6 +18,8 @@ function showNote(note_id) {
 
 		save: function(event) {
 
+			event.preventDefault();
+
 			// Read the note ID and text
 			var noteId = $('#note-edit textarea').attr('data-noteId'),
 				noteText = $('#note-edit textarea').val();
@@ -79,30 +81,55 @@ function showNote(note_id) {
 
 		delete: function(event) {
 
-			// Show loading spinner
-			notes.loading.show();
+			event.preventDefault();
 
 			// Read the note ID
 			var noteId = $('#note-edit textarea').attr('data-noteId');
 
-			// If the delete button has been pressed
-			if (typeof event != 'undefined') {
-				notes.analytics.triggerUserAction('Delete Note', 'Delete Note ('+noteId+')');
+			if (noteId == '') {
+				return false;
 			}
 
-			// Delete the note
-			notes.note.delete(noteId, function(response) {
+			var confirmNoteDeletion = new Dialogue();
+			confirmNoteDeletion.setStyle('default error');
+			confirmNoteDeletion.setHeader('Note Deletion');
+			confirmNoteDeletion.setMessage('Press the button below to confirm you would like to delete this note.');
+			confirmNoteDeletion.setButtons([
+				{
+					label: 'Cancel'
+				},
+				{
+					label: 'Delete Note',
+					callback: function () {
 
-				notes.loading.hide();
+						// Show loading spinner
+						notes.loading.show();
 
-				if (response.status) {
+						// If the delete button has been pressed
+						if (typeof event != 'undefined') {
+							notes.analytics.triggerUserAction('Delete Note', 'Delete Note ('+noteId+')');
+						}
 
-					// Send the user to the notes listing page
-					notes.route.setHash('user/notes');
+						// Delete the note
+						notes.note.delete(noteId, function(response) {
 
+							notes.loading.hide();
+
+							if (response.status) {
+
+								// Send the user to the notes listing page
+								notes.route.setHash('user/notes');
+
+							}
+
+						});
+
+					},
+					colour: 'red'
 				}
-
-			});
+			]);
+			confirmNoteDeletion.build();
+			confirmNoteDeletion.show();
 
 		}
 

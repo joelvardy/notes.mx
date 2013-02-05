@@ -10,10 +10,13 @@ Note.prototype = {
 
 	decryptNotes: function() {
 
-		this.userNotes = [];
+		this.userNotes = false;
 
 		// Ensure there are notes for this user
 		if (notes.user.getUser().notes) {
+
+			this.userNotes = [];
+
 			// Iterate through notes
 			for (var i=0; i<notes.user.getUser().notes.length; i++) {
 				var note = notes.user.getUser().notes[i];
@@ -25,6 +28,7 @@ Note.prototype = {
 					// The encryption passphrase is wrong
 				}
 			}
+
 		}
 
 	},

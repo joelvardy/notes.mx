@@ -151,7 +151,9 @@
 
 }
 	#account a.logout, #account span.delete-account {
+		background: white;
 		border-radius: 3px;
+		color: black;
 		cursor: pointer;
 		display: block;
 		margin: 30px auto 0;
@@ -160,23 +162,15 @@
 		text-decoration: none;
 		width: 50%;
 	}
-	#account a.logout {
-		background: white;
-		color: black;
-	}
 	#account a.logout:hover {
 		background: #f0f0f0;
 	}
-	#account span.delete-account {
-		background: #962328;
-		color: white;
-	}
 	#account span.delete-account:hover {
-		background: #f10f17;
-		color: black;
+		background: #f0aaa5;
 		font-weight: bold;
 	}
 	#account form.change-password {
+		height: 50px;
 		margin: 30px auto 0;
 		overflow: hidden;
 		width: 50%;
@@ -186,13 +180,13 @@
 			border: 1px solid #b9b9b9;
 			font: 100%/1em 'PT Sans', Helvetica, Arial, sans-serif;
 			display: block;
-			height: 40px;
+			height: 100%;
 		}
 		#account form.change-password input {
 			border-right: none;
 			border-radius: 2px 0 0 2px;
 			float: left;
-			padding: 5px 10px;
+			padding: 15px;
 			width: 65%;
 		}
 		#account form.change-password button {
