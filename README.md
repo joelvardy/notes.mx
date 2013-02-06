@@ -26,6 +26,10 @@ Run migrations:
 php artisan migrate
 ```
 
+### Edit the config files
+
+Check out the `app/config` folder and modify the contained files.
+
 # API
 
 ## API Authentication
