@@ -35,7 +35,7 @@ function showHomepage() {
 				var errorBlankPassphrase = new Dialogue();
 				errorBlankPassphrase.setStyle('default error');
 				errorBlankPassphrase.setHeader('Blank Passphrase');
-				errorBlankPassphrase.setMessage('You must enter a passphrase, make it something you will remember!<br />However someone who has access to your browser could read it, so do note use a password you use for anything else.');
+				errorBlankPassphrase.setMessage('You must enter a passphrase, make it something you will remember!<br />However someone who has access to your browser could read it, so do not use a password!');
 				errorBlankPassphrase.build();
 				errorBlankPassphrase.show();
 
