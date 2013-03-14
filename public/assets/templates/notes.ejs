@@ -1,5 +1,5 @@
 <%
-	template.addEvent('div.notes > div', 'click', actions.clickNote);
+	template.addEvent('div.notes > a', 'click', actions.clickNote);
 %>
 
 <div id="notes-list">
@@ -10,10 +10,10 @@
 	<div class="notes">
 		<% if (notes_list) { %>
 			<% for (var i=0; i<notes_list.length; i++) { %>
-				<div data-noteId="<%= notes_list[i].note_id %>">
+				<a data-noteId="<%= notes_list[i].note_id %>" href="/#!/note/<%= notes_list[i].note_id %>">
 					<h5><%= notes.utility.cutString(notes_list[i].text, 40) %></h5>
 					<time><%= notes.utility.relativeDate(notes_list[i].created_at) %></time>
-				</div>
+				</a>
 			<% } %>
 		<% } else { %>
 			<h3 class="no-notes">No notes were found :(</h3>

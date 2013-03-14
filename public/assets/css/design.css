@@ -216,8 +216,9 @@
 			margin-top:100px;
 			text-align: center;
 		}
-		#notes-list div.notes > div {
+		#notes-list div.notes > a {
 			background: #c8c8c8;
+			color: #111111;
 			cursor: pointer;
 			display: block;
 			float: left;
@@ -226,13 +227,14 @@
 			overflow: hidden;
 			padding: 10px;
 			position: relative;
+			text-decoration: none;
 			width: 23%;
 		}
-			#notes-list div.notes > div h5 {
+			#notes-list div.notes > a h5 {
 				line-height: 1.5em;
 				text-transform: capitalize;
 			}
-			#notes-list div.notes > div time {
+			#notes-list div.notes > a time {
 				bottom: 5px;
 				font-size: 0.9em;
 				line-height: 1em;
@@ -310,7 +312,7 @@
 		width: 100%;
 	}
 
-	#notes-list div.notes > div {
+	#notes-list div.notes > a {
 		margin-top: 15px;
 		width: 98%;
 	}

@@ -5,6 +5,8 @@ function showNotes() {
 
 		clickNote: function(event) {
 
+			event.preventDefault();
+
 			// Show loading spinner
 			notes.loading.show();
 
