@@ -14,7 +14,9 @@
 // Base
 Route::get('/', function()
 {
-	return View::make('index')->with('assetPath', ($_SERVER['SERVER_NAME'] != 'notes.mx' ? '/assets' : 'https://d3gbpkwknfunu5.cloudfront.net'));
+	return View::make('index')
+		->with('assetPath', ($_SERVER['SERVER_NAME'] != 'notes.mx' ? '/assets' : 'https://d3gbpkwknfunu5.cloudfront.net'))
+		->with('assetVersion', '1.1.1');
 });
 
 // Login user
