@@ -43,7 +43,7 @@ function showAccount() {
 					var errorUpdatingUser = new Dialogue();
 					errorUpdatingUser.setStyle('default error');
 					errorUpdatingUser.setHeader('Error updating user');
-					errorUpdatingUser.setMessage('Your account was not updated, you can try again, if it continues to fail, get in touch :)');
+					errorUpdatingUser.setMessage('Your password was not updated, try again. If it continues to fail, get in touch with @joelvardy');
 					errorUpdatingUser.build();
 					errorUpdatingUser.show();
 
