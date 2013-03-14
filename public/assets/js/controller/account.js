@@ -43,7 +43,7 @@ function showAccount() {
 					var errorUpdatingUser = new Dialogue();
 					errorUpdatingUser.setStyle('default error');
 					errorUpdatingUser.setHeader('Error updating user');
-					errorUpdatingUser.setMessage('Your password was not updated, try again. If it continues to fail, get in touch with @joelvardy');
+					errorUpdatingUser.setMessage('Your password was not updated, please note that it should be at least 5 characters long. If it continues to fail, get in touch with @joelvardy');
 					errorUpdatingUser.build();
 					errorUpdatingUser.show();
 
