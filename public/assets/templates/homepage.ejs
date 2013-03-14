@@ -8,8 +8,8 @@
 		<h3>Keep your notes <strong>private</strong></h3>
 	</hgroup>
 	<form>
-		<input id="email" placeholder="Account email" type="email" <%= (email ? 'value="'+email+'"' : '') %> autofocus />
-		<input id="password" placeholder="Account password" type="password" />
+		<input id="email" placeholder="Account email" type="email" <%= (email ? 'value="'+email+'"' : '') %> <%= (email ? '' : 'autofocus') %> />
+		<input id="password" placeholder="Account password" type="password" <%= (email ? 'autofocus' : '') %> />
 		<input id="passphrase" placeholder="Note encryption passphrase, don't forget it!" type="password" <%= (passphrase ? 'value="'+passphrase+'"' : '') %> />
 		<div class="footer">
 			<label for="passphrase"><em>Passphrase is stored <strong>locally</strong> in plain text</em></label>
