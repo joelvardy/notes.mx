@@ -6,7 +6,7 @@ If you go to [notes.mx][notes] you'll be able to see the thing in action.
 
 ## Install
 
-Setup config options in the `app/config` folder.
+Check out the `app/config` folder and modify the contained files.
 
 Ensure the `app/storage` folder is writable:
 
@@ -17,7 +17,7 @@ sudo chmod -R 777 app/storage
 Run the composer install:
 
 ```bash
-composer install
+composer update
 ```
 
 Run migrations:
@@ -25,10 +25,6 @@ Run migrations:
 ```bash
 php artisan migrate
 ```
-
-### Edit the config files
-
-Check out the `app/config` folder and modify the contained files.
 
 # API
 
