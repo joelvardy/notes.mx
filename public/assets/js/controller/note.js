@@ -18,7 +18,7 @@ function showNote(note_id) {
 
 		save: function(event) {
 
-			event.preventDefault();
+			if (event) event.preventDefault();
 
 			// Read the note ID and text
 			var noteId = $('#note-edit textarea').attr('data-noteId'),
