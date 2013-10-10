@@ -6,8 +6,6 @@ If you go to [notes.mx][notes] you'll be able to see the thing in action.
 
 ## Install
 
-Check out the `app/config` folder and modify the contained files.
-
 Ensure the `app/storage` folder is writable:
 
 ```bash
@@ -139,4 +137,4 @@ Each element in the notes array will contain:
   * status
 
   [notes]: https://notes.mx/
-  [joelvardy]: http://joelvardy.com/
+  [joelvardy]: https://joelvardy.com/

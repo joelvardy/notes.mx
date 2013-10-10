@@ -25,9 +25,9 @@ class Authentication {
 		$key = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 32);
 
 		// Define the API key
-		$api_key = new ApiKey(array(
-			'key' => $key
-		));
+		$api_key = new ApiKey();
+		$api_key->key = $key;
+		$api_key->save();
 
 		// Read the user
 		$user = User::find($user_id);
