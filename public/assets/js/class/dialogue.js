@@ -46,7 +46,7 @@ Dialogue.prototype = {
 	},
 
 	_buildBox: function() {
-		
+
 		var _this = this;
 
 		if ( ! this._elementBox) {
@@ -157,6 +157,12 @@ Dialogue.prototype = {
 
 		var _this = this;
 
+		$(document).on('keyup', function(event) {
+			if (event.keyCode == 27) {
+				_this.hide();
+			}
+		});
+
 		// Show overlay
 		this._showOverlay(function() {
 			_this._showBox(callback);
@@ -167,6 +173,8 @@ Dialogue.prototype = {
 	hide: function(callback) {
 
 		var _this = this;
+
+		$(document).off('keyup');
 
 		// Hide box
 		this._hideBox(function() {
