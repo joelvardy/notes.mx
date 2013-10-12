@@ -16,7 +16,14 @@ function showNote(note_id) {
 	// Define actions
 	var actions = {
 
-		save: function(event) {
+		save: function(param) {
+
+			if (typeof param == 'object') {
+				var event = param;
+			} else if (typeof param == 'function') {
+				var event = false;
+				var callback = param;
+			}
 
 			if (event) event.preventDefault();
 
@@ -25,7 +32,7 @@ function showNote(note_id) {
 				noteText = $('#note-edit textarea').val();
 
 			// If the save button has been pressed
-			if (typeof event != 'undefined') {
+			if (event) {
 				notes.analytics.triggerUserAction('Save Note', 'Save Note ('+noteId+')');
 			}
 
@@ -33,7 +40,7 @@ function showNote(note_id) {
 			if (noteText != '' && noteText != previousNoteText) {
 
 				// If the save button has been pressed
-				if (typeof event != 'undefined') {
+				if (event) {
 					$('#notes > div > header a.button.save').addClass('active');
 				}
 
@@ -65,12 +72,16 @@ function showNote(note_id) {
 
 					}
 
+					if ( ! event) {
+						callback(response.status);
+					}
+
 				});
 
 			// The note hasn't changed
 			} else if(noteText != '') {
 				// If the save button has been pressed
-				if (typeof event != 'undefined') {
+				if (event) {
 					setStatusMessage($('<span>').css('color', '#c7007d').html('The note has already been saved'));
 				}
 			}
