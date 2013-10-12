@@ -95,8 +95,8 @@ Note.prototype = {
 			}
 		}
 
-		// If the note hasn't been found, return false
-		return false;
+		// If the note hasn't been found, pass false to the callback
+		callback(false);
 
 	},
 

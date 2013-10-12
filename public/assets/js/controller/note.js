@@ -163,7 +163,7 @@ function showNote(note_id) {
 				$('#notes').empty().append(noteElement);
 
 				// Set the textarea height
-				$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');				
+				$('#note-edit textarea').css('height', $(window).height() - ($('#note-edit header').height() + parseInt($('#note-edit div.note').css('margin-top')) + parseInt($('#notes').css('padding-bottom')))+'px');
 
 				// Show last saved message
 				updateLastSavedMessage();
@@ -178,7 +178,7 @@ function showNote(note_id) {
 
 			// There was an error reading the note
 			} else {
-				history.back();
+				notes.route.setHash('user/notes');
 			}
 
 		});
