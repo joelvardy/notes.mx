@@ -148,6 +148,10 @@ User.prototype = {
 					callback(response);
 				}
 
+			},
+			error: function(xhr, errorType, error) {
+				// The application is unavailable
+				alert('The notes.mx application is unavailable ('+error+')');
 			}
 		});
 
