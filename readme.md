@@ -15,7 +15,7 @@ sudo chmod -R 777 app/storage
 Run the composer install:
 
 ```bash
-composer update
+composer install
 ```
 
 Run migrations:
