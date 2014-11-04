@@ -4,15 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNotesTable extends Migration {
 
+
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-	public function up()
-	{
-		Schema::create('notes', function($table)
-		{
+	public function up() {
+
+		Schema::create('notes', function($table) {
 
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
@@ -24,14 +24,17 @@ class CreateNotesTable extends Migration {
 		});
 	}
 
+
 	/**
 	 * Reverse the migrations.
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
+	public function down() {
+
 		Schema::drop('notes');
+
 	}
+
 
 }

@@ -9,8 +9,14 @@ If you go to [notes.mx][notes] you'll be able to see the thing in action.
 Ensure the `app/storage` folder is writable:
 
 ```bash
-sudo chmod -R 777 app/storage
+chmod -R 777 app/storage
 ```
+
+### Configure
+
+ * Define a `key` in within `app/config/app.php`
+ * Define production database details in within `app/config/database.php`
+ * Define development database details in within `app/config/local/database.php`
 
 Run the composer install:
 

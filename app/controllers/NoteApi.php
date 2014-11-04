@@ -6,8 +6,7 @@ class NoteApi extends BaseController {
 	/**
 	 * Create note
 	 */
-	public function create($user_id, $text)
-	{
+	public function create($user_id, $text) {
 
 		// Create a new note
 		$note = new Note;
@@ -26,12 +25,10 @@ class NoteApi extends BaseController {
 	/**
 	 * Save note (or create if it doesn't exist)
 	 */
-	public function save()
-	{
+	public function save() {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -53,15 +50,13 @@ class NoteApi extends BaseController {
 		$note = Note::find(Input::get('note_id'));
 
 		// Ensure there is a note to work with
-		if ($note)
-		{
+		if ($note) {
 
 			// Ensure the current user is the owner of the note
 			if ($note->user_id == Request::header('user-id')) {
 
 				$note->text = Input::get('text');
-				if ($note->save())
-				{
+				if ($note->save()) {
 					$response['status'] = true;
 					$response['note_id'] = $note->id;
 				}
@@ -79,12 +74,10 @@ class NoteApi extends BaseController {
 	/**
 	 * Read note
 	 */
-	public function read($note_id)
-	{
+	public function read($note_id) {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -97,8 +90,7 @@ class NoteApi extends BaseController {
 		$note = Note::find($note_id);
 
 		// Ensure the note was found
-		if ($note)
-		{
+		if ($note) {
 
 			// Ensure the current note is the owner of the note
 			if ($note->user_id == Request::header('user-id')) {
@@ -122,12 +114,10 @@ class NoteApi extends BaseController {
 	/**
 	 * Delete note
 	 */
-	public function delete($note_id)
-	{
+	public function delete($note_id) {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -138,14 +128,12 @@ class NoteApi extends BaseController {
 		$note = Note::find($note_id);
 
 		// Ensure the note was found
-		if ($note)
-		{
+		if ($note) {
 
 			// Ensure the current note is the owner of the note
 			if ($note->user_id == Request::header('user-id')) {
 
-				if ($note->delete())
-				{
+				if ($note->delete()) {
 					$status = true;
 				}
 

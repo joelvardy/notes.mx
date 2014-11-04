@@ -6,8 +6,7 @@ class UserApi extends BaseController {
 	/**
 	 * Return result of email uniqueness
 	 */
-	public function email_unique()
-	{
+	public function email_unique() {
 
 		// Return status of authentication
 		return Response::json(array(
@@ -20,8 +19,7 @@ class UserApi extends BaseController {
 	/**
 	 * Login user
 	 */
-	public function login()
-	{
+	public function login() {
 
 		// Attempt to authenticate the details
 		$response['status'] = Auth::attempt(array(
@@ -30,14 +28,13 @@ class UserApi extends BaseController {
 		));
 
 		// Check the user was successfully logged in
-		if ($response['status'])
-		{
+		if ($response['status']) {
 
 			// Return the users ID
-			$response['user_id'] = Auth::user()->id;
+			$response['user_id'] = Auth::id();
 
 			// Create an API key for this session and return it
-			$response['api_key'] = Authentication::create_api_key(Auth::user()->id);
+			$response['api_key'] = Authentication::create_api_key(Auth::id());
 
 		}
 
@@ -50,12 +47,10 @@ class UserApi extends BaseController {
 	/**
 	 * Read user
 	 */
-	public function read()
-	{
+	public function read() {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -68,8 +63,7 @@ class UserApi extends BaseController {
 		$user = User::find(Request::header('user-id'));
 
 		// Ensure the user was found
-		if ($user)
-		{
+		if ($user) {
 
 			$response['status'] = true;
 
@@ -82,8 +76,7 @@ class UserApi extends BaseController {
 					'updated_at' => strtotime($note->updated_at)
 				);
 			}
-			if ( ! empty($response['notes']))
-			{
+			if ( ! empty($response['notes'])) {
 				rsort($response['notes']);
 			}
 
@@ -103,8 +96,7 @@ class UserApi extends BaseController {
 	/**
 	 * Create user
 	 */
-	public function create()
-	{
+	public function create() {
 
 		// Validate the data
 		$validator = Validator::make(
@@ -119,19 +111,16 @@ class UserApi extends BaseController {
 		);
 
 		// If the data validates
-		if ($validator->passes())
-		{
+		if ($validator->passes()) {
 
 			// Ensure the email is unique
-			if (Authentication::email_unique(Input::get('email')))
-			{
+			if (Authentication::email_unique(Input::get('email'))) {
 
 				// Add the user to the users table
 				$user = new User;
 				$user->email = Input::get('email');
 				$user->password = Hash::make(Input::get('password'));
-				if ($user->save())
-				{
+				if ($user->save()) {
 					$status = true;
 				}
 
@@ -150,12 +139,10 @@ class UserApi extends BaseController {
 	/**
 	 * Update user
 	 */
-	public function update()
-	{
+	public function update() {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -173,18 +160,15 @@ class UserApi extends BaseController {
 		);
 
 		// If the data validates
-		if ($validator->passes())
-		{
+		if ($validator->passes()) {
 
 			// Read the user details
 			$user = User::find(Request::header('user-id'));
 
 			// Ensure the user was found
-			if ($user)
-			{
+			if ($user) {
 				$user->password = Hash::make(Input::get('password'));
-				if ($user->save())
-				{
+				if ($user->save()) {
 					$status = true;
 				}
 			}
@@ -202,12 +186,10 @@ class UserApi extends BaseController {
 	/**
 	 * Delete user
 	 */
-	public function delete()
-	{
+	public function delete() {
 
 		// Ensure this is an authenticated request
-		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key')))
-		{
+		if ( ! Authentication::authenticate(Request::header('user-id'), Request::header('user-api-key'))) {
 			return Response::json(array(
 				'status' => false,
 				'authenticated' => false
@@ -218,11 +200,8 @@ class UserApi extends BaseController {
 		$user = User::find(Request::header('user-id'));
 
 		// Ensure the user was found
-		if ($user && $user->delete())
-		{
-
+		if ($user && $user->delete()) {
 			$status = true;
-
 		}
 
 		// Return response
