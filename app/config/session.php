@@ -16,7 +16,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'memcached',
+	'driver' => 'file',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'notes_session',
+	'cookie' => 'laravel_session',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -135,6 +135,6 @@ return array(
 	|
 	*/
 
-	'secure' => true,
+	'secure' => false,
 
 );

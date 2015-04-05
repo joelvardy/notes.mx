@@ -1,41 +1,8 @@
-# OSX
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-.Spotlight-V100
-.Trashes
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-Icon
-
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.cab
-*.msi
-*.msm
-*.msp
-*.lnk
-
-
-# Linux
-*~
-.directory
-
-
-# Composer
-composer.phar
-vendor/
-
-
-# Laravel
 /bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
 .env.*.php
 .env.php
+.DS_Store
+Thumbs.db
