@@ -1,14 +1,6 @@
 <?php
 
-use Faker\Factory as Faker;
-
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
-
-    protected $fake;
-
-    function __construct () {
-        $this->fake = Faker::create();
-    }
 
 	/**
 	 * Creates the application.
