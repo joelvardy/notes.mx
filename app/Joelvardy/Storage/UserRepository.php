@@ -6,6 +6,6 @@ interface UserRepository {
 
     public function getUserByEmail($email);
 
-    public function createNewUser($email, $password);
+    public function createUser($email, $password);
 
 }

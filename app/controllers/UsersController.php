@@ -19,10 +19,10 @@ class UsersController extends ApiController {
 
     public function isRegistered() {
 
-        $userCount = $this->user->getUserByEmail(Input::get('email'))->count();
+        $user = $this->user->getUserByEmail(Input::get('email'));
 
         return $this->respond([
-            'registered' => (boolean) $userCount
+            'registered' => (boolean) $user->count()
         ]);
 
     }
@@ -46,7 +46,11 @@ class UsersController extends ApiController {
             return $this->setStatusCode(400)->respondWithError('Validation failed');
         }
 
-        //
+        $userId = $this->user->createUser(Input::get('email'), Hash::make(Input::get('password')));
+
+        return $this->setStatusCode(201)->respondWithMessage('The user was created', [
+            'user_id' => $userId
+        ]);
 
     }
 

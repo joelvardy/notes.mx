@@ -9,7 +9,7 @@ Route::get('/', [
 
 Route::group(['prefix' => 'api/v1'], function () {
 
-    Route::get('users/registered', [
+    Route::post('users/registered', [
         'as' => 'api.v1.user.registered',
         'uses' => 'UsersController@isRegistered'
     ]);

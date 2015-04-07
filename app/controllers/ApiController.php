@@ -36,10 +36,10 @@ class ApiController extends \BaseController {
         ]);
     }
 
-    public function respondWithMessage($message) {
-        return $this->respond([
+    public function respondWithMessage($message, $data = []) {
+        return $this->respond(array_merge($data, [
             'message' => $message
-        ]);
+        ]));
     }
 
 
