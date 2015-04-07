@@ -1,5 +1,6 @@
 <?php
 
+use Joelvardy\Storage\StorageException;
 use Joelvardy\Validators\UserValidator;
 use Joelvardy\Validators\ValidatorException;
 use Joelvardy\Storage\UserRepository as User;
@@ -19,10 +20,15 @@ class UsersController extends ApiController {
 
     public function isRegistered() {
 
-        $user = $this->user->getUserByEmail(Input::get('email'));
+        try {
+            $user = $this->user->getUserByEmail(Input::get('email'));
+            $registered = (boolean) $user->count();
+        } catch (StorageException $e) {
+            $registered = false;
+        }
 
         return $this->respond([
-            'registered' => (boolean) $user->count()
+            'registered' => $registered
         ]);
 
     }
@@ -46,7 +52,7 @@ class UsersController extends ApiController {
             return $this->setStatusCode(400)->respondWithError('Validation failed');
         }
 
-        $userId = $this->user->createUser(Input::get('email'), Hash::make(Input::get('password')));
+        $userId = $this->user->createUser(Input::only('email', 'password'));
 
         return $this->setStatusCode(201)->respondWithMessage('The user was created', [
             'user_id' => $userId
@@ -56,7 +62,18 @@ class UsersController extends ApiController {
 
 
     public function show($id) {
-        //
+
+        // Authentication
+        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+
+        try {
+            $user = $this->user->getUserById($id);
+        } catch (StorageException $e) {
+            return $this->setStatusCode(400)->respondWithError('User not found');
+        }
+
+        return $this->respond(['user' => $user]);
+
     }
 
 
