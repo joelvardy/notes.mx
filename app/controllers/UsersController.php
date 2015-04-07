@@ -2,24 +2,27 @@
 
 use Joelvardy\Validators\UserValidator;
 use Joelvardy\Validators\ValidatorException;
+use Joelvardy\Storage\UserRepository as User;
 
 class UsersController extends ApiController {
 
 
     protected $userValidator;
+    protected $user;
 
 
-    function __construct(UserValidator $userValidator) {
+    function __construct(UserValidator $userValidator, User $user) {
         parent::__construct();
         $this->userValidator = $userValidator;
+        $this->user = $user;
     }
 
     public function isRegistered() {
 
-        $users = User::where('email', Input::get('email'))->count();
+        $userCount = $this->user->getUserByEmail(Input::get('email'))->count();
 
         return $this->respond([
-            'registered' => (boolean) $users
+            'registered' => (boolean) $userCount
         ]);
 
     }
