@@ -1,6 +1,7 @@
 <?php
 
 use Joelvardy\Storage\StorageException;
+use Joelvardy\Transformers\UserTransformer;
 use Joelvardy\Validators\UserValidator;
 use Joelvardy\Validators\ValidatorException;
 use Joelvardy\Storage\UserRepository as User;
@@ -10,12 +11,14 @@ class UsersController extends ApiController {
 
     protected $userValidator;
     protected $user;
+    protected $userTransformer;
 
 
-    function __construct(UserValidator $userValidator, User $user) {
+    function __construct(UserValidator $userValidator, User $user, UserTransformer $userTransformer) {
         parent::__construct();
         $this->userValidator = $userValidator;
         $this->user = $user;
+        $this->userTransformer = $userTransformer;
     }
 
     public function isRegistered() {
@@ -72,7 +75,7 @@ class UsersController extends ApiController {
             return $this->setStatusCode(400)->respondWithError('User not found');
         }
 
-        return $this->respond(['user' => $user]);
+        return $this->respond(['user' => $this->userTransformer->transform($user)]);
 
     }
 

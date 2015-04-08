@@ -19,11 +19,11 @@ class EloquentUserRepository implements UserRepository {
 
     public function returnUser($user) {
         if ( ! $user) throw new StorageException('User could not be found');
-        return $user->get();
+        return $user;
     }
 
     public function getUserByEmail($email) {
-        $user = User::where('email', $email);
+        $user = User::where('email', $email)->first();
         return $this->returnUser($user);
     }
 
