@@ -81,7 +81,17 @@ class UsersController extends ApiController {
 
 
     public function update($id) {
-        //
+
+        // Authentication
+        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+
+        try {
+            $this->user->updateUserById($id, Input::only('email', 'password'));
+            return $this->respondWithMessage('User has been updated');
+        } catch (StorageException $e) {
+            return $this->setStatusCode(400)->respondWithError('User not found');
+        }
+
     }
 
 
