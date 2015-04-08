@@ -89,14 +89,24 @@ class UsersController extends ApiController {
             $this->user->updateUserById($id, Input::only('email', 'password'));
             return $this->respondWithMessage('User has been updated');
         } catch (StorageException $e) {
-            return $this->setStatusCode(400)->respondWithError('User not found');
+            return $this->setStatusCode(400)->respondWithError('Unable to update user');
         }
 
     }
 
 
     public function destroy($id) {
-        //
+
+        // Authentication
+        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+
+        try {
+            $this->user->deleteUserById($id);
+            return $this->respondWithMessage('User has been deleted');
+        } catch (StorageException $e) {
+            return $this->setStatusCode(400)->respondWithError('Unable to delete user');
+        }
+
     }
 
 
