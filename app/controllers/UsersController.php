@@ -71,6 +71,10 @@ class UsersController extends ApiController {
             'password' => Hash::make(Input::get('password'))
         ]);
 
+        if ( ! $userId) {
+            return $this->response->setStatusCode(400)->respondWithError('Unable to create user, probably duplicate email.');
+        }
+
         return $this->response->setStatusCode(201)->respondWithMessage('The user was created', [
             'user_id' => $userId
         ]);

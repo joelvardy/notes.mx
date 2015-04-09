@@ -13,7 +13,10 @@ class Api1UsersRegisterTest extends ApiTester {
         ]);
 
         $this->assertResponseStatus(201);
-        $this->assertObjectHasAttributes(['message', 'user_id'], $response);
+        $this->assertObjectHasAttributes([
+            'message',
+            'user_id'
+        ], $response);
         $this->assertInternalType('int', $response->user_id);
 
     }
@@ -23,6 +26,27 @@ class Api1UsersRegisterTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users', 'post', [
             'email' => $this->fake->word()
+        ]);
+
+        $this->assertResponseStatus(400);
+        $this->assertObjectHasAttributes(['error'], $response);
+
+    }
+
+    /** @test */
+    public function check_duplicate_user_returns_an_error() {
+
+        $email = $this->fake->email();
+        $password = $this->fake->word();
+
+        $this->make('User', [
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
+
+        $response = $this->getJson('/api/v1/users', 'post', [
+            'email' => $email,
+            'password' => $password
         ]);
 
         $this->assertResponseStatus(400);

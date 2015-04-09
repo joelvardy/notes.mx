@@ -2,20 +2,25 @@
 
 namespace Joelvardy\Storage;
 
+use Illuminate\Database\QueryException;
 use User;
 use UserApiKey;
 
 class EloquentUserRepository implements UserRepository {
 
     public function createUser(array $input) {
+        try {
 
-        $user = new User;
-        $user->email = $input['email'];
-        $user->password = $input['password'];
-        $user->save();
+            $user = new User;
+            $user->email = $input['email'];
+            $user->password = $input['password'];
+            $user->save();
 
-        return $user->id;
+            return $user->id;
 
+        } catch (QueryException $e) {
+            return false;
+        }
     }
 
     public function returnUser($user) {
