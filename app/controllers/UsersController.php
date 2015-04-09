@@ -66,8 +66,9 @@ class UsersController extends ApiController {
 
     public function show($id) {
 
-        // Authentication
-        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+        if (Input::header('user-id') != $id) {
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to modify this resource');
+        }
 
         try {
             $user = $this->user->getUserById($id);
@@ -82,8 +83,9 @@ class UsersController extends ApiController {
 
     public function update($id) {
 
-        // Authentication
-        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+        if (Input::header('user-id') != $id) {
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to modify this resource');
+        }
 
         try {
             $this->user->updateUserById($id, Input::only('email', 'password'));
@@ -97,8 +99,9 @@ class UsersController extends ApiController {
 
     public function destroy($id) {
 
-        // Authentication
-        // return $this->setStatusCode(404)->respondWithError('Authentication error');
+        if (Input::header('user-id') != $id) {
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to modify this resource');
+        }
 
         try {
             $this->user->deleteUserById($id);

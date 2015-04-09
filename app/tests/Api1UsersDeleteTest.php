@@ -9,7 +9,9 @@ class Api1UsersDeleteTest extends ApiTester {
 
         $this->make('User');
 
-        $response = $this->getJson('/api/v1/users/1', 'delete');
+        $response = $this->getJson('/api/v1/users/1', 'delete', [], [
+            'HTTP_User-Id' => 1
+        ]);
 
         $this->assertResponseOk();
         $this->assertObjectHasAttributes(['message'], $response);
@@ -17,9 +19,23 @@ class Api1UsersDeleteTest extends ApiTester {
     }
 
     /** @test */
+    public function check_trying_to_delete_different_user_returns_an_error() {
+
+        $response = $this->getJson('/api/v1/users/1', 'delete', [], [
+            'HTTP_User-Id' => 2
+        ]);
+
+        $this->assertResponseStatus(401);
+        $this->assertObjectHasAttributes(['error'], $response);
+
+    }
+
+    /** @test */
     public function check_invalid_user_returns_error_or_delete() {
 
-        $response = $this->getJson('/api/v1/users/1', 'delete');
+        $response = $this->getJson('/api/v1/users/1', 'delete', [], [
+            'HTTP_User-Id' => 1
+        ]);
 
         $this->assertResponseStatus(400);
         $this->assertObjectHasAttributes(['error'], $response);

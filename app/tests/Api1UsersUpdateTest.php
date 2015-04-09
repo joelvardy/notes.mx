@@ -12,10 +12,27 @@ class Api1UsersUpdateTest extends ApiTester {
         $response = $this->getJson('/api/v1/users/1', 'put', [
             'email' => $this->fake->email(),
             'password' => $this->fake->word()
+        ], [
+            'HTTP_User-Id' => 1
         ]);
 
         $this->assertResponseOk();
         $this->assertObjectHasAttributes(['message'], $response);
+
+    }
+
+    /** @test */
+    public function check_trying_to_update_different_user_returns_an_error() {
+
+        $response = $this->getJson('/api/v1/users/1', 'put', [
+            'email' => $this->fake->email(),
+            'password' => $this->fake->word()
+        ], [
+            'HTTP_User-Id' => 2
+        ]);
+
+        $this->assertResponseStatus(401);
+        $this->assertObjectHasAttributes(['error'], $response);
 
     }
 
@@ -25,6 +42,8 @@ class Api1UsersUpdateTest extends ApiTester {
         $response = $this->getJson('/api/v1/users/1', 'put', [
             'email' => $this->fake->email(),
             'password' => $this->fake->word()
+        ], [
+            'HTTP_User-Id' => 1
         ]);
 
         $this->assertResponseStatus(400);

@@ -12,7 +12,9 @@ class Api1UsersReadTest extends ApiTester {
             'password' => $this->fake->name()
         ]);
 
-        $response = $this->getJson('/api/v1/users/1');
+        $response = $this->getJson('/api/v1/users/1', 'get', [], [
+            'HTTP_User-Id' => 1
+        ]);
 
         $this->assertResponseOk();
         $this->assertObjectHasAttributes(['user'], $response);
@@ -22,9 +24,23 @@ class Api1UsersReadTest extends ApiTester {
     }
 
     /** @test */
+    public function check_trying_to_read_different_user_returns_an_error() {
+
+        $response = $this->getJson('/api/v1/users/1', 'get', [], [
+            'HTTP_User-Id' => 2
+        ]);
+
+        $this->assertResponseStatus(401);
+        $this->assertObjectHasAttributes(['error'], $response);
+
+    }
+
+    /** @test */
     public function check_invalid_user_returns_error() {
 
-        $response = $this->getJson('/api/v1/users/1');
+        $response = $this->getJson('/api/v1/users/1', 'get', [], [
+            'HTTP_User-Id' => 1
+        ]);
 
         $this->assertResponseStatus(400);
         $this->assertObjectHasAttributes(['error'], $response);
