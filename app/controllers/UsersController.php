@@ -30,7 +30,7 @@ class UsersController extends ApiController {
             $registered = false;
         }
 
-        return $this->respond([
+        return $this->response->respond([
             'registered' => $registered
         ]);
 
@@ -52,12 +52,12 @@ class UsersController extends ApiController {
         try {
             $this->userValidator->validate(Input::only('email', 'password'));
         } catch (ValidatorException $e) {
-            return $this->setStatusCode(400)->respondWithError('Validation failed');
+            return $this->response->setStatusCode(400)->respondWithError('Validation failed');
         }
 
         $userId = $this->user->createUser(Input::only('email', 'password'));
 
-        return $this->setStatusCode(201)->respondWithMessage('The user was created', [
+        return $this->response->setStatusCode(201)->respondWithMessage('The user was created', [
             'user_id' => $userId
         ]);
 
@@ -72,10 +72,10 @@ class UsersController extends ApiController {
         try {
             $user = $this->user->getUserById($id);
         } catch (StorageException $e) {
-            return $this->setStatusCode(400)->respondWithError('User not found');
+            return $this->response->setStatusCode(400)->respondWithError('User not found');
         }
 
-        return $this->respond(['user' => $this->userTransformer->transform($user)]);
+        return $this->response->respond(['user' => $this->userTransformer->transform($user)]);
 
     }
 
@@ -87,9 +87,9 @@ class UsersController extends ApiController {
 
         try {
             $this->user->updateUserById($id, Input::only('email', 'password'));
-            return $this->respondWithMessage('User has been updated');
+            return $this->response->respondWithMessage('User has been updated');
         } catch (StorageException $e) {
-            return $this->setStatusCode(400)->respondWithError('Unable to update user');
+            return $this->response->setStatusCode(400)->respondWithError('Unable to update user');
         }
 
     }
@@ -102,9 +102,9 @@ class UsersController extends ApiController {
 
         try {
             $this->user->deleteUserById($id);
-            return $this->respondWithMessage('User has been deleted');
+            return $this->response->respondWithMessage('User has been deleted');
         } catch (StorageException $e) {
-            return $this->setStatusCode(400)->respondWithError('Unable to delete user');
+            return $this->response->setStatusCode(400)->respondWithError('Unable to delete user');
         }
 
     }
