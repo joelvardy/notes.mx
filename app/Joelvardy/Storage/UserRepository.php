@@ -14,4 +14,8 @@ interface UserRepository {
 
     public function deleteUserById($id);
 
+    public function createUserApiKey($id);
+
+    public function deleteExpiredApiKeys();
+
 }

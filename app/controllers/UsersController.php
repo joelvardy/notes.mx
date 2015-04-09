@@ -37,13 +37,24 @@ class UsersController extends ApiController {
     }
 
 
-    public function login() {
-        //
-    }
+    public function authenticate() {
 
+        try {
+            $this->userValidator->validate(Input::only('email', 'password'));
+        } catch (ValidatorException $e) {
+            return $this->response->setStatusCode(400)->respondWithError('Validation failed');
+        }
 
-    public function logout() {
-        //
+        if ( ! Auth::once(Input::only('email', 'password'))) {
+            return $this->response->setStatusCode(401)->respondWithError('Invalid login details');
+        }
+
+        $api_key = $this->user->createUserApiKey(Auth::id());
+
+        return $this->response->setStatusCode(201)->respondWithMessage('The user was authenticated', [
+            'api_key' => $api_key
+        ]);
+
     }
 
 
@@ -55,7 +66,10 @@ class UsersController extends ApiController {
             return $this->response->setStatusCode(400)->respondWithError('Validation failed');
         }
 
-        $userId = $this->user->createUser(Input::only('email', 'password'));
+        $userId = $this->user->createUser([
+            'email' => Input::get('email'),
+            'password' => Hash::make(Input::get('password'))
+        ]);
 
         return $this->response->setStatusCode(201)->respondWithMessage('The user was created', [
             'user_id' => $userId

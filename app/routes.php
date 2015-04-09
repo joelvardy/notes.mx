@@ -14,14 +14,9 @@ Route::group(['prefix' => 'api/v1'], function () {
         'uses' => 'UsersController@isRegistered'
     ]);
 
-    Route::get('users/login', [
-        'as' => 'api.v1.users.login',
-        'uses' => 'UsersController@login'
-    ]);
-
-    Route::get('users/logout', [
-        'as' => 'api.v1.users.logout',
-        'uses' => 'UsersController@logout'
+    Route::post('users/authenticate', [
+        'as' => 'api.v1.users.authenticate',
+        'uses' => 'UsersController@authenticate'
     ]);
 
     Route::post('users', [

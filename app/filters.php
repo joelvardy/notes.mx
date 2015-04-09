@@ -40,6 +40,8 @@ Route::filter('auth.api', function () {
     $response = App::make('Joelvardy\Responders\JsonResponder');
     $userRepository = App::make('Joelvardy\Storage\UserRepository');
 
+    $userRepository->deleteExpiredApiKeys();
+
     $user_id = Input::header('user-id', false);
     $api_key = Input::header('user-api-key', false);
     if ($user_id && $api_key) {
