@@ -50,6 +50,10 @@ class EloquentNoteRepository implements NoteRepository {
 
     public function deleteNote($id) {
 
+        $note = Note::find($id);
+        if ( ! $note) throw new StorageException('Note could not be found');
+        return $note->delete();
+
     }
 
 }
