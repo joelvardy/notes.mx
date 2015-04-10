@@ -48,7 +48,7 @@ Route::filter('auth.api', function () {
 
         try {
 
-            $user = $userRepository->getUserById($user_id);
+            $user = $userRepository->readUserById($user_id);
 
             if ($user->api_keys()->where('key', '=', $api_key)->count()) return;
 
