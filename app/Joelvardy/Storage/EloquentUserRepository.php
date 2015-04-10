@@ -28,19 +28,19 @@ class EloquentUserRepository implements UserRepository {
         return $user;
     }
 
-    public function getUserByEmail($email) {
+    public function readUserByEmail($email) {
         $user = User::where('email', $email)->first();
         return $this->returnUser($user);
     }
 
-    public function getUserById($id) {
+    public function readUserById($id) {
         $user = User::find($id);
         return $this->returnUser($user);
     }
 
-    public function updateUserById($id, array $input) {
+    public function updateUser($id, array $input) {
 
-        $user = $this->getUserById($id);
+        $user = $this->readUserById($id);
 
         if (isset($input['email'])) {
             $user->email = $input['email'];
@@ -54,14 +54,14 @@ class EloquentUserRepository implements UserRepository {
 
     }
 
-    public function deleteUserById($id) {
-        $user = $this->getUserById($id);
+    public function deleteUser($id) {
+        $user = $this->readUserById($id);
         return (boolean) $user->delete();
     }
 
     public function createUserApiKey($id) {
 
-        $user = $this->getUserById($id);
+        $user = $this->readUserById($id);
 
         $api_key = new UserApiKey();
         $api_key->key = str_random(32);

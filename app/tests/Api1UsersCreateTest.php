@@ -1,6 +1,6 @@
 <?php
 
-class Api1UsersRegisterTest extends ApiTester {
+class Api1UsersCreateTest extends ApiTester {
 
     use TestingFactory;
 

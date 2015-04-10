@@ -6,13 +6,13 @@ interface UserRepository {
 
     public function createUser(array $input);
 
-    public function getUserByEmail($email);
+    public function readUserByEmail($email);
 
-    public function getUserById($id);
+    public function readUserById($id);
 
-    public function updateUserById($id, array $input);
+    public function updateUser($id, array $input);
 
-    public function deleteUserById($id);
+    public function deleteUser($id);
 
     public function createUserApiKey($id);
 

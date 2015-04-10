@@ -1,11 +1,11 @@
 <?php
 
-class Api1UsersRegisteredTest extends ApiTester {
+class Api1UsersIsUserRegisteredTest extends ApiTester {
 
     use TestingFactory;
 
     /** @test */
-    public function check_valid_user_is_registered() {
+    public function check_unique_user() {
 
         $response = $this->getJson('/api/v1/users/registered', 'post', [
             'email' => $this->fake->email()
@@ -18,7 +18,7 @@ class Api1UsersRegisteredTest extends ApiTester {
     }
 
     /** @test */
-    public function check_existing_user_is_not_registered() {
+    public function check_existing_user_returns_error() {
 
         $email = $this->fake->email();
 

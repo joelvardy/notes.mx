@@ -24,7 +24,7 @@ class UsersController extends ApiController {
     public function isRegistered() {
 
         try {
-            $user = $this->user->getUserByEmail(Input::get('email'));
+            $user = $this->user->readUserByEmail(Input::get('email'));
             $registered = (boolean) $user->count();
         } catch (StorageException $e) {
             $registered = false;
@@ -89,7 +89,7 @@ class UsersController extends ApiController {
         }
 
         try {
-            $user = $this->user->getUserById($id);
+            $user = $this->user->readUserById($id);
         } catch (StorageException $e) {
             return $this->response->setStatusCode(400)->respondWithError('User not found');
         }
@@ -106,7 +106,7 @@ class UsersController extends ApiController {
         }
 
         try {
-            $this->user->updateUserById($id, Input::only('email', 'password'));
+            $this->user->updateUser($id, Input::only('email', 'password'));
             return $this->response->respondWithMessage('User has been updated');
         } catch (StorageException $e) {
             return $this->response->setStatusCode(400)->respondWithError('Unable to update user');
@@ -122,7 +122,7 @@ class UsersController extends ApiController {
         }
 
         try {
-            $this->user->deleteUserById($id);
+            $this->user->deleteUser($id);
             return $this->response->respondWithMessage('User has been deleted');
         } catch (StorageException $e) {
             return $this->response->setStatusCode(400)->respondWithError('Unable to delete user');
