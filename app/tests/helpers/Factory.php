@@ -9,8 +9,10 @@ trait TestingFactory {
         return $this;
     }
 
-    protected function make($type, $fields = []) {
-        $fields = array_merge($this->getStub(), $fields);
+    protected function make($type, $fields = [], $mergeWithStub = true) {
+        if ($mergeWithStub) {
+            $fields = array_merge($this->getStub(), $fields);
+        }
         while ($this->times--) $type::create($fields);
     }
 
