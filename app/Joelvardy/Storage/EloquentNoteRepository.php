@@ -4,6 +4,7 @@ namespace Joelvardy\Storage;
 
 use Illuminate\Database\QueryException;
 use Note;
+use User;
 
 class EloquentNoteRepository implements NoteRepository {
 
@@ -22,7 +23,11 @@ class EloquentNoteRepository implements NoteRepository {
         }
     }
 
-    public function readNotes() {
+    public function readNotes($user_id) {
+
+        $user = User::find($user_id);
+        if ( ! $user) throw new StorageException('User could not be found');
+        return $user->notes()->get();
 
     }
 

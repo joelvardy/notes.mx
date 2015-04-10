@@ -6,6 +6,6 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 
 class Note extends Eloquent {
 
-    protected $fillable = ['text'];
+    protected $fillable = ['user_id', 'text'];
 
 }

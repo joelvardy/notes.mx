@@ -23,7 +23,14 @@ class NotesController extends ApiController {
 
 
     public function index() {
-        //
+
+        $notes = $this->note->readNotes(Input::header('user-id'));
+        $notes = $this->noteTransformer->transformCollection($notes->toArray());
+
+        return $this->response->respondWithMessage('User notes have been returned', [
+            'notes' => $notes
+        ]);
+
     }
 
 

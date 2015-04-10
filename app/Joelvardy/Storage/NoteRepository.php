@@ -6,7 +6,7 @@ interface NoteRepository {
 
     public function createNote($user_id, array $input);
 
-    public function readNotes();
+    public function readNotes($user_id);
 
     public function readNote($id);
 

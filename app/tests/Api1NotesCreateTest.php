@@ -39,8 +39,8 @@ class Api1NotesCreateTest extends ApiTester {
 
     protected function getStub() {
         return [
-            'text' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'user_id' => 1,
+            'text' => $this->fake->paragraph()
         ];
     }
 
