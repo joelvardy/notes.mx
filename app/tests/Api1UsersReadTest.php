@@ -8,8 +8,7 @@ class Api1UsersReadTest extends ApiTester {
     public function check_valid_user_could_be_read() {
 
         $this->make('User', [
-            'email' => $this->fake->email(),
-            'password' => $this->fake->name()
+            'password' => Hash::make($this->fake->name())
         ]);
 
         $response = $this->getJson('/api/v1/users/1', 'get', [], [

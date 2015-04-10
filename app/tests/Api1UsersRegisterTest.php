@@ -9,7 +9,7 @@ class Api1UsersRegisterTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users', 'post', [
             'email' => $this->fake->email(),
-            'password' => $this->fake->word()
+            'password' => Hash::make($this->fake->word())
         ]);
 
         $this->assertResponseStatus(201);
