@@ -9,6 +9,9 @@ Route::get('/', [
 
 Route::group(['prefix' => 'api/v1'], function () {
 
+
+    /* Users */
+
     Route::post('users/registered', [
         'as' => 'api.v1.users.registered',
         'uses' => 'UsersController@isRegistered'
@@ -24,26 +27,63 @@ Route::group(['prefix' => 'api/v1'], function () {
         'uses' => 'UsersController@store'
     ]);
 
-    Route::get('users/{users}', [
-        'as' => 'api.v1.users.show',
-        'before' => 'auth.api',
-        'uses' => 'UsersController@show'
-    ]);
 
-    Route::put('users/{users}', [
-        'as' => 'api.v1.users.update',
-        'before' => 'auth.api',
-        'uses' => 'UsersController@update'
-    ]);
+    /* Requires valid user-id and user-api-key headers */
 
-    Route::delete('users/{users}', [
-        'as' => 'api.v1.users.destroy',
-        'before' => 'auth.api',
-        'uses' => 'UsersController@destroy'
-    ]);
+    Route::group(['before' => 'auth.api'], function () {
+
+
+        /* Users */
+
+        Route::get('users/{users}', [
+            'as' => 'api.v1.users.show',
+            'uses' => 'UsersController@show'
+        ]);
+
+        Route::put('users/{users}', [
+            'as' => 'api.v1.users.update',
+            'uses' => 'UsersController@update'
+        ]);
+
+        Route::delete('users/{users}', [
+            'as' => 'api.v1.users.destroy',
+            'uses' => 'UsersController@destroy'
+        ]);
+
+
+        /* Notes */
+
+        Route::get('notes', [
+            'as' => 'api.v1.notes.index',
+            'uses' => 'NotesController@index'
+        ]);
+
+        Route::post('notes', [
+            'as' => 'api.v1.notes.store',
+            'uses' => 'NotesController@store'
+        ]);
+
+        Route::get('notes/{notes}', [
+            'as' => 'api.v1.notes.show',
+            'uses' => 'NotesController@show'
+        ]);
+
+        Route::put('notes/{notes}', [
+            'as' => 'api.v1.notes.update',
+            'uses' => 'NotesController@update'
+        ]);
+
+        Route::delete('notes/{notes}', [
+            'as' => 'api.v1.notes.destroy',
+            'uses' => 'NotesController@destroy'
+        ]);
+
+
+    });
+
 
 });
 
-App::missing(function ($exception) {
+App::missing(function () {
     return Redirect::route('index');
 });

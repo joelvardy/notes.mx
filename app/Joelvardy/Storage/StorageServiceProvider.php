@@ -8,6 +8,7 @@ class StorageServiceProvider extends ServiceProvider {
 
     public function register() {
         $this->app->bind('Joelvardy\Storage\UserRepository', 'Joelvardy\Storage\EloquentUserRepository');
+        $this->app->bind('Joelvardy\Storage\NoteRepository', 'Joelvardy\Storage\EloquentNoteRepository');
     }
 
 }
