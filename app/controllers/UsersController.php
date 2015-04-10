@@ -85,7 +85,7 @@ class UsersController extends ApiController {
     public function show($id) {
 
         if (Input::header('user-id') != $id) {
-            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to modify this resource');
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
         }
 
         try {
