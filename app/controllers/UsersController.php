@@ -72,7 +72,7 @@ class UsersController extends ApiController {
         ]);
 
         if ( ! $userId) {
-            return $this->response->setStatusCode(400)->respondWithError('Unable to create user, probably duplicate email.');
+            return $this->response->setStatusCode(400)->respondWithError('Unable to create user, probably duplicate email');
         }
 
         return $this->response->setStatusCode(201)->respondWithMessage('The user was created', [
