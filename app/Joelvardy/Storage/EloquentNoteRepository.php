@@ -33,6 +33,10 @@ class EloquentNoteRepository implements NoteRepository {
 
     public function readNote($id) {
 
+        $note = Note::find($id);
+        if ( ! $note) throw new StorageException('Note could not be found');
+        return $note;
+
     }
 
     public function updateNote($id, array $input) {

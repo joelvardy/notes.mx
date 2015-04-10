@@ -58,7 +58,22 @@ class NotesController extends ApiController {
 
 
     public function show($id) {
-        //
+
+        try {
+            $note = $this->note->readNote($id);
+        } catch (StorageException $e) {
+            // This is actually a "note not found" error - but I don't want to expose how many notes have been created
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
+        }
+
+        if (Input::header('user-id') != $note->user_id) {
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
+        }
+
+        return $this->response->respondWithMessage('Your note has been returned', [
+            'note' => $this->noteTransformer->transform($note)
+        ]);
+
     }
 
 
