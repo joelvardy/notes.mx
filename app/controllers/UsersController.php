@@ -4,7 +4,7 @@ use Joelvardy\Storage\StorageException;
 use Joelvardy\Transformers\UserTransformer;
 use Joelvardy\Validators\UserValidator;
 use Joelvardy\Validators\ValidatorException;
-use Joelvardy\Storage\UserRepository as User;
+use Joelvardy\Storage\UserRepository;
 
 class UsersController extends ApiController {
 
@@ -14,7 +14,7 @@ class UsersController extends ApiController {
     protected $userTransformer;
 
 
-    function __construct(UserValidator $userValidator, User $user, UserTransformer $userTransformer) {
+    function __construct(UserValidator $userValidator, UserRepository $user, UserTransformer $userTransformer) {
         parent::__construct();
         $this->userValidator = $userValidator;
         $this->user = $user;
