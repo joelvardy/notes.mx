@@ -78,7 +78,25 @@ class NotesController extends ApiController {
 
 
     public function update($id) {
-        //
+
+        try {
+            $note = $this->note->readNote($id);
+        } catch (StorageException $e) {
+            // This is actually a "note not found" error - but I don't want to expose how many notes have been created
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
+        }
+
+        if (Input::header('user-id') != $note->user_id) {
+            return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
+        }
+
+        try {
+            $this->note->updateNote($id, Input::get('text'));
+            return $this->response->respondWithMessage('Note has been updated');
+        } catch (StorageException $e) {
+            return $this->response->setStatusCode(400)->respondWithError('Unable to update note');
+        }
+
     }
 
 

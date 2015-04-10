@@ -14,6 +14,7 @@ trait TestingFactory {
             $fields = array_merge($this->getStub(), $fields);
         }
         while ($this->times--) $type::create($fields);
+        $this->times = 1;
     }
 
     protected function getStub() {

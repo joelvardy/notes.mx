@@ -61,7 +61,7 @@ class Api1NotesReadTest extends ApiTester {
             'password' => Hash::make($this->fake->name())
         ], false);
 
-        $this->times(1)->make('Note');
+        $this->make('Note');
 
         $response = $this->getJson('/api/v1/notes/1', 'get', [], [
             'HTTP_User-Id' => 1

@@ -10,7 +10,7 @@ interface NoteRepository {
 
     public function readNote($id);
 
-    public function updateNote($id, array $input);
+    public function updateNote($id, $text);
 
     public function deleteNote($id);
 
