@@ -6,10 +6,11 @@
         <script src="/assets/minified/app.js"></script>
     </head>
     <body ng-app="notesApp">
-        <a ui-sref="authenticate" ng-if=" ! authenticated">Login / Register</a>
-        <a ui-sref="noteList" ng-if="authenticated">Notes</a>
-        <a ui-sref="account" ng-if="authenticated">Account</a>
-        <a ui-sref="logout" ng-if="authenticated">Logout</a>
+        <nav ng-if="authenticated">
+            <a ui-sref="noteList">Notes</a>
+            <a ui-sref="account">Account</a>
+            <a ui-sref="logout">Logout</a>
+        </nav>
         <div ui-view></div>
     </body>
 </html>

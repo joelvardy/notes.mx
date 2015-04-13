@@ -67,6 +67,6 @@ gulp.task('default', ['clean'], function () {
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('./public/assets/sass/**/*.scss', ['styles']);
+    gulp.watch('./public/assets/scss/**/*.scss', ['styles']);
     gulp.watch('./public/assets/js/**/*.js', ['scripts']);
 });
