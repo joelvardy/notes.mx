@@ -1,0 +1,16 @@
+<h1>Account</h1>
+
+<ul>
+    <li>ID: {{ user.id }}</li>
+    <li>Email: {{ user.email }}</li>
+</ul>
+
+<p class="error" ng-if="error">{{ error }}</p>
+
+<form ng-submit="update()">
+    <input type="email" placeholder="Email" ng-model="user.email" />
+    <input type="password" placeholder="Password (leave blank to keep the same)" ng-model="user.password" />
+    <button type="submit">Update Details</button>
+</form>
+
+<button ng-click="delete()">Delete Account</button>

@@ -1,92 +1,130 @@
 var notesApp = angular.module('notesApp', ['ui.router', 'ngStorage', 'ngResource']);
 
-notesApp.factory('User', function ($localStorage){
+notesApp.factory('Api', function ($localStorage) {
     return {
-        set: function(user) {
+        setUser: function(user) {
             $localStorage.user = user;
         },
-        get: function() {
+        getUser: function() {
             return $localStorage.user;
+        },
+        getPath: function() {
+            return '/api/v1';
+        },
+        getHeaders: function () {
+            return {
+                'User-Id': this.getUser().id,
+                'User-Api-Key': this.getUser().apiKey
+            };
         }
-    }
+    };
 });
 
-notesApp.factory('Note', function ($rootScope, $resource, User) {
+notesApp.factory('Note', function ($resource, Api) {
     return {
         rest: function () {
-            if ( ! User.get()) throw Error('Not authenticated');
-            var headers = {
-                'User-Id': User.get().id,
-                'User-Api-Key': User.get().apiKey
-            };
-            return $resource($rootScope.apiPath + '/notes/:id', { id: '@id' }, {
+            return $resource(Api.getPath() + '/notes/:id', { id: '@id' }, {
                 create: {
                     method: 'POST',
-                    headers: headers
+                    headers: Api.getHeaders()
                 },
                 readAll: {
-                    headers: headers
+                    headers: Api.getHeaders()
                 },
                 read: {
-                    headers: headers
+                    headers: Api.getHeaders()
                 },
                 update: {
                     method: 'PUT',
-                    headers: headers
+                    headers: Api.getHeaders()
                 },
                 delete: {
                     method: 'DELETE',
-                    headers: headers
+                    headers: Api.getHeaders()
                 }
             });
         }
     }
 });
 
-notesApp.controller('AuthenticationController', ['$scope', '$state', '$http', 'User', function ($scope, $state, $http, User) {
+notesApp.factory('User', function ($resource, Api) {
+    return {
+        rest: function () {
+            return $resource(Api.getPath() + '/users/:id', { id: '@id' }, {
+                registered: {
+                    url: Api.getPath() + '/users/registered',
+                    method: 'POST'
+                },
+                authenticate: {
+                    url: Api.getPath() + '/users/authenticate',
+                    method: 'POST'
+                },
+                create: {
+                    method: 'POST'
+                },
+                read: {
+                    headers: Api.getHeaders()
+                },
+                update: {
+                    method: 'PUT',
+                    headers: Api.getHeaders()
+                },
+                delete: {
+                    method: 'DELETE',
+                    headers: Api.getHeaders()
+                }
+            });
+        }
+    }
+});
 
-    if (User.get()) {
+notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'User', function ($scope, $state, Api, User) {
+
+    if (Api.getUser()) {
         $state.go('noteList');
     }
 
     $scope.submitText = 'Login / Register';
 
     $scope.checkRegistration = function () {
-        $http.post($scope.apiPath + '/users/registered', {
+        User.rest().registered({
             email: $scope.email
-        }).success(function (data) {
+        }, function(data) {
             if (data.registered) {
                 $scope.submitText = 'Login';
             } else {
                 $scope.submitText = 'Register';
             }
+        }, function (error) {
+            $scope.error = error.data.error.message;
         });
     };
 
     var authenticate = function (email, password) {
-        $http.post($scope.apiPath + '/users/authenticate', {
+        User.rest().authenticate({
             email: email,
             password: password
-        }).success(function (data) {
-            User.set({
+        }, function(data) {
+            Api.setUser({
                 id: data.user_id,
                 apiKey: data.api_key
             });
             $state.go('noteList');
-        }).error(function (data) {
-            $scope.error = data.error.message;
+        }, function (error) {
+            $scope.error = error.data.error.message;
         });
     };
 
     $scope.submit = function () {
         if ($scope.submitText === 'Register') {
-            $http.post($scope.apiPath + '/users', {
-                email: $scope.email,
-                password: $scope.password
-            }).success(function (data) {
+            var userObject = User.rest();
+            var user = new userObject ();
+            user.email = $scope.email;
+            user.password = $scope.password;
+            User.rest().create(user, function(data) {
                 authenticate($scope.email, $scope.password);
-            }).error(function (data) {
-                $scope.error = data.error.message;
+            }, function (error) {
+                $scope.error = error.data.error.message;
             });
         } else {
             authenticate($scope.email, $scope.password);
@@ -95,15 +133,41 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', '$http', 'U
 
 }]);
 
-notesApp.controller('LogoutController', ['$state', 'User', function ($state, User) {
-    User.set(false);
+notesApp.controller('LogoutController', ['$state', 'Api', function ($state, Api) {
+    Api.setUser(false);
     $state.go('authenticate');
+}]);
+
+notesApp.controller('AccountController', ['$state', '$scope', 'Api', 'User', function ($state, $scope, Api, User) {
+
+    User.rest().read({ id: Api.getUser().id }, function (data) {
+        $scope.user = data.user;
+    });
+
+    $scope.update = function () {
+        User.rest().update($scope.user, function(data) {
+            console.log('Updated user');
+        }, function (error) {
+            $scope.error = error.data.error.message;
+        });
+    };
+
+    $scope.delete = function () {
+        User.rest().delete({ id: Api.getUser().id }, function(data) {
+            $state.go('logout');
+        }, function (error) {
+            $scope.error = error.data.error.message;
+        });
+    };
+
 }]);
 
 notesApp.controller('NoteListController', function ($scope, $state, Note) {
 
-    var data = Note.rest().readAll(function () {
+    Note.rest().readAll(function (data) {
         $scope.notes = data.notes;
+    }, function (error) {
+        $scope.error = error.data.error.message;
     });
 
     $scope.newNote = function () {
@@ -112,6 +176,8 @@ notesApp.controller('NoteListController', function ($scope, $state, Note) {
         note.text = '';
         Note.rest().create(note, function(data) {
             $state.go('noteEdit', { noteId: data.note_id });
+        }, function (error) {
+            $scope.error = error.data.error.message;
         });
     };
 
@@ -119,19 +185,25 @@ notesApp.controller('NoteListController', function ($scope, $state, Note) {
 
 notesApp.controller('NoteEditController', function ($scope, $state, $stateParams, Note) {
 
-    var data = Note.rest().read({ id: $stateParams.noteId }, function () {
+    Note.rest().read({ id: $stateParams.noteId }, function (data) {
         $scope.note = data.note;
+    }, function (error) {
+        $scope.error = error.data.error.message;
     });
 
     $scope.save = function () {
-        Note.rest().update($scope.note, function() {
+        Note.rest().update($scope.note, function(data) {
             console.log('Saved');
+        }, function (error) {
+            $scope.error = error.data.error.message;
         });
     };
 
     $scope.delete = function () {
-        Note.rest().delete({ id: $stateParams.noteId }, function() {
+        Note.rest().delete({ id: $stateParams.noteId }, function(data) {
             $state.go('noteList');
+        }, function (error) {
+            $scope.error = error.data.error.message;
         });
     };
 
@@ -152,6 +224,12 @@ notesApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider)
         controller: 'LogoutController'
     });
 
+    $stateProvider.state('account', {
+        url: '/account',
+        templateUrl: '/assets/templates/account.html',
+        controller: 'AccountController'
+    });
+
     $stateProvider.state('noteList', {
         url: '/notes',
         templateUrl: '/assets/templates/note-list.html',
@@ -168,12 +246,10 @@ notesApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider)
 
 });
 
-notesApp.run(function ($rootScope, $state, User) {
-
-    $rootScope.apiPath = '/api/v1';
+notesApp.run(function ($rootScope, $state, Api) {
 
     $rootScope.$on('$locationChangeSuccess', function (event) {
-        if ( ! User.get()) {
+        if ( ! Api.getUser()) {
             $state.go('authenticate');
         } else if ($state.current.name === 'authenticate') {
             $state.go('noteList');
