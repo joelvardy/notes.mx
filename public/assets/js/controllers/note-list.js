@@ -10,8 +10,8 @@ notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function 
         var noteObject = Note.rest();
         var note = new noteObject();
         note.text = '';
-        Note.rest().create(note, function(data) {
-            $state.go('noteEdit', { noteId: data.note_id });
+        Note.rest().create(note, function (data) {
+            $state.go('noteEdit', {noteId: data.note_id});
         }, function (error) {
             $scope.error = error.data.error.message;
         });

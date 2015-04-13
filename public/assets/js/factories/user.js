@@ -1,7 +1,7 @@
 notesApp.factory('User', ['$resource', 'Api', function ($resource, Api) {
     return {
         rest: function () {
-            return $resource(Api.getPath() + '/users/:id', { id: '@id' }, {
+            return $resource(Api.getPath() + '/users/:id', {id: '@id'}, {
                 registered: {
                     url: Api.getPath() + '/users/registered',
                     method: 'POST'

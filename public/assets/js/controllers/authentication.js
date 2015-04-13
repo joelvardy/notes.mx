@@ -9,7 +9,7 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
     $scope.checkRegistration = function () {
         User.rest().registered({
             email: $scope.email
-        }, function(data) {
+        }, function (data) {
             if (data.registered) {
                 $scope.submitText = 'Login';
             } else {
@@ -24,7 +24,7 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
         User.rest().authenticate({
             email: email,
             password: password
-        }, function(data) {
+        }, function (data) {
             Api.setUser({
                 id: data.user_id,
                 apiKey: data.api_key
@@ -38,10 +38,10 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
     $scope.submit = function () {
         if ($scope.submitText === 'Register') {
             var userObject = User.rest();
-            var user = new userObject ();
+            var user = new userObject();
             user.email = $scope.email;
             user.password = $scope.password;
-            User.rest().create(user, function(data) {
+            User.rest().create(user, function (data) {
                 authenticate($scope.email, $scope.password);
             }, function (error) {
                 $scope.error = error.data.error.message;

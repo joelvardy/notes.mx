@@ -1,12 +1,12 @@
 notesApp.factory('Api', ['$localStorage', function ($localStorage) {
     return {
-        setUser: function(user) {
+        setUser: function (user) {
             $localStorage.user = user;
         },
-        getUser: function() {
+        getUser: function () {
             return $localStorage.user;
         },
-        getPath: function() {
+        getPath: function () {
             return '/api/v1';
         },
         getHeaders: function () {
