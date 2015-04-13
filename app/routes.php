@@ -85,5 +85,6 @@ Route::group(['prefix' => 'api/v1'], function () {
 });
 
 App::missing(function () {
+    return View::make('index');
     return Redirect::route('index');
 });

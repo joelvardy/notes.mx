@@ -1,0 +1,12 @@
+<h1>Edit Note</h1>
+
+<form>
+
+</form>
+
+<form ng-submit="save()">
+    <textarea placeholder="Note.." ng-model="note.text" ng-blur="save()"></textarea>
+    <button type="submit">Save</button>
+</form>
+
+<button ng-click="delete()">Delete Note</button>
