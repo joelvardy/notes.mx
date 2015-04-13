@@ -21,7 +21,8 @@ class Api1UsersAuthenticationTest extends ApiTester {
         ]);
 
         $this->assertResponseStatus(201);
-        $this->assertObjectHasAttributes(['message', 'api_key'], $response);
+        $this->assertObjectHasAttributes(['message', 'user_id', 'api_key'], $response);
+        $this->assertInternalType('int', $response->user_id);
         $this->assertInternalType('string', $response->api_key);
 
     }

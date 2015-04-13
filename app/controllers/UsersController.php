@@ -49,9 +49,12 @@ class UsersController extends ApiController {
             return $this->response->setStatusCode(401)->respondWithError('Invalid login details');
         }
 
-        $api_key = $this->user->createUserApiKey(Auth::id());
+        $user_id = (integer) Auth::id();
+
+        $api_key = $this->user->createUserApiKey($user_id);
 
         return $this->response->setStatusCode(201)->respondWithMessage('The user was authenticated', [
+            'user_id' => $user_id,
             'api_key' => $api_key
         ]);
 
