@@ -8,7 +8,7 @@ class Api1UsersAuthenticationTest extends ApiTester {
     public function check_valid_user_is_authenticated() {
 
         $email = $this->fake->email();
-        $password = $this->fake->word();
+        $password = $this->fake->password(8);
 
         $this->make('User', [
             'email' => $email,
@@ -44,7 +44,7 @@ class Api1UsersAuthenticationTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users/authenticate', 'post', [
             'email' => $this->fake->email(),
-            'password' => $this->fake->word()
+            'password' => $this->fake->password(8)
         ]);
 
         $this->assertResponseStatus(401);
@@ -55,7 +55,7 @@ class Api1UsersAuthenticationTest extends ApiTester {
     protected function getStub() {
         return [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ];
     }
 

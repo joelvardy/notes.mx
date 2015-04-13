@@ -5,8 +5,8 @@ namespace Joelvardy\Validators;
 class UserValidator extends Validator {
 
     protected static $rules = [
-        'email' => 'required',
-        'password' => 'required'
+        'email' => 'required|email',
+        'password' => 'min:7'
     ];
 
 }

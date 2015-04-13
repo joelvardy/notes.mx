@@ -39,7 +39,7 @@ class Api1UsersIsUserRegisteredTest extends ApiTester {
     protected function getStub() {
         return [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ];
     }
 

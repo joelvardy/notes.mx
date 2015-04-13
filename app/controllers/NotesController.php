@@ -86,6 +86,12 @@ class NotesController extends ApiController {
 
     public function update($id) {
 
+        try {
+            $this->noteValidator->validate(Input::only('text'));
+        } catch (ValidatorException $e) {
+            return $this->response->setStatusCode(400)->respondWithError('Validation failed');
+        }
+
         $note = $this->readNote($id);
         if ( ! $note) return $this->response->setStatusCode(401)->respondWithError('You are not authorised to access this resource');
 

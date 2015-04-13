@@ -9,7 +9,7 @@ class Api1UsersCreateTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users', 'post', [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ]);
 
         $this->assertResponseStatus(201);
@@ -37,7 +37,7 @@ class Api1UsersCreateTest extends ApiTester {
     public function check_duplicate_user_returns_an_error() {
 
         $email = $this->fake->email();
-        $password = $this->fake->word();
+        $password = $this->fake->password(8);
 
         $this->make('User', [
             'email' => $email,
@@ -57,7 +57,7 @@ class Api1UsersCreateTest extends ApiTester {
     protected function getStub() {
         return [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ];
     }
 

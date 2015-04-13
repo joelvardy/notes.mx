@@ -69,10 +69,7 @@ class UsersController extends ApiController {
             return $this->response->setStatusCode(400)->respondWithError('Validation failed');
         }
 
-        $userId = $this->user->createUser([
-            'email' => Input::get('email'),
-            'password' => Hash::make(Input::get('password'))
-        ]);
+        $userId = $this->user->createUser(Input::only('email', 'password'));
 
         if ( ! $userId) {
             return $this->response->setStatusCode(400)->respondWithError('Unable to create user, probably duplicate email');
@@ -103,6 +100,12 @@ class UsersController extends ApiController {
 
 
     public function update($id) {
+
+        try {
+            $this->userValidator->validate(Input::only('email', 'password'));
+        } catch (ValidatorException $e) {
+            return $this->response->setStatusCode(400)->respondWithError('Validation failed');
+        }
 
         if (Input::header('user-id') != $id) {
             return $this->response->setStatusCode(401)->respondWithError('You are not authorised to modify this resource');

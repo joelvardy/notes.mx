@@ -1,13 +1,12 @@
 <?php
 
-use Faker\Factory as Faker;
-
 abstract class ApiTester extends TestCase {
 
     protected $fake;
 
     function __construct() {
-        $this->fake = Faker::create();
+        $this->fake = Faker\Factory::create();
+        $this->fake->addProvider(new Faker\Provider\Internet($this->fake));
     }
 
     public function setUp() {

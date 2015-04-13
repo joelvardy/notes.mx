@@ -7,9 +7,7 @@ class Api1UsersReadTest extends ApiTester {
     /** @test */
     public function check_valid_user_could_be_read() {
 
-        $this->make('User', [
-            'password' => Hash::make($this->fake->name())
-        ]);
+        $this->make('User');
 
         $response = $this->getJson('/api/v1/users/1', 'get', [], [
             'HTTP_User-Id' => 1
@@ -49,7 +47,7 @@ class Api1UsersReadTest extends ApiTester {
     protected function getStub() {
         return [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ];
     }
 

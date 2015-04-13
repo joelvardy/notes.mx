@@ -3,6 +3,7 @@
 namespace Joelvardy\Storage;
 
 use Illuminate\Database\QueryException;
+use \Hash;
 use User;
 use UserApiKey;
 
@@ -13,7 +14,7 @@ class EloquentUserRepository implements UserRepository {
 
             $user = new User;
             $user->email = $input['email'];
-            $user->password = $input['password'];
+            $user->password = Hash::make($input['password']);
             $user->save();
 
             return $user->id;
@@ -46,8 +47,8 @@ class EloquentUserRepository implements UserRepository {
             $user->email = $input['email'];
         }
 
-        if (isset($input['password'])) {
-            $user->password = $input['password'];
+        if (isset($input['password']) && $input['password']!= '') {
+            $user->password = Hash::make($input['password']);
         }
 
         return (boolean) $user->save();

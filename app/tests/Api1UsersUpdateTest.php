@@ -11,7 +11,7 @@ class Api1UsersUpdateTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users/1', 'put', [
             'email' => $this->fake->email(),
-            'password' => $this->fake->word()
+            'password' => $this->fake->password(8)
         ], [
             'HTTP_User-Id' => 1
         ]);
@@ -26,7 +26,7 @@ class Api1UsersUpdateTest extends ApiTester {
 
         $response = $this->getJson('/api/v1/users/1', 'put', [
             'email' => $this->fake->email(),
-            'password' => $this->fake->word()
+            'password' => $this->fake->password(8)
         ], [
             'HTTP_User-Id' => 2
         ]);
@@ -37,11 +37,28 @@ class Api1UsersUpdateTest extends ApiTester {
     }
 
     /** @test */
+    public function check_updating_user_with_invalid_data_returns_an_error() {
+
+        $this->make('User');
+
+        $response = $this->getJson('/api/v1/users/1', 'put', [
+            'email' => $this->fake->word(),
+            'password' => $this->fake->password(1, 6)
+        ], [
+            'HTTP_User-Id' => 1
+        ]);
+
+        $this->assertResponseStatus(400);
+        $this->assertObjectHasAttributes(['error'], $response);
+
+    }
+
+    /** @test */
     public function check_updating_invalid_user_returns_an_error() {
 
         $response = $this->getJson('/api/v1/users/1', 'put', [
             'email' => $this->fake->email(),
-            'password' => $this->fake->word()
+            'password' => $this->fake->password(8)
         ], [
             'HTTP_User-Id' => 1
         ]);
@@ -54,7 +71,7 @@ class Api1UsersUpdateTest extends ApiTester {
     protected function getStub() {
         return [
             'email' => $this->fake->email(),
-            'password' => Hash::make($this->fake->word())
+            'password' => Hash::make($this->fake->password(8))
         ];
     }
 
