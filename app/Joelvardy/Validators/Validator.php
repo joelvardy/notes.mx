@@ -12,6 +12,10 @@ abstract class Validator {
 
     public function validate($input) {
 
+        $this->validator->extendImplicit('attribute_exists', function ($attribute, $value, $parameters) {
+            return ! is_null($value);
+        });
+
         $validator = $this->validator->make($input, static::$rules);
 
         if ($validator->passes()) return true;
