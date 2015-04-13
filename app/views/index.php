@@ -2,11 +2,8 @@
 <html>
     <head>
         <base href="/">
-        <script src="/assets/js/vendor/angular.min.js"></script>
-        <script src="/assets/js/vendor/angular-resource.min.js"></script>
-        <script src="/assets/js/vendor/angular.storage.min.js"></script>
-        <script src="/assets/js/vendor/angular-ui-router.min.js"></script>
-        <script src="/assets/js/app.js"></script>
+        <link rel="stylesheet" href="/assets/minified/app.css" />
+        <script src="/assets/minified/app.js"></script>
     </head>
     <body ng-app="notesApp">
         <a ui-sref="authenticate">Login / Register</a>

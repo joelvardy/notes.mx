@@ -1,0 +1,15 @@
+{
+    "name": "notes",
+    "private": true,
+    "dependencies": {
+        "del": "*",
+        "gulp": "*",
+        "gulp-rename": "*",
+        "gulp-ruby-sass": "*",
+        "gulp-autoprefixer": "*",
+        "gulp-minify-css": "*",
+        "gulp-order": "*",
+        "gulp-concat": "*",
+        "gulp-uglify": "*"
+    }
+}
