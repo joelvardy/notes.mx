@@ -3,7 +3,7 @@
     <h3 class="notice" ng-if="notes.length === 0">You don't have any notes, why not <a ng-click="newNote()">Create One</a>.</h3>
 
     <ul>
-        <li ng-repeat="note in notes"><a ui-sref='noteEdit({noteId: note.id})'>{{ noteTitle(note.text) }}</a></li>
+        <li ng-repeat="note in notes | orderBy:'-updated'"><a ui-sref='noteEdit({noteId: note.id})'>{{ noteTitle(note.text) }}</a></li>
     </ul>
 
 </section>
