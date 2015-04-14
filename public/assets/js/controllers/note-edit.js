@@ -16,6 +16,7 @@ notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$s
     };
 
     $rootScope.removeNote = function () {
+        if ( ! confirm('Are you sure you want to delete this note?')) return;
         Note.rest().delete({id: $stateParams.noteId}, function (data) {
             $state.go('noteList');
         }, function (error) {

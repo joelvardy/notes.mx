@@ -14,6 +14,7 @@ notesApp.controller('AccountController', ['$state', '$scope', 'Api', 'User', fun
     };
 
     $scope.remove = function () {
+        if ( ! confirm('Are you 100% sure you want to delete your account (all data will be permanently lost!)')) return;
         User.rest().delete({id: Api.getUser().id}, function (data) {
             $state.go('logout');
         }, function (error) {
