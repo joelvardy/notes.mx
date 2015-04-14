@@ -1,4 +1,4 @@
-notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function ($scope, $state, Note) {
+notesApp.controller('NoteListController', ['$rootScope', '$scope', '$state', 'Note', function ($rootScope, $scope, $state, Note) {
 
     Note.rest().readAll(function (data) {
         $scope.notes = data.notes;
@@ -6,8 +6,9 @@ notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function 
         $scope.error = error.data.error.message;
     });
 
-    $scope.noteTitle = function (note) {
-        string = note.match(/[^\r\n]+/g)[0];
+    $scope.noteTitle = function (string) {
+        if (string === '') return '';
+        string = string.match(/[^\r\n]+/g)[0];
         if (string.length > 35) {
             string = string.substr(0, 34);
             string = string.substr(0, string.lastIndexOf(' '));
@@ -15,7 +16,7 @@ notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function 
         return string;
     };
 
-    $scope.newNote = function () {
+    $rootScope.newNote = function () {
         var noteObject = Note.rest();
         var note = new noteObject();
         note.text = '';
@@ -25,5 +26,9 @@ notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function 
             $scope.error = error.data.error.message;
         });
     };
+
+    $scope.$on('$destroy', function () {
+        delete $rootScope.newNote;
+    });
 
 }]);
