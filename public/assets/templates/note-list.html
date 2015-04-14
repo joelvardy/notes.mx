@@ -1,11 +1,9 @@
 <section class="note-list">
 
-    <h1>Note List</h1>
+    <button ng-click="newNote()">New Note</button>
 
     <ul>
-        <li ng-repeat="note in notes"><a ui-sref='noteEdit({noteId: note.id})'>Note: {{ note.text }}</a></li>
+        <li ng-repeat="note in notes"><a ui-sref='noteEdit({noteId: note.id})'>{{ note.text }}</a></li>
     </ul>
-
-    <button ng-click="newNote()">New Note</button>
 
 </section>

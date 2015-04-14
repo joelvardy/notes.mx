@@ -1,8 +1,30 @@
 section.note-list {
 
     @extend .full-width;
-    background: orangered;
-//    margin-top: 5%;
-//    margin-buttom: 5%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    ul {
+
+        list-style: none;
+        margin: 1em -0.5em 0;
+        overflow: hidden;
+
+        li {
+
+            float: left;
+            width: 25%;
+
+            a {
+                background: rgba(black, 0.1);
+                display: block;
+                height: 10em;
+                margin: 0.5em;
+                padding: 1em;
+            }
+
+        }
+
+    }
 
 }
