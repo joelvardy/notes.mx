@@ -26,15 +26,20 @@ notesApp.factory('HttpInterceptorNoteEncryption', ['$q', 'Api', function ($q, Ap
                 try {
                     note.text = sjcl.decrypt(Api.getUser().passphrase, note.text);
                 } catch (e) {
-                    //
+                    return false;
                 }
                 return note;
             };
 
             if (response.config.method === 'GET' && response.config.url === Api.getPath() + '/notes') {
+                var notes = [];
                 angular.forEach(response.data.notes, function (note, key) {
-                    response.data.notes[key] = decryptNote(note);
-                });
+                    var decryptedNote = decryptNote(note);
+                    if (decryptedNote) {
+                        this.push(decryptedNote);
+                    }
+                }, notes);
+                response.data.notes = notes;
             }
 
             if (response.config.method === 'GET' && response.config.url.match('^' + Api.getPath() + '/notes/([0-9]+)$')) {
