@@ -8,47 +8,34 @@ html {
 
 @import 'forms';
 
-section.authenticate {
-
+.full-width {
     margin: 0 auto;
     width: 90%;
-    max-width: 500px;
+    max-width: 1200px;
+}
 
-    hgroup {
+header.primary {
 
-        margin: 10% auto 0;
+    background: #222;
+    padding: 0.25em 0;
 
-        h1, h4, {
-            line-height: 1em;
-            text-align: center;
-        }
-        h1 {
-            font-size: 4.5em;
-        }
-        h4 {
-            font-weight: 400;
-        }
+    nav {
 
-    }
+        @extend .full-width;
+        overflow: hidden;
 
-    form {
-
-        margin-top: 10%;
-
-        * {
-            margin-top: 2.5%;
-        }
-
-    }
-
-    div.information {
-
-        margin: 10% 0;
-
-        h3 {
-            margin-top: 5%;
+        a {
+            color: white;
+            display: block;
+            float: left;
+            margin-right: 1em;
         }
 
     }
 
 }
+
+@import 'pages/authentication';
+@import 'pages/account';
+@import 'pages/note-list';
+@import 'pages/note-edit';

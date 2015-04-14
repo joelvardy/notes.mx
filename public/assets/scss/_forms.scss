@@ -1,17 +1,27 @@
 form {
 
-    p.error {
+    p.message {
+
         background: rgba(black, 0.05);
-        border-left: 4px solid red;
+        border-left: 4px solid;
         padding: 0.5em 1em;
+
+        &.error {
+            border-left-color: red;
+        }
+
+        &.success {
+            border-left-color: green;
+        }
+
     }
 
-    * {
-        border: none;
-        display: block;
-        width: 100%;
-    }
+}
 
+input, textarea, select, button {
+    border: none;
+    display: block;
+    width: 100%;
 }
 
 input, textarea, select {

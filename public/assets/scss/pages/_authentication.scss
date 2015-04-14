@@ -1,0 +1,44 @@
+section.authenticate {
+
+    margin: 0 auto;
+    width: 90%;
+    max-width: 500px;
+
+    hgroup {
+
+        margin: 10% auto 0;
+
+        h1, h4, {
+            line-height: 1em;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4.5em;
+        }
+        h4 {
+            font-weight: 400;
+        }
+
+    }
+
+    form {
+
+        margin-top: 10%;
+
+        * {
+            margin-top: 2.5%;
+        }
+
+    }
+
+    div.information {
+
+        margin: 10% 0;
+
+        h3 {
+            margin-top: 5%;
+        }
+
+    }
+
+}

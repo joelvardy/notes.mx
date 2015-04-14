@@ -6,7 +6,8 @@ notesApp.controller('AccountController', ['$state', '$scope', 'Api', 'User', fun
 
     $scope.update = function () {
         User.rest().update($scope.user, function (data) {
-            console.log('Updated user');
+            $scope.success = data.message;
+            $scope.error = false;
         }, function (error) {
             $scope.error = error.data.error.message;
         });

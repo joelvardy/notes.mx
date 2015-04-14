@@ -1,16 +1,20 @@
-<h1>Account</h1>
+<section class="account">
 
-<ul>
-    <li>ID: {{ user.id }}</li>
-    <li>Email: {{ user.email }}</li>
-</ul>
+    <h1>Account</h1>
+    <p>To update your email address or change your password, change the values below.</p>
 
-<p class="error" ng-if="error">{{ error }}</p>
+    <form ng-submit="update()">
 
-<form ng-submit="update()">
-    <input type="email" placeholder="Email" ng-model="user.email">
-    <input type="password" placeholder="Password (leave blank to keep the same)" ng-model="user.password">
-    <button type="submit">Update Details</button>
-</form>
+        <p class="message success" ng-if="success">{{ success }}</p>
+        <p class="message error" ng-if="error">{{ error }}</p>
 
-<button ng-click="remove()">Delete Account</button>
+        <input type="email" placeholder="Email" ng-model="user.email">
+        <input type="password" placeholder="Password (leave blank to keep the same)" ng-model="user.password">
+
+        <button type="submit">Update Details</button>
+
+    </form>
+
+    <button class="delete" ng-click="remove()"><strong>*WARNING*</strong> Delete Account <strong>*WARNING*</strong></button>
+
+</section>

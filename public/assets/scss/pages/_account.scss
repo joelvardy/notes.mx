@@ -1,0 +1,25 @@
+section.account {
+
+    @extend .full-width;
+//    background: orangered;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    form {
+
+        background: rgba(black, 0.05);
+        margin-top: 2em;
+        padding: 0.01em 1em 1em;
+
+        * {
+            margin-top: 1em;
+        }
+
+    }
+
+    button.delete {
+        background: red;
+        margin-top: 2em;
+    }
+
+}
