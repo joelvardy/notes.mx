@@ -17,18 +17,32 @@ html {
 header.primary {
 
     background: #222;
-    padding: 0.25em 0;
 
     nav {
 
         @extend .full-width;
+        height: 2.5em;
         overflow: hidden;
 
-        a {
+        a, button {
+
+            border-bottom: 3px solid white;
             color: white;
             display: block;
             float: left;
+            height: 100%;
+            line-height: 2.5em;
             margin-right: 1em;
+            padding: 0 0.75em;
+            text-decoration: none;
+            width: auto;
+
+            &.right {
+                float: right;
+                margin-left: 1em;
+                margin-right: 0;
+            }
+
         }
 
     }

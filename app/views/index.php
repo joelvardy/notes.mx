@@ -12,8 +12,10 @@
         <header class="primary" ng-if="authenticated">
             <nav>
                 <a ui-sref="noteList">Notes</a>
-                <a ui-sref="account">Account</a>
-                <a ui-sref="logout">Logout</a>
+                <a class="small-remove" ui-sref="account">Account</a>
+                <a class="small-remove" ui-sref="logout">Logout</a>
+                <button class="right" ng-if="note" ng-click="removeNote()">Delete</button>
+                <button class="right" ng-if="note" ng-click="saveNote()">Save</button>
             </nav>
         </header>
         <div ui-view></div>

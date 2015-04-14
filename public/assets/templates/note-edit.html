@@ -1,17 +1,5 @@
 <section class="note-edit">
 
-    <h1>Edit Note</h1>
-
-    <form ng-submit="save()">
-
-        <p class="message error" ng-if="error">{{ error }}</p>
-
-        <textarea placeholder="Note.." ng-model="note.text" ng-blur="save()"></textarea>
-
-        <button type="submit">Save</button>
-
-    </form>
-
-    <button ng-click="remove()">Delete Note</button>
+    <textarea placeholder="Note.." ng-model="note.text" ng-blur="saveNote()"></textarea>
 
 </section>

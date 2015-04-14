@@ -1,12 +1,12 @@
-notesApp.controller('NoteEditController', ['$scope', '$state', '$stateParams', 'Note', function ($scope, $state, $stateParams, Note) {
+notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$stateParams', 'Note', function ($rootScope, $scope, $state, $stateParams, Note) {
 
     Note.rest().read({id: $stateParams.noteId}, function (data) {
-        $scope.note = data.note;
+        $rootScope.note = data.note;
     }, function (error) {
         $scope.error = error.data.error.message;
     });
 
-    $scope.save = function () {
+    $rootScope.saveNote = function () {
         Note.rest().update(angular.copy($scope.note), function (data) {
             console.log('Saved');
         }, function (error) {
@@ -14,12 +14,18 @@ notesApp.controller('NoteEditController', ['$scope', '$state', '$stateParams', '
         });
     };
 
-    $scope.remove = function () {
+    $rootScope.removeNote = function () {
         Note.rest().delete({id: $stateParams.noteId}, function (data) {
             $state.go('noteList');
         }, function (error) {
             $scope.error = error.data.error.message;
         });
     };
+
+    $scope.$on('$destroy', function () {
+        delete $rootScope.note;
+        delete $rootScope.saveNote;
+        delete $rootScope.removeNote;
+    });
 
 }]);

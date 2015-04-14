@@ -1,6 +1,8 @@
 section.note-edit {
 
-    @extend .full-width;
-    background: orangered;
+    textarea {
+        height: calc(100vh - 2.5em);
+        resize: none;
+    }
 
 }
