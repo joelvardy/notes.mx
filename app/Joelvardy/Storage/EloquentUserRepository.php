@@ -73,8 +73,8 @@ class EloquentUserRepository implements UserRepository {
     }
 
     public function deleteExpiredApiKeys() {
-        // Delete all keys which are 3 hours old
-        return UserApiKey::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-3 hour')))->delete();
+        // Delete all keys which are 5 days old
+        return UserApiKey::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-5 day')))->delete();
     }
 
 }
