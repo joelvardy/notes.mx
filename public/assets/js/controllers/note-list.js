@@ -6,6 +6,15 @@ notesApp.controller('NoteListController', ['$scope', '$state', 'Note', function 
         $scope.error = error.data.error.message;
     });
 
+    $scope.noteTitle = function (note) {
+        string = note.match(/[^\r\n]+/g)[0];
+        if (string.length > 35) {
+            string = string.substr(0, 34);
+            string = string.substr(0, string.lastIndexOf(' '));
+        }
+        return string;
+    };
+
     $scope.newNote = function () {
         var noteObject = Note.rest();
         var note = new noteObject();

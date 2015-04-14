@@ -7,7 +7,7 @@ section.note-list {
     ul {
 
         list-style: none;
-        margin: 1em -0.5em 0;
+        margin: 1em -10px 0;
         overflow: hidden;
 
         li {
@@ -18,9 +18,10 @@ section.note-list {
             a {
                 background: rgba(black, 0.1);
                 display: block;
-                height: 10em;
-                margin: 0.5em;
-                padding: 1em;
+                font-size: 1.3em;
+                height: 8em;
+                margin: 10px;
+                padding: 0.5em;
             }
 
         }
