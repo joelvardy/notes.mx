@@ -1,0 +1,35 @@
+form {
+
+    p.error {
+        background: rgba(black, 0.05);
+        border-left: 4px solid red;
+        padding: 0.5em 1em;
+    }
+
+    * {
+        border: none;
+        display: block;
+        width: 100%;
+    }
+
+}
+
+input, textarea, select {
+    background: white;
+    padding: 0.5em;
+}
+
+input, select {
+    height: 2.5em;
+}
+
+textarea {
+    height: 7em;
+}
+
+button {
+    background: #222;
+    color: white;
+    cursor: pointer;
+    height: 2.5em;
+}

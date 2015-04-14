@@ -2,7 +2,10 @@
 <html>
     <head>
         <base href="/">
-        <link rel="stylesheet" href="/assets/minified/app.css" />
+        <link rel="icon" type="image/png" href="/assets/img/logo.png">
+        <script src="//use.typekit.net/jsd0pif.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+        <link rel="stylesheet" href="/assets/minified/app.css">
         <script src="/assets/minified/app.js"></script>
     </head>
     <body ng-app="notesApp">

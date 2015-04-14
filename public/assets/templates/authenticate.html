@@ -1,10 +1,31 @@
-<h1>Authenticate</h1>
+<section class="authenticate">
 
-<p class="error" ng-if="error">{{ error }}</p>
+    <hgroup>
+        <h1>notes</h1>
+        <h4>Keep your notes <strong>private</strong>!</h4>
+    </hgroup>
 
-<form ng-submit="submit()">
-    <input type="email" placeholder="Email" ng-model="email" ng-blur="checkRegistration()">
-    <input type="password" placeholder="Password" ng-model="password">
-    <input type="password" placeholder="Passphrase" ng-model="passphrase">
-    <button type="submit">{{ submitText }}</button>
-</form>
+    <form ng-submit="submit()">
+
+        <p class="error" ng-if="error">{{ error }}</p>
+
+        <input type="email" placeholder="Email" ng-model="email" ng-blur="checkRegistration()">
+        <input type="password" placeholder="Password" ng-model="password">
+        <input type="password" placeholder="Passphrase" ng-model="passphrase">
+
+        <button type="submit">{{ submitText }}</button>
+
+    </form>
+
+    <div class="information">
+
+        <h3>Passphrases</h3>
+        <p>Your passphrase is used to encrypt and decrypt your notes within your browser, you should keep this private and enter the same one each time you login.</p>
+
+        <h3>About</h3>
+        <p>All of the code powering this website is on <a href="https://github.com/joelvardy/notes.mx" title="Open source code">GitHub</a> for you to review.</p>
+        <p>If you have any issues, suggestions, or feedback drop me a line on twitter, <a href="https://twitter.com/joelvardy" title="Joel Vardy on Twitter">@joelvardy</a>.</p>
+
+    </div>
+
+</section>
