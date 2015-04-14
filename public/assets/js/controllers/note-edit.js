@@ -2,6 +2,7 @@ notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$s
 
     Note.rest().read({id: $stateParams.noteId}, function (data) {
         $rootScope.note = data.note;
+        $scope.interval = setInterval($rootScope.saveNote, 30000); // Auto save every 30 seconds
     }, function (error) {
         $scope.error = error.data.error.message;
     });
@@ -23,6 +24,7 @@ notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$s
     };
 
     $scope.$on('$destroy', function () {
+        clearInterval($scope.interval);
         delete $rootScope.note;
         delete $rootScope.saveNote;
         delete $rootScope.removeNote;
