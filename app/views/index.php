@@ -2,6 +2,7 @@
 <html>
     <head>
         <base href="/">
+        <title>Notes | Keep your notes private!</title>
         <link rel="icon" type="image/png" href="/assets/img/logo.png">
         <script src="//use.typekit.net/jsd0pif.js"></script>
         <script>try{Typekit.load();}catch(e){}</script>
