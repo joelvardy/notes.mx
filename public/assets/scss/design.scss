@@ -1,4 +1,7 @@
 @import 'reset';
+
+$colour-primary: #c7007d;
+
 @import 'type';
 
 html {
@@ -36,6 +39,10 @@ header.primary {
             padding: 0 0.75em;
             text-decoration: none;
             width: auto;
+
+            &:hover {
+                border-bottom-color: $colour-primary;
+            }
 
             &.right {
                 float: right;
