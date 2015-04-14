@@ -2,6 +2,7 @@
 <html>
     <head>
         <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Notes | Keep your notes private!</title>
         <link rel="icon" type="image/png" href="/assets/img/logo.png">
         <script src="//use.typekit.net/jsd0pif.js"></script>
