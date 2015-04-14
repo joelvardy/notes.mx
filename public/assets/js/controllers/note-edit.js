@@ -7,7 +7,7 @@ notesApp.controller('NoteEditController', ['$scope', '$state', '$stateParams', '
     });
 
     $scope.save = function () {
-        Note.rest().update($scope.note, function (data) {
+        Note.rest().update(angular.copy($scope.note), function (data) {
             console.log('Saved');
         }, function (error) {
             $scope.error = error.data.error.message;

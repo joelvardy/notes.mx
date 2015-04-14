@@ -27,7 +27,8 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
         }, function (data) {
             Api.setUser({
                 id: data.user_id,
-                apiKey: data.api_key
+                apiKey: data.api_key,
+                passphrase: $scope.passphrase
             });
             $state.go('noteList');
         }, function (error) {
