@@ -15,6 +15,14 @@ section.note-list {
             float: left;
             width: 25%;
 
+            @media screen and (max-width: 800px) {
+                width: 33.3333%;
+            }
+
+            @media screen and (max-width: 600px) {
+                width: 50%;
+            }
+
             a {
                 background: rgba(black, 0.1);
                 display: block;

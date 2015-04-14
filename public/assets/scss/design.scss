@@ -53,3 +53,9 @@ header.primary {
 @import 'pages/account';
 @import 'pages/note-list';
 @import 'pages/note-edit';
+
+@media screen and (max-width: 600px) {
+    .small-remove {
+        display: none !important;
+    }
+}
