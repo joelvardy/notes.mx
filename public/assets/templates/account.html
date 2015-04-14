@@ -8,7 +8,7 @@
         <p class="message success" ng-if="success">{{ success }}</p>
         <p class="message error" ng-if="error">{{ error }}</p>
 
-        <input type="email" placeholder="Email" ng-model="user.email">
+        <input type="email" placeholder="Email" ng-model="user.email" autofocus>
         <input type="password" placeholder="Password (leave blank to keep the same)" ng-model="user.password">
 
         <button type="submit">Update Details</button>
