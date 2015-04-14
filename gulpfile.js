@@ -38,6 +38,7 @@ gulp.task('scripts', function () {
         './public/assets/js/factories/api.js',
         './public/assets/js/factories/note.js',
         './public/assets/js/factories/user.js',
+        './public/assets/js/factories/http-interceptor-authentication.js',
         './public/assets/js/factories/http-interceptor-note-encryption.js',
         './public/assets/js/controllers/authentication.js',
         './public/assets/js/controllers/account.js',

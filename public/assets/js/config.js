@@ -2,6 +2,7 @@ notesApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$
 
     $locationProvider.html5Mode(true);
 
+    $httpProvider.interceptors.push('HttpInterceptorAuthentication');
     $httpProvider.interceptors.push('HttpInterceptorNoteEncryption');
 
     $stateProvider.state('authenticate', {
