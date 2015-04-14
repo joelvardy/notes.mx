@@ -10,6 +10,7 @@ notesApp.factory('Api', ['$localStorage', function ($localStorage) {
             return '/api/v1';
         },
         getHeaders: function () {
+            if ( ! this.getUser()) return {};
             return {
                 'User-Id': this.getUser().id,
                 'User-Api-Key': this.getUser().apiKey
