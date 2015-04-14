@@ -10,13 +10,14 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
         User.rest().registered({
             email: $scope.email
         }, function (data) {
+            if (data.error) {
+                return $scope.error = data.error.message;
+            }
             if (data.registered) {
                 $scope.submitText = 'Login';
             } else {
                 $scope.submitText = 'Register';
             }
-        }, function (error) {
-            $scope.error = error.data.error.message;
         });
     };
 
@@ -25,14 +26,15 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
             email: email,
             password: password
         }, function (data) {
+            if (data.error) {
+                return $scope.error = data.error.message;
+            }
             Api.setUser({
                 id: data.user_id,
                 apiKey: data.api_key,
                 passphrase: $scope.passphrase
             });
             $state.go('noteList');
-        }, function (error) {
-            $scope.error = error.data.error.message;
         });
     };
 
@@ -43,9 +45,10 @@ notesApp.controller('AuthenticationController', ['$scope', '$state', 'Api', 'Use
             user.email = $scope.email;
             user.password = $scope.password;
             User.rest().create(user, function (data) {
+                if (data.error) {
+                    return $scope.error = data.error.message;
+                }
                 authenticate($scope.email, $scope.password);
-            }, function (error) {
-                $scope.error = error.data.error.message;
             });
         } else {
             authenticate($scope.email, $scope.password);
