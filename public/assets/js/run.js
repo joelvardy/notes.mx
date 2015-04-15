@@ -10,6 +10,10 @@ notesApp.run(['$rootScope', '$state', 'Api', function ($rootScope, $state, Api) 
             $state.go('noteList');
         }
 
+        $window.ga('send', 'pageview', {
+            page: $location.url()
+        });
+
     });
 
 }]);
