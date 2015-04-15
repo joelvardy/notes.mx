@@ -1,4 +1,4 @@
-notesApp.run(['$rootScope', '$state', 'Api', function ($rootScope, $state, Api) {
+notesApp.run(['$window', '$rootScope', '$state', '$location', 'Api', function ($window, $rootScope, $state, $location, Api) {
 
     $rootScope.$on('$locationChangeSuccess', function (event) {
 
