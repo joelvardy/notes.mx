@@ -1,4 +1,4 @@
-notesApp.run(['$window', '$rootScope', '$state', '$location', 'Api', function ($window, $rootScope, $state, $location, Api) {
+notesApp.run(['$rootScope', '$state', 'Api', function ($rootScope, $state, Api) {
 
     $rootScope.$on('$locationChangeSuccess', function (event) {
 
@@ -10,9 +10,7 @@ notesApp.run(['$window', '$rootScope', '$state', '$location', 'Api', function ($
             $state.go('noteList');
         }
 
-        $window.ga('send', 'pageview', {
-            page: $location.url()
-        });
+        ga('send', 'pageview', location.pathname);
 
     });
 
