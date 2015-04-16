@@ -24,7 +24,7 @@
                 <a class="small-remove" ui-sref="account">Account</a>
                 <a class="small-remove" ui-sref="logout">Logout</a>
                 <button class="right" ng-if="note" ng-click="removeNote()">Delete</button>
-                <button class="right" ng-if="note" ng-click="saveNote()">Save</button>
+                <button class="right" ng-if="note" ng-click="saveNote()">{{ saveNoteText }}</button>
                 <button class="right" ng-if="newNote" ng-click="newNote()">New Note</button>
             </nav>
         </header>

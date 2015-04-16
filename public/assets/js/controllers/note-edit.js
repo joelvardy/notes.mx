@@ -1,4 +1,4 @@
-notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$stateParams', 'Note', function ($rootScope, $scope, $state, $stateParams, Note) {
+notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', 'Note', function ($rootScope, $scope, $state, $stateParams, $timeout, Note) {
 
     Note.rest().read({id: $stateParams.noteId}, function (data) {
         $rootScope.note = data.note;
@@ -7,9 +7,13 @@ notesApp.controller('NoteEditController', ['$rootScope', '$scope', '$state', '$s
         $scope.error = error.data.error.message;
     });
 
+    $rootScope.saveNoteText = 'Save';
     $rootScope.saveNote = function () {
         Note.rest().update(angular.copy($scope.note), function (data) {
-            console.log('Saved');
+            $rootScope.saveNoteText = 'Saved!';
+            $timeout(function () {
+                $rootScope.saveNoteText = 'Save';
+            }, 1000);
         }, function (error) {
             $scope.error = error.data.error.message;
         });
